@@ -1,3 +1,3 @@
 # softEngCarApp
 Software Engineering Project
-By: C.Xarhoulakos, T.Tsigkanos, C.Charmantas
+By: C.Charmantas, T.Tsigkanos, C.Xarhoulakos
