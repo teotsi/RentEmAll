@@ -5,15 +5,15 @@
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>350</y>
+      <y>340</y>
       <w>210</w>
-      <h>70</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Customer
 --
 name: string
 surname: string
-</panel_attributes>
+telephone: string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -40,12 +40,12 @@ vehicle: Vehicle</panel_attributes>
       <w>230</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>Company
+    <panel_attributes>Company Account
 --
 policy: string
 description: string
 range: float
-applications: Αίτηση ενοικίασης[ ]
+applications: Renting Application[ ]
 logs: string</panel_attributes>
     <additional_attributes/>
   </element>
@@ -110,6 +110,7 @@ physically_challenged_compatible: boolean
 rate: float
 extra_features: string
 transmission_type: string
+available: boolean
 
 </panel_attributes>
     <additional_attributes/>
@@ -131,7 +132,7 @@ m2=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>360</x>
-      <y>380</y>
+      <y>370</y>
       <w>240</w>
       <h>40</h>
     </coordinates>
@@ -148,21 +149,9 @@ m2=1</panel_attributes>
       <h>220</h>
     </coordinates>
     <panel_attributes>lt=-
-m2=0
+m2=1
 m1=*</panel_attributes>
     <additional_attributes>130.0;190.0;10.0;190.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>250</x>
-      <y>240</y>
-      <w>40</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
-m2=1</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
