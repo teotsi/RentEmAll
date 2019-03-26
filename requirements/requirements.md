@@ -14,4 +14,4 @@
 
 Ακολουθεί ένα ενδεικτικό διάγραμμα περιπτώσεων χρήσης όπως ζητήθηκε.
 
-![Use case diagram](use_case_diagram.png)
+![Use case diagram](diagrams/use_case_diagram.png)
