@@ -15,14 +15,14 @@ id: string
 date: date
 text: string
 --
-#exportAdvice()</panel_attributes>
++exportAdvice()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>160</y>
+      <y>230</y>
       <w>210</w>
       <h>100</h>
     </coordinates>
@@ -32,16 +32,16 @@ account_holder: string
 IBAN: string
 --
 -getAccountHoder(): string
-#getIBAN(): string</panel_attributes>
++getIBAN(): string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>620</x>
-      <y>160</y>
-      <w>210</w>
-      <h>210</h>
+      <y>180</y>
+      <w>290</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>_Company Account_
 --
@@ -56,17 +56,19 @@ logs: string
 +getdDescription: string
 +getRange(): float
 -getLogs(): string
++setPolicy(string policy): void
++setRange(float range):void
 -manageApplication(): boolean
-</panel_attributes>
++setDescription(string description):void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>160</x>
-      <y>460</y>
+      <y>530</y>
       <w>210</w>
-      <h>120</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>_Customer_
 --
@@ -83,9 +85,9 @@ telephone: string
     <id>UMLClass</id>
     <coordinates>
       <x>990</x>
-      <y>750</y>
+      <y>820</y>
       <w>210</w>
-      <h>110</h>
+      <h>250</h>
     </coordinates>
     <panel_attributes>_Renting Application_
 --
@@ -93,16 +95,25 @@ start_date: date
 end_date: date
 id: string
 customer_location: string
-company_location: string</panel_attributes>
+company_location: string
+accepted: booolean
+--
++getStartDate(): date
++getEndDate(): date
++getId(): String
++getCUlocation(): string
++getCOlocation(): string
++isAccepted(): string
++setAcceptance(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>620</x>
-      <y>450</y>
-      <w>210</w>
-      <h>120</h>
+      <y>520</y>
+      <w>250</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>_Address_
 --
@@ -111,16 +122,17 @@ number: string
 zip_code: string
 city: string
 --
-+getAddress(): string</panel_attributes>
++getAddress(): string
++setAddress(string address):void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1210</x>
-      <y>110</y>
-      <w>210</w>
-      <h>120</h>
+      <y>180</y>
+      <w>300</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>_Employee_
 --
@@ -129,14 +141,15 @@ surname: string
 id: string
 --
 -getId():string
-+getFullName(): string</panel_attributes>
++getFullName(): string
++logIn(Map.Entry&lt;String, String&gt;): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>260</x>
-      <y>250</y>
+      <y>320</y>
       <w>30</w>
       <h>230</h>
     </coordinates>
@@ -148,7 +161,7 @@ id: string
     <id>UMLClass</id>
     <coordinates>
       <x>230</x>
-      <y>330</y>
+      <y>400</y>
       <w>110</w>
       <h>90</h>
     </coordinates>
@@ -169,7 +182,7 @@ Has
     <id>UMLClass</id>
     <coordinates>
       <x>990</x>
-      <y>130</y>
+      <y>200</y>
       <w>140</w>
       <h>20</h>
     </coordinates>
@@ -183,7 +196,7 @@ Employs/Occupies</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>350</x>
-      <y>200</y>
+      <y>270</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -197,7 +210,7 @@ lw=0
     <id>UMLClass</id>
     <coordinates>
       <x>220</x>
-      <y>600</y>
+      <y>670</y>
       <w>50</w>
       <h>40</h>
     </coordinates>
@@ -211,7 +224,7 @@ lw=0
     <id>UMLClass</id>
     <coordinates>
       <x>250</x>
-      <y>690</y>
+      <y>760</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -224,8 +237,8 @@ Creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>790</y>
+      <x>870</x>
+      <y>860</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -239,7 +252,7 @@ lw=0
     <id>UMLClass</id>
     <coordinates>
       <x>560</x>
-      <y>500</y>
+      <y>570</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -253,7 +266,7 @@ lw=0
     <id>Relation</id>
     <coordinates>
       <x>360</x>
-      <y>180</y>
+      <y>250</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -264,7 +277,7 @@ lw=0
     <id>Relation</id>
     <coordinates>
       <x>360</x>
-      <y>490</y>
+      <y>560</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -275,7 +288,7 @@ lw=0
     <id>UMLClass</id>
     <coordinates>
       <x>470</x>
-      <y>200</y>
+      <y>270</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -289,7 +302,7 @@ Has</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>450</x>
-      <y>480</y>
+      <y>550</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -303,19 +316,19 @@ Has</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>260</x>
-      <y>570</y>
+      <y>650</y>
       <w>750</w>
-      <h>260</h>
+      <h>250</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>730.0;240.0;10.0;240.0;10.0;10.0</additional_attributes>
+    <additional_attributes>730.0;230.0;10.0;230.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>720</x>
-      <y>360</y>
+      <y>430</y>
       <w>30</w>
       <h>110</h>
     </coordinates>
@@ -326,19 +339,19 @@ Has</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>340</x>
-      <y>570</y>
+      <y>650</y>
       <w>310</w>
-      <h>200</h>
+      <h>190</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 Has</panel_attributes>
-    <additional_attributes>290.0;180.0;10.0;180.0;10.0;10.0</additional_attributes>
+    <additional_attributes>290.0;170.0;10.0;170.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1090</x>
-      <y>430</y>
+      <x>1100</x>
+      <y>470</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -352,7 +365,7 @@ lw=0
     <id>UMLClass</id>
     <coordinates>
       <x>700</x>
-      <y>380</y>
+      <y>450</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -365,17 +378,15 @@ Has</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
+      <x>730</x>
       <y>100</y>
-      <w>110</w>
-      <h>60</h>
+      <w>50</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>valign=center
 halign=center
 lw=0
-*
-
-1</panel_attributes>
+*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -384,54 +395,56 @@ lw=0
       <x>720</x>
       <y>90</y>
       <w>30</w>
-      <h>90</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>630</x>
-      <y>720</y>
+      <y>790</y>
       <w>210</w>
-      <h>50</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>_Rental_
 --
-id: string</panel_attributes>
+id: string
+--
++getId():string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
-      <y>240</y>
-      <w>380</w>
+      <x>900</x>
+      <y>310</y>
+      <w>310</w>
       <h>200</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>360.0;180.0;210.0;180.0;210.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>290.0;180.0;130.0;180.0;130.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>820</x>
-      <y>150</y>
-      <w>410</w>
+      <x>900</x>
+      <y>220</y>
+      <w>330</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=-
 </panel_attributes>
-    <additional_attributes>390.0;10.0;210.0;10.0;210.0;50.0;10.0;50.0</additional_attributes>
+    <additional_attributes>310.0;10.0;130.0;10.0;130.0;50.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1140</x>
-      <y>140</y>
+      <y>210</y>
       <w>120</w>
       <h>20</h>
     </coordinates>
@@ -444,8 +457,8 @@ lw=0
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
-      <y>170</y>
+      <x>690</x>
+      <y>150</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -458,8 +471,8 @@ lw=0
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>830</x>
-      <y>260</y>
+      <x>870</x>
+      <y>320</y>
       <w>120</w>
       <h>20</h>
     </coordinates>
@@ -473,7 +486,7 @@ lw=0
     <id>UMLClass</id>
     <coordinates>
       <x>950</x>
-      <y>390</y>
+      <y>460</y>
       <w>120</w>
       <h>20</h>
     </coordinates>
@@ -487,7 +500,7 @@ Owns</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>830</x>
-      <y>740</y>
+      <y>810</y>
       <w>180</w>
       <h>60</h>
     </coordinates>
@@ -499,7 +512,7 @@ Owns</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>690</x>
-      <y>430</y>
+      <y>500</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -513,7 +526,7 @@ lw=0
     <id>Relation</id>
     <coordinates>
       <x>800</x>
-      <y>360</y>
+      <y>430</y>
       <w>290</w>
       <h>410</h>
     </coordinates>
@@ -525,7 +538,7 @@ lw=0
     <id>UMLClass</id>
     <coordinates>
       <x>940</x>
-      <y>550</y>
+      <y>620</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -539,7 +552,7 @@ Manages</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>310</x>
-      <y>590</y>
+      <y>660</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -553,19 +566,19 @@ lw=0
     <id>Relation</id>
     <coordinates>
       <x>1130</x>
-      <y>480</y>
-      <w>70</w>
+      <y>550</y>
+      <w>80</w>
       <h>290</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 Has</panel_attributes>
-    <additional_attributes>10.0;270.0;10.0;10.0;50.0;10.0</additional_attributes>
+    <additional_attributes>10.0;270.0;10.0;10.0;60.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>830</x>
-      <y>730</y>
+      <y>800</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -579,7 +592,7 @@ lw=0
     <id>UMLClass</id>
     <coordinates>
       <x>880</x>
-      <y>730</y>
+      <y>800</y>
       <w>110</w>
       <h>20</h>
     </coordinates>
@@ -592,10 +605,10 @@ Results In</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1180</x>
-      <y>350</y>
-      <w>260</w>
-      <h>340</h>
+      <x>1190</x>
+      <y>340</y>
+      <w>340</w>
+      <h>470</h>
     </coordinates>
     <panel_attributes>_Vehicle_
 --
@@ -604,7 +617,7 @@ brand: string
 type: string
 seats: int 
 fuel_type: string
-physically_challenged_enabled: boolean
+pce: boolean
 rate: float
 extra_features: string
 transmission_type: string
@@ -615,19 +628,61 @@ available: boolean
 +getType(): string
 +getSeats(): int
 +getFuealType():string
-+isForPCE(): boolean 
++isPCE(): boolean 
 +getExtraFeatures(): string
 +getTransmissionType(): string
 +isAvailable(): boolean
-+setBrand(string brand)
-+setType(string type)
-+setSeats(int seats)
-+setFuealType(string fuelType)
-+setPCE(boolean pce)
-+setExtraFeatures(string extraFeatures)
-+getTransmissionType()
-+isAvailable()
++setBrand(string brand): void
++setType(string type): void
++setSeats(int seats): void
++setFuealType(string fuelType): void
++setPCE(boolean pce): void
++setExtraFeatures(string extraFeatures): void
++setTransmissionType(string Trtype): void
++changeAvailability(boolean available): void
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1100</x>
+      <y>570</y>
+      <w>110</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+lw=0
+1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>800</y>
+      <w>110</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+lw=0
+*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>870</x>
+      <y>240</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+lw=0
+1</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
