@@ -3,7 +3,7 @@ import java.time.LocalDate;
 public class RentingApplication {
     private LocalDate startDate;
     private LocalDate endDate;
-    private LocalDate acceptanceDate;
+    private LocalDate replyDate;
     private String id;
     private String customerLocation;
     private String companyLocation;
@@ -12,10 +12,10 @@ public class RentingApplication {
     private String comments;
     private Vehicle vehicle;
 
-    public RentingApplication(LocalDate startDate, LocalDate endDate, LocalDate acceptanceDate, String id, String customerLocation, String companyLocation) {
+    public RentingApplication(LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.acceptanceDate = acceptanceDate;
+        this.replyDate = replyDate;
         this.id = id;
         this.customerLocation = customerLocation;
         this.companyLocation = companyLocation;
@@ -50,8 +50,8 @@ public class RentingApplication {
         return endDate;
     }
 
-    public LocalDate getAcceptanceDate() {
-        return acceptanceDate;
+    public LocalDate getReplyDate() {
+        return replyDate;
     }
 
     public String getCustomerLocation() {

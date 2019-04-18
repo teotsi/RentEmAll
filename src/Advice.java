@@ -13,56 +13,54 @@ public class Advice {
     }
     public void exportAdvice(CompanyAccount C, String timeframe){
         //Advice for accepted applications
-        if(timeframe.equals("1 week")){
-            for(RentingApplication r : C.getAcceptedApplications()){
-                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusWeeks(1))){
+        for(RentingApplication r : C.getAcceptedApplications()){
+            if(timeframe.equals("1 week")){
+                if(r.getReplyDate().isAfter(LocalDate.now().minusWeeks(1))){
 
                 }
             }
-        }else if(timeframe.equals("1 month")){
-            for(RentingApplication r : C.getAcceptedApplications()){
-                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusMonths(1))){
+            else if(timeframe.equals("1 month")){
+                if(r.getReplyDate().isAfter(LocalDate.now().minusMonths(1))){
 
                 }
             }
-        }else if(timeframe.equals("6 months")){
-            for(RentingApplication r : C.getAcceptedApplications()){
-                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusMonths(6))){
+            else if(timeframe.equals("6 months")){
+                if(r.getReplyDate().isAfter(LocalDate.now().minusMonths(6))){
 
                 }
             }
-        }else if(timeframe.equals("1 year")){
-            for(RentingApplication r : C.getAcceptedApplications()){
-                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusYears(1))){
+            else if(timeframe.equals("1 year")){
+                if(r.getReplyDate().isAfter(LocalDate.now().minusYears(1))){
 
                 }
             }
+
         }
+
+
         //Advice for rejected applications
-        if(timeframe.equals("1 week")){
-            for(RentingApplication r : C.getRejectApplications()){
-                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusWeeks(1))){
+        for(RentingApplication r : C.getRejectApplications()){
+            if(timeframe.equals("1 week")){
+                if(r.getReplyDate().isAfter(LocalDate.now().minusWeeks(1))){
 
                 }
             }
-        }else if(timeframe.equals("1 month")){
-            for(RentingApplication r : C.getRejectApplications()){
-                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusMonths(1))){
+            else if(timeframe.equals("1 month")){
+                if(r.getReplyDate().isAfter(LocalDate.now().minusMonths(1))){
 
                 }
             }
-        }else if(timeframe.equals("6 months")){
-            for(RentingApplication r : C.getRejectApplications()){
-                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusMonths(6))){
+            else if(timeframe.equals("6 months")){
+                if(r.getReplyDate().isAfter(LocalDate.now().minusMonths(6))){
 
                 }
             }
-        }else if(timeframe.equals("1 year")){
-            for(RentingApplication r : C.getRejectApplications()){
-                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusYears(1))){
+            else if(timeframe.equals("1 year")){
+                if(r.getReplyDate().isAfter(LocalDate.now().minusYears(1))){
 
                 }
             }
+
         }
     }
 }
