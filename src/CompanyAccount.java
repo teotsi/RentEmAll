@@ -91,9 +91,13 @@ public class CompanyAccount {
     }
 
     public List<RentingApplication> getAcceptedApplications(){
-        List<RentingApplication> acceptedApplications(){
-            for(RentingApplication application: applications)
-        }
+        List<RentingApplication> acceptedApplications = new ArrayList<>();
+            for(RentingApplication application: applications){
+                 if(application.isAccepted()){
+                     acceptedApplications.add(application);
+                 }
+            }
+        return acceptedApplications;
     }
 
     public void acceptApplication(String id){
