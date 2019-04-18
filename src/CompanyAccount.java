@@ -125,6 +125,15 @@ public class CompanyAccount {
             if(application.getId().equals(id)){
                 application.setPending(false);
                 application.setComments(reasons);
+                String vehicleID = application.getVehicle().getId();
+                for(Vehicle vehicle:vehicles){
+                    if(vehicle.getId().equals(vehicleID)){
+                        vehicle.setAvailable(true);
+                        break;
+                    }
+
+                }
+                break;
             }
         }
 

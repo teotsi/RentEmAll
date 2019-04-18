@@ -69,4 +69,8 @@ public class RentingApplication {
     public String getComments() {
         return comments;
     }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
 }
