@@ -5,6 +5,17 @@ public class CompanyAccount {
     private String logs;
     private float range;
 
+    public CompanyAccount(String id, String policy, String description, String logs, float range) {
+        this.id = id;
+        this.policy = policy;
+        this.description = description;
+        this.logs = logs;
+        this.range = range;
+    }
+
+    public void addVehicle(){
+
+    }
     public String getId() {
         return id;
     }

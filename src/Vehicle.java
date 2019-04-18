@@ -2,23 +2,34 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class Vehicle {
-
-    private String id;
+    private String id = String.valueOf(this.hashCode());
     private String brand;
     private String type;
-
-       private int seats;
+    private int seats;
     private String fuelType;
     private boolean pce;
     private float rate;
     private String extra;
     private String transmissionType;
-   private DateFormat date;
+    private DateFormat date;
+
+    public Vehicle(String brand, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, DateFormat date, boolean available) {
+        this.brand = brand;
+        this.type = type;
+        this.seats = seats;
+        this.fuelType = fuelType;
+        this.pce = pce;
+        this.rate = rate;
+        this.extra = extra;
+        this.transmissionType = transmissionType;
+        this.date = date;
+        this.available = available;
+    }
+
     public String getTransmissionType() {
         return transmissionType;
     }
     private boolean available;
-
 
     public String getId() {
         return id;
