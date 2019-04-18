@@ -14,7 +14,7 @@ public class Advice {
     public void exportAdvice(CompanyAccount C, String timeframe){
         if(timeframe.equals("1 week")){
             for(RentingApplication r : C.getAcceptedApplications()){
-                if()
+                if(r.getAcceptanceDate().)
             }
         }else if(timeframe.equals("1 month")){
             for(RentingApplication r : C.getAcceptedApplications()){

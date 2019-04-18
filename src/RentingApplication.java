@@ -40,4 +40,32 @@ public class RentingApplication {
     public void setComments(String comments){
         this.comments = comments;
     }
+
+    public DateFormat getStartDate() {
+        return startDate;
+    }
+
+    public DateFormat getEndDate() {
+        return endDate;
+    }
+
+    public DateFormat getAcceptanceDate() {
+        return acceptanceDate;
+    }
+
+    public String getCustomerLocation() {
+        return customerLocation;
+    }
+
+    public String getCompanyLocation() {
+        return companyLocation;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public String getComments() {
+        return comments;
+    }
 }
