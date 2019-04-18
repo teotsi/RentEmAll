@@ -100,6 +100,16 @@ public class CompanyAccount {
         return acceptedApplications;
     }
 
+    public List<RentingApplication> getRejectApplications(){
+        List<RentingApplication> rejectedApplications = new ArrayList<>();
+        for(RentingApplication application: applications){
+            if(application.isAccepted()==false && application.isPending()==false){
+                rejectedApplications.add(application);
+            }
+        }
+        return rejectedApplications;
+    }
+
     public void acceptApplication(String id){
         for(RentingApplication application: applications){
             if( application.getId().equals(id)){
