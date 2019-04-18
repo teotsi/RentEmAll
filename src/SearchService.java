@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class SearchService extends Service{
-    private static List<CompanyAccount> companies;
 
     public static List<Vehicle> getUnfilteredVehicleList(LocalDate startDate, LocalDate endDate) {
         List<Vehicle> availableVehicles = new ArrayList<>();

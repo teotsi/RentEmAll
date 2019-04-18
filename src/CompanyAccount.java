@@ -28,8 +28,8 @@ public class CompanyAccount {
         this.password = calculateHash(password);
     }
 
-    public boolean authorizeLogin(String email, String password) { //checking email/password credentials
-        return this.email.equals(email) && this.password.equals(calculateHash(password));
+    public boolean authorizeLogin(String password) { //checking email/password credentials
+        return this.password.equals(calculateHash(password));
     }
 
     public void addVehicle(Vehicle vehicle, int amount) { //adding an x amount of a Vehicle
@@ -72,6 +72,10 @@ public class CompanyAccount {
 
     public void setRange(float range) {
         this.range = range;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public List<Vehicle> getVehicles() {
