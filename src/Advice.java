@@ -12,6 +12,7 @@ public class Advice {
         this.text = text;
     }
     public void exportAdvice(CompanyAccount C, String timeframe){
+        //Advice for accepted applications
         if(timeframe.equals("1 week")){
             for(RentingApplication r : C.getAcceptedApplications()){
                 if(r.getAcceptanceDate().isAfter(LocalDate.now().minusWeeks(1))){
@@ -32,6 +33,32 @@ public class Advice {
             }
         }else if(timeframe.equals("1 year")){
             for(RentingApplication r : C.getAcceptedApplications()){
+                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusYears(1))){
+
+                }
+            }
+        }
+        //Advice for rejected applications
+        if(timeframe.equals("1 week")){
+            for(RentingApplication r : C.getRejectApplications()){
+                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusWeeks(1))){
+
+                }
+            }
+        }else if(timeframe.equals("1 month")){
+            for(RentingApplication r : C.getRejectApplications()){
+                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusMonths(1))){
+
+                }
+            }
+        }else if(timeframe.equals("6 months")){
+            for(RentingApplication r : C.getRejectApplications()){
+                if(r.getAcceptanceDate().isAfter(LocalDate.now().minusMonths(6))){
+
+                }
+            }
+        }else if(timeframe.equals("1 year")){
+            for(RentingApplication r : C.getRejectApplications()){
                 if(r.getAcceptanceDate().isAfter(LocalDate.now().minusYears(1))){
 
                 }
