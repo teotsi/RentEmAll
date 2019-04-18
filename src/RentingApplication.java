@@ -1,9 +1,9 @@
-import java.text.DateFormat;
+import java.time.LocalDate;
 
 public class RentingApplication {
-    private DateFormat startDate;
-    private DateFormat endDate;
-    private DateFormat acceptanceDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private LocalDate acceptanceDate;
     private String id;
     private String customerLocation;
     private String companyLocation;
@@ -11,7 +11,7 @@ public class RentingApplication {
     private boolean pending = true;
     private String comments;
 
-    public RentingApplication(DateFormat startDate, DateFormat endDate, DateFormat acceptanceDate, String id, String customerLocation, String companyLocation) {
+    public RentingApplication(LocalDate startDate, LocalDate endDate, LocalDate acceptanceDate, String id, String customerLocation, String companyLocation) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.acceptanceDate = acceptanceDate;
@@ -41,15 +41,15 @@ public class RentingApplication {
         this.comments = comments;
     }
 
-    public DateFormat getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public DateFormat getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public DateFormat getAcceptanceDate() {
+    public LocalDate getAcceptanceDate() {
         return acceptanceDate;
     }
 
