@@ -20,7 +20,7 @@ public class Vehicle {
         this.fuelType = fuelType;
         this.pce = pce;
         this.rate = rate;
-        this.extra = extra;
+        this.extra = extra;more w
         this.transmissionType = transmissionType;
         this.date = date;
         this.available = available;
