@@ -1,5 +1,7 @@
 
 
+import javafx.application.Application;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -88,6 +90,11 @@ public class CompanyAccount {
         return pendingApplications;
     }
 
+    public List<RentingApplication> getAcceptedApplications(){
+        List<RentingApplication> acceptedApplications(){
+            for(RentingApplication application: applications)
+        }
+    }
 
     public void acceptApplication(String id){
         for(RentingApplication application: applications){
