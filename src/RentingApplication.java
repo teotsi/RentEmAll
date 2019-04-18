@@ -3,6 +3,7 @@ import java.text.DateFormat;
 public class RentingApplication {
     private DateFormat startDate;
     private DateFormat endDate;
+    private DateFormat acceptanceDate;
     private String id;
     private String customerLocation;
     private String companyLocation;
@@ -10,9 +11,10 @@ public class RentingApplication {
     private boolean pending = true;
     private String comments;
 
-    public RentingApplication(DateFormat startDate, DateFormat endDate, String id, String customerLocation, String companyLocation) {
+    public RentingApplication(DateFormat startDate, DateFormat endDate, DateFormat acceptanceDate, String id, String customerLocation, String companyLocation) {
         this.startDate = startDate;
         this.endDate = endDate;
+        this.acceptanceDate = acceptanceDate;
         this.id = id;
         this.customerLocation = customerLocation;
         this.companyLocation = companyLocation;

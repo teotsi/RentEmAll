@@ -1,5 +1,6 @@
 import java.text.DateFormat;
 
+
 public class Advice {
     private String id;
     private DateFormat date;
@@ -10,5 +11,23 @@ public class Advice {
         this.date = date;
         this.text = text;
     }
-    public void exportAdvice(){}
+    public void exportAdvice(CompanyAccount C, String timeframe){
+        if(timeframe.equals("1 week")){
+            for(RentingApplication r : C.getAcceptedApplications()){
+                if()
+            }
+        }else if(timeframe.equals("1 month")){
+            for(RentingApplication r : C.getAcceptedApplications()){
+                if()
+            }
+        }else if(timeframe.equals("6 months")){
+            for(RentingApplication r : C.getAcceptedApplications()){
+                if()
+            }
+        }else if(timeframe.equals("1 year")){
+            for(RentingApplication r : C.getAcceptedApplications()){
+                if()
+            }
+        }
+    }
 }
