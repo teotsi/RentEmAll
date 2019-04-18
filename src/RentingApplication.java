@@ -10,6 +10,7 @@ public class RentingApplication {
     private boolean accepted = false;
     private boolean pending = true;
     private String comments;
+    private Vehicle vehicle;
 
     public RentingApplication(LocalDate startDate, LocalDate endDate, LocalDate acceptanceDate, String id, String customerLocation, String companyLocation) {
         this.startDate = startDate;
