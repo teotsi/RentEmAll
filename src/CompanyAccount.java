@@ -77,6 +77,7 @@ public class CompanyAccount {
     public List<RentingApplication> getApplications() {
         return applications;
     }
+
     public List<RentingApplication> getPendingApplications(){
         List<RentingApplication> pendingApplications = new ArrayList<>();
         for(RentingApplication application: applications){
@@ -105,6 +106,7 @@ public class CompanyAccount {
                 application.setComments(reasons);
             }
         }
+
     }
 
     private String calculateHash(String message) {//hashing function for safe password
