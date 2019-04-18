@@ -107,5 +107,21 @@ public class Vehicle {
         this.available = available;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
 
+        if (!Vehicle.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+
+        final Vehicle other = (Vehicle) obj;
+        if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
+            return false;
+        }
+
+        return true;
+    }
 }

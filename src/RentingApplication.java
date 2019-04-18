@@ -10,6 +10,7 @@ public class RentingApplication {
     private boolean accepted = false;
     private boolean pending = true;
     private String comments;
+    private Vehicle vehicle;
 
     public RentingApplication(){}
 
@@ -69,5 +70,9 @@ public class RentingApplication {
 
     public String getComments() {
         return comments;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 }
