@@ -1,5 +1,7 @@
 import java.text.DateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Vehicle {
     private String id = String.valueOf(this.hashCode());
@@ -12,6 +14,8 @@ public class Vehicle {
     private String extra;
     private String transmissionType;
     private DateFormat date;
+    private List<RentingApplication> upcomingRentals;
+    private boolean available = true;
 
     public Vehicle(String brand, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, DateFormat date, boolean available) {
         this.brand = brand;
@@ -20,16 +24,19 @@ public class Vehicle {
         this.fuelType = fuelType;
         this.pce = pce;
         this.rate = rate;
-        this.extra = extra;more w
+        this.extra = extra;
         this.transmissionType = transmissionType;
         this.date = date;
-        this.available = available;
+        this.upcomingRentals = new ArrayList<>();
     }
 
     public String getTransmissionType() {
         return transmissionType;
     }
-    private boolean available;
+
+    public void setTransmissionType(String transmissionType) {
+        this.transmissionType = transmissionType;
+    }
 
     public String getId() {
         return id;
@@ -39,71 +46,99 @@ public class Vehicle {
         return brand;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public int getSeats() {
-        return seats;
-    }
-
-    public String getFuelType() {
-        return fuelType;
-    }
-
-    public boolean isPce() {
-        return pce;
-    }
-
-    public float getRate() {
-        return rate;
-    }
-
-    public String getExtra() {
-        return extra;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
+    public int getSeats() {
+        return seats;
+    }
+
     public void setSeats(int seats) {
         this.seats = seats;
+    }
+
+    public String getFuelType() {
+        return fuelType;
     }
 
     public void setFuelType(String fuelType) {
         this.fuelType = fuelType;
     }
 
+    public boolean isPce() {
+        return pce;
+    }
+
     public void setPce(boolean pce) {
         this.pce = pce;
+    }
+
+    public float getRate() {
+        return rate;
     }
 
     public void setRate(float rate) {
         this.rate = rate;
     }
 
+    public String getExtra() {
+        return extra;
+    }
+
     public void setExtra(String extra) {
         this.extra = extra;
     }
 
-    public void setTransmissionType(String transmissionType) {
-        this.transmissionType = transmissionType;
+    public void addRental(RentingApplication newApplication) {
+        if (this.upcomingRentals.isEmpty()) {
+            this.upcomingRentals.add(newApplication);
+        } else {
+            int index = upcomingRentals.size() - 1;
+            for (RentingApplication application : upcomingRentals) {
+                if (application.getStartDate().isAfter(newApplication.getEndDate())) {
+                    index = upcomingRentals.indexOf(application);
+                    break;
+                }
+            }
+            upcomingRentals.add(index, newApplication);
+        }
+    }
+
+    public boolean isFree(LocalDate startDate, LocalDate endDate) {
+        if (upcomingRentals.isEmpty()) return true;
+        RentingApplication first = upcomingRentals.get(0);
+        for (RentingApplication application : upcomingRentals) {
+            if (application.getStartDate().isAfter(startDate)) {
+                return application.getStartDate().isAfter(endDate);
+            } else {
+                if (application.getEndDate().isBefore(startDate)) {
+                    continue;
+                } else
+                    return false;
+            }
+        }
+        //RentingApplication last = upcomingRentals.get(upcomingRentals.size() - 1);
+        return true;
     }
 
     public void setDate(DateFormat date) {
         this.date = date;
     }
 
-    public void setAvailable(boolean available) {
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) { //if a vehicle needs servicing or repairs it is marked unavailable
         this.available = available;
     }
 
@@ -118,10 +153,6 @@ public class Vehicle {
         }
 
         final Vehicle other = (Vehicle) obj;
-        if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
-            return false;
-        }
-
-        return true;
+        return (this.id == null) ? (other.id == null) : this.id.equals(other.id);
     }
 }
