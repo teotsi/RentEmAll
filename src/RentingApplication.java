@@ -11,6 +11,8 @@ public class RentingApplication {
     private boolean pending = true;
     private String comments;
 
+    public RentingApplication(){}
+
     public RentingApplication(LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
         this.startDate = startDate;
         this.endDate = endDate;

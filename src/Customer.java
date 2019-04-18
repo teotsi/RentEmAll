@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Customer {
     private String name;
     private String surname;
@@ -18,5 +20,11 @@ public class Customer {
     public String getFullName(){
         return name+" "+surname;
     }
-    public void createApplication(){}
+
+    public RentingApplication createApplication(LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation){
+        RentingApplication R = new RentingApplication(startDate, endDate, replyDate, id, customerLocation, companyLocation);
+        return r;
+    }
+
+
 }
