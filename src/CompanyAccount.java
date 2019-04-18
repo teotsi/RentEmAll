@@ -16,6 +16,7 @@ public class CompanyAccount {
     private float range;
     private List<Vehicle> vehicles;
     private List<RentingApplication> applications;
+    public List<Rental> rentals;
     private String email;
     private String password;
 
@@ -30,12 +31,12 @@ public class CompanyAccount {
         this.password = calculateHash(password);
     }
 
-    public boolean authorizeLogin(String email, String password){
+    public boolean authorizeLogin(String email, String password){ //checking email/password credentials
         if(this.email.equals(email) && this.password.equals(calculateHash(password))) return true;
         return false;
     }
 
-    public void addVehicle(Vehicle vehicle, int amount){
+    public void addVehicle(Vehicle vehicle, int amount){ //adding an x amount of a Vehicle
         for (int i = 0; i < amount; i++) {
             vehicles.add(vehicle);
         }
@@ -80,7 +81,7 @@ public class CompanyAccount {
         return applications;
     }
 
-    public List<RentingApplication> getPendingApplications(){
+    public List<RentingApplication> getPendingApplications(){ //returns all pending applications
         List<RentingApplication> pendingApplications = new ArrayList<>();
         for(RentingApplication application: applications){
             if(application.isPending()){
@@ -90,7 +91,7 @@ public class CompanyAccount {
         return pendingApplications;
     }
 
-    public List<RentingApplication> getAcceptedApplications(){
+    public List<RentingApplication> getAcceptedApplications(){ //returns all accepted Applications
         List<RentingApplication> acceptedApplications = new ArrayList<>();
             for(RentingApplication application: applications){
                  if(application.isAccepted()){
@@ -100,7 +101,7 @@ public class CompanyAccount {
         return acceptedApplications;
     }
 
-    public List<RentingApplication> getRejectApplications(){
+    public List<RentingApplication> getRejectApplications(){ //returns all rejected applications
         List<RentingApplication> rejectedApplications = new ArrayList<>();
         for(RentingApplication application: applications){
             if(application.isAccepted()==false && application.isPending()==false){
@@ -110,7 +111,7 @@ public class CompanyAccount {
         return rejectedApplications;
     }
 
-    public void acceptApplication(String id){
+    public void acceptApplication(String id){ //method to accept application with ID id
         for(RentingApplication application: applications){
             if( application.getId().equals(id)){
                 application.setPending(false);
@@ -120,7 +121,7 @@ public class CompanyAccount {
         }
     }
 
-    public void rejectApplication(String id, String reasons){
+    public void rejectApplication(String id, String reasons){ //method to reject application with ID id, with a message
         for(RentingApplication application:applications){
             if(application.getId().equals(id)){
                 application.setPending(false);
@@ -138,7 +139,7 @@ public class CompanyAccount {
 
     }
 
-    public void allocateVehicle(String id){
+    public void allocateVehicle(String id){ //allocate Vehicle to client, set availability to false
         for(Vehicle vehicle:vehicles){
             if(vehicle.getId().equals(id)){
                 vehicle.setAvailable(false);
