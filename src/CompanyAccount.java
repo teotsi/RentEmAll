@@ -41,6 +41,10 @@ public class CompanyAccount {
             vehicles.add(vehicle);
         }
     }
+
+    public void addApplication(RentingApplication r){
+        applications.add(r);
+    }
     public String getId() {
         return id;
     }
