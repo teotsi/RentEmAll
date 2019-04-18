@@ -1,10 +1,5 @@
-public class Rental {
-    private String id;
+public class Rental extends RentingApplication {
 
-    public Rental(String id){
-        this.id = id;
-    }
-    public String getId(){
-        return id;
+    public Rental() {
     }
 }

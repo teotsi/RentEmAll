@@ -1,7 +1,3 @@
-
-
-import javafx.application.Application;
-
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CompanyAccount {
+    public List<Rental> rentals;
     private String id;
     private String policy;
     private String description;
@@ -16,9 +13,9 @@ public class CompanyAccount {
     private float range;
     private List<Vehicle> vehicles;
     private List<RentingApplication> applications;
-    public List<Rental> rentals;
     private String email;
     private String password;
+    private Address address;
 
     public CompanyAccount(String id, String policy, String description, String logs, float range, String email, String password) {
         this.id = id;
@@ -31,20 +28,20 @@ public class CompanyAccount {
         this.password = calculateHash(password);
     }
 
-    public boolean authorizeLogin(String email, String password){ //checking email/password credentials
-        if(this.email.equals(email) && this.password.equals(calculateHash(password))) return true;
-        return false;
+    public boolean authorizeLogin(String email, String password) { //checking email/password credentials
+        return this.email.equals(email) && this.password.equals(calculateHash(password));
     }
 
-    public void addVehicle(Vehicle vehicle, int amount){ //adding an x amount of a Vehicle
+    public void addVehicle(Vehicle vehicle, int amount) { //adding an x amount of a Vehicle
         for (int i = 0; i < amount; i++) {
             vehicles.add(vehicle);
         }
     }
 
-    public void addApplication(RentingApplication r){
+    public void addApplication(RentingApplication r) {
         applications.add(r);
     }
+
     public String getId() {
         return id;
     }
@@ -85,39 +82,39 @@ public class CompanyAccount {
         return applications;
     }
 
-    public List<RentingApplication> getPendingApplications(){ //returns all pending applications
+    public List<RentingApplication> getPendingApplications() { //returns all pending applications
         List<RentingApplication> pendingApplications = new ArrayList<>();
-        for(RentingApplication application: applications){
-            if(application.isPending()){
+        for (RentingApplication application : applications) {
+            if (application.isPending()) {
                 pendingApplications.add(application);
             }
         }
         return pendingApplications;
     }
 
-    public List<RentingApplication> getAcceptedApplications(){ //returns all accepted Applications
+    public List<RentingApplication> getAcceptedApplications() { //returns all accepted Applications
         List<RentingApplication> acceptedApplications = new ArrayList<>();
-            for(RentingApplication application: applications){
-                 if(application.isAccepted()){
-                     acceptedApplications.add(application);
-                 }
+        for (RentingApplication application : applications) {
+            if (application.isAccepted()) {
+                acceptedApplications.add(application);
             }
+        }
         return acceptedApplications;
     }
 
-    public List<RentingApplication> getRejectApplications(){ //returns all rejected applications
+    public List<RentingApplication> getRejectApplications() { //returns all rejected applications
         List<RentingApplication> rejectedApplications = new ArrayList<>();
-        for(RentingApplication application: applications){
-            if(application.isAccepted()==false && application.isPending()==false){
+        for (RentingApplication application : applications) {
+            if (application.isAccepted() == false && application.isPending() == false) {
                 rejectedApplications.add(application);
             }
         }
         return rejectedApplications;
     }
 
-    public void acceptApplication(String id){ //method to accept application with ID id
-        for(RentingApplication application: applications){
-            if( application.getId().equals(id)){
+    public void acceptApplication(String id) { //method to accept application with ID id
+        for (RentingApplication application : applications) {
+            if (application.getId().equals(id)) {
                 application.setPending(false);
                 application.setAccepted(true);
                 return;
@@ -125,15 +122,15 @@ public class CompanyAccount {
         }
     }
 
-    public void rejectApplication(String id, String reasons){ //method to reject application with ID id, with a message
-        for(RentingApplication application:applications){
-            if(application.getId().equals(id)){
-                application.setPending(false);
-                application.setComments(reasons);
+    public void rejectApplication(String id, String reasons) { //method to reject application with ID id, with a message
+        for (RentingApplication application : applications) {
+            if (application.getId().equals(id)) {
+                application.setPending(false); //application has been reviewed now
+                application.setComments(reasons); //grounds for denial
                 String vehicleID = application.getVehicle().getId();
-                for(Vehicle vehicle:vehicles){
-                    if(vehicle.getId().equals(vehicleID)){
-                        vehicle.setAvailable(true);
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle.equals(vehicleID)) {
+                        vehicle.removeRental(application); //removing rental to free allocated days
                         break;
                     }
                 }
@@ -143,10 +140,10 @@ public class CompanyAccount {
 
     }
 
-    public void allocateVehicle(String id){ //allocate Vehicle to client, set availability to false
-        for(Vehicle vehicle:vehicles){
-            if(vehicle.getId().equals(id)){
-                vehicle.setAvailable(false);
+    public void allocateVehicle(Rental rental, int id) { //allocate Vehicle to client, save dates
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getId().equals(id)) {
+                vehicle.addRental(rental);
                 return;
             }
         }
@@ -164,8 +161,8 @@ public class CompanyAccount {
         byte[] md = md5.digest();
         BigInteger big = new BigInteger(1, md);
         String hash = big.toString(16);
-        while(hash.length()<32){
-            hash+="0";
+        while (hash.length() < 32) {
+            hash += "0";
         }
         return big.toString();
     }

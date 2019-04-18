@@ -1,7 +1,9 @@
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class Vehicle {
     private String id = String.valueOf(this.hashCode());
@@ -98,6 +100,7 @@ public class Vehicle {
         this.extra = extra;
     }
 
+
     public void addRental(RentingApplication newApplication) {
         if (this.upcomingRentals.isEmpty()) {
             this.upcomingRentals.add(newApplication);
@@ -110,6 +113,16 @@ public class Vehicle {
                 }
             }
             upcomingRentals.add(index, newApplication);
+        }
+    }
+
+    public void removeRental(RentingApplication applicationToRemove) {
+
+        for (Iterator<RentingApplication> it = upcomingRentals.iterator(); it.hasNext(); ) {
+            RentingApplication application = it.next();
+            if (application.getId().equals(applicationToRemove.getId())) {
+                it.remove();
+            }
         }
     }
 
@@ -143,7 +156,7 @@ public class Vehicle {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj) { //overriding equals class to improve code readability
         if (obj == null) {
             return false;
         }
@@ -153,6 +166,6 @@ public class Vehicle {
         }
 
         final Vehicle other = (Vehicle) obj;
-        return (this.id == null) ? (other.id == null) : this.id.equals(other.id);
+        return Objects.equals(this.id, other.id);
     }
 }
