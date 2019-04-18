@@ -102,6 +102,7 @@ public class CompanyAccount {
         for(RentingApplication application:applications){
             if(application.getId().equals(id)){
                 application.setPending(false);
+                application.setComments(reasons);
             }
         }
     }
