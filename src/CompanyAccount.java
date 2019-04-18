@@ -131,12 +131,20 @@ public class CompanyAccount {
                         vehicle.setAvailable(true);
                         break;
                     }
-
                 }
                 break;
             }
         }
 
+    }
+
+    public void allocateVehicle(String id){
+        for(Vehicle vehicle:vehicles){
+            if(vehicle.getId().equals(id)){
+                vehicle.setAvailable(false);
+                return;
+            }
+        }
     }
 
     private String calculateHash(String message) {//hashing function for safe password
