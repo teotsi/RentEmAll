@@ -6,6 +6,7 @@ import java.util.List;
 
 public class CompanyAccount {
     public List<Rental> rentals;
+    private String companyName;
     private int id;
     private String policy;
     private String description;
@@ -17,7 +18,8 @@ public class CompanyAccount {
     private String password;
     private Address address;
 
-    public CompanyAccount(String policy, String description, float range, String email, String password) {
+    public CompanyAccount(String companyName, String policy, String description, float range, String email, String password) {
+        this.companyName = companyName;
         this.id = this.hashCode();
         this.policy = policy;
         this.description = description;
@@ -42,6 +44,9 @@ public class CompanyAccount {
         this.logs += message + "\n";
     }
 
+    public String getCompanyName(){
+        return companyName;
+    }
     public int getId() {
         return id;
     }
