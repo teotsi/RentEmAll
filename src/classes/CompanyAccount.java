@@ -1,3 +1,5 @@
+package classes;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,7 +30,6 @@ public class CompanyAccount {
         this.email = email;
         if(isNewAccount){ //if we are reading created accounts we don't have to hash thei passwords again
             this.password = calculateHash(password.trim());
-            System.out.println(password + "\n\n");
         }else{
             this.password = password;
         }

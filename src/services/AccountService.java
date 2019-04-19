@@ -1,7 +1,13 @@
+package services;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import classes.CompanyAccount;
+import classes.RentingApplication;
+import classes.Vehicle;
 
 public class AccountService extends Service {
     private static int currentAccountID;
