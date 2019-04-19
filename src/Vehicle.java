@@ -7,7 +7,9 @@ import java.util.Objects;
 
 public class Vehicle {
     private String id = String.valueOf(this.hashCode());
+    private int companyId;
     private String brand;
+    private String model;
     private String type;
     private int seats;
     private String fuelType;
@@ -19,8 +21,10 @@ public class Vehicle {
     private List<RentingApplication> upcomingRentals;
     private boolean available = true;
 
-    public Vehicle(String brand, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, DateFormat date, boolean available) {
+    public Vehicle(int id, String brand, String model, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, DateFormat date, boolean available) {
+        this.companyId = id;
         this.brand = brand;
+        this.model = model;
         this.type = type;
         this.seats = seats;
         this.fuelType = fuelType;
@@ -167,5 +171,11 @@ public class Vehicle {
 
         final Vehicle other = (Vehicle) obj;
         return Objects.equals(this.id, other.id);
+    }
+
+    @Override
+    public String toString() {
+        return brand + " " + model + ", seats: " + seats + ", type: " + type + ", fuel: " + fuelType + ", rate: " + rate +
+                "/day, PCE: " + pce + ", transimission: " + transmissionType + ", extras: " + extra;
     }
 }

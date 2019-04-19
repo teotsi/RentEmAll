@@ -11,10 +11,13 @@ public class RentingApplication {
     private boolean pending = true;
     private String comments;
     private Vehicle vehicle;
+    private int companyId;
 
-    public RentingApplication(){}
+    public RentingApplication() {
+    }
 
-    public RentingApplication(LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
+    public RentingApplication(int companyId, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
+        this.companyId = companyId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.replyDate = replyDate;
@@ -28,20 +31,12 @@ public class RentingApplication {
         return id;
     }
 
-    public void setPending(boolean pending) {
-        this.pending = pending;
-    }
-
     public boolean isPending() {
         return pending;
     }
 
-    public void setAccepted(boolean accepted) {
-        this.accepted = accepted;
-    }
-
-    public void setComments(String comments){
-        this.comments = comments;
+    public void setPending(boolean pending) {
+        this.pending = pending;
     }
 
     public LocalDate getStartDate() {
@@ -68,11 +63,23 @@ public class RentingApplication {
         return accepted;
     }
 
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
     public String getComments() {
         return comments;
     }
 
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
     public Vehicle getVehicle() {
         return vehicle;
+    }
+
+    public int getCompanyId() {
+        return companyId;
     }
 }
