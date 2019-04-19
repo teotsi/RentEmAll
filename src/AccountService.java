@@ -34,7 +34,7 @@ public class AccountService extends Service {
                     logEvent("\"Logged in at \" + dateFormat.format(new Date())");
                     return true;
                 } else {
-                    companyAccount.logSession("Invalid login attempt at "+dateFormat.format(new Date()));
+                    companyAccount.logSession("Invalid login attempt at " + dateFormat.format(new Date()));
                     return false;
                 }
             } else {
@@ -52,7 +52,7 @@ public class AccountService extends Service {
     }
 
     public static void register(String companyName, String policy, String description, float range, String email, String password) {
-        companies.add(new CompanyAccount(companyName, policy, description, range, email, password));
+        companies.add(new CompanyAccount(companyName, policy, description, range, email, password,true));
     }
 
     public static void save() {
@@ -62,6 +62,7 @@ public class AccountService extends Service {
                 System.out.println(companyAccount.getLogs());
                 companyAccount.setVehicles(vehicles);
                 companyAccount.setApplications(applications);
+//                compa
                 break;
             }
         }
@@ -71,7 +72,7 @@ public class AccountService extends Service {
         for (int i = 0; i < amount; i++) {
             vehicles.add(new Vehicle(vehicle));
         }
-        logEvent("Added "+amount + " "+vehicle.getName());
+        logEvent("Added " + amount + " " + vehicle.getName());
 
     }
 
@@ -80,7 +81,7 @@ public class AccountService extends Service {
             Vehicle vehicle = it.next();
             if (vehicle.equals(vehicleToRemove)) {
                 it.remove();
-                logEvent("Removed "+ vehicleToRemove.getName()+", id "+vehicleToRemove.getId());
+                logEvent("Removed " + vehicleToRemove.getName() + ", id " + vehicleToRemove.getId());
                 return;
             }
         }
@@ -96,7 +97,7 @@ public class AccountService extends Service {
     public static void addApplication(RentingApplication application) { //adding application
         applications.add(application);
         allocateVehicle(application, application.getVehicle().getId());
-        logEvent("Added application for "+application.getVehicle().getName());
+        logEvent("Added application for " + application.getVehicle().getName());
     }
 
     public static void acceptApplication(String id) { //method to accept application with ID id
@@ -109,8 +110,8 @@ public class AccountService extends Service {
         }
     }
 
-    private static void logEvent(String event){
-        logs+=event+"\n";
+    private static void logEvent(String event) {
+        logs += event + "\n";
     }
 
     public static void rejectApplication(String id, String reasons) { //method to reject application with ID id, with a message

@@ -1,3 +1,4 @@
+package services;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class Service {
+//    protected static File vehiclesFile= new File("");
     protected static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     protected static List<CompanyAccount> companies = new ArrayList<>(); //all companies
 
@@ -25,7 +27,7 @@ public class Service {
             String line = s.nextLine();
     
             StringTokenizer st = new StringTokenizer(line, "/");
-            companies.add(new CompanyAccount(st.nextToken(), st.nextToken(), st.nextToken(), Float.parseFloat(st.nextToken()), st.nextToken(), st.nextToken(), true));
+            companies.add(new CompanyAccount(st.nextToken(), st.nextToken(), st.nextToken(), Float.parseFloat(st.nextToken()), st.nextToken(), st.nextToken(), false));
         }
         Service.companies = companies;
         for(CompanyAccount c : companies){

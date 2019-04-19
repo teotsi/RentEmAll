@@ -18,7 +18,7 @@ public class CompanyAccount {
     private String password;
     private Address address;
 
-    public CompanyAccount(String companyName, String policy, String description, float range, String email, String password, boolean flag) {
+    public CompanyAccount(String companyName, String policy, String description, float range, String email, String password, boolean isNewAccount) {
         this.companyName = companyName;
         this.id = this.companyName.hashCode();
         this.policy = policy;
@@ -26,7 +26,7 @@ public class CompanyAccount {
         this.range = range;
         this.vehicles = new ArrayList<>();
         this.email = email;
-        if(flag){
+        if(isNewAccount){ //if we are reading created accounts we don't have to hash thei passwords again
             this.password = calculateHash(password.trim());
             System.out.println(password + "\n\n");
         }else{
