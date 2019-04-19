@@ -31,9 +31,10 @@ public class AccountService extends Service {
                     currentAccountID = auth;//waste of time if the emails don't match
                     vehicles = companyAccount.getVehicles();
                     applications = companyAccount.getApplications();
-                    logs += "Logged in at " + dateFormat.format(new Date()) + "\n";
+                    logEvent("\"Logged in at \" + dateFormat.format(new Date())");
                     return true;
                 } else {
+                    companyAccount.logSession("Invalid login attempt at "+dateFormat.format(new Date()));
                     return false;
                 }
             } else {
@@ -68,8 +69,10 @@ public class AccountService extends Service {
 
     public static void addVehicle(Vehicle vehicle, int amount) { //adding an x amount of a Vehicle
         for (int i = 0; i < amount; i++) {
-            vehicles.add(vehicle);
+            vehicles.add(new Vehicle(vehicle));
         }
+        logEvent("Added "+amount + " "+vehicle.getName());
+
     }
 
     public static void removeVehicle(Vehicle vehicleToRemove) {
@@ -77,12 +80,13 @@ public class AccountService extends Service {
             Vehicle vehicle = it.next();
             if (vehicle.equals(vehicleToRemove)) {
                 it.remove();
+                logEvent("Removed "+ vehicleToRemove.getName()+", id "+vehicleToRemove.getId());
                 return;
             }
         }
     }
 
-    public static void signOut() { //reseting object
+    public static void signOut() { //resetting object
         currentAccountID = -1;
         vehicles = null;
         applications = null;
@@ -91,7 +95,8 @@ public class AccountService extends Service {
 
     public static void addApplication(RentingApplication application) { //adding application
         applications.add(application);
-        application.getVehicle().addRental(application);
+        allocateVehicle(application, application.getVehicle().getId());
+        logEvent("Added application for "+application.getVehicle().getName());
     }
 
     public static void acceptApplication(String id) { //method to accept application with ID id
@@ -102,6 +107,10 @@ public class AccountService extends Service {
                 return;
             }
         }
+    }
+
+    private static void logEvent(String event){
+        logs+=event+"\n";
     }
 
     public static void rejectApplication(String id, String reasons) { //method to reject application with ID id, with a message
@@ -122,7 +131,7 @@ public class AccountService extends Service {
 
     }
 
-    public static void allocateVehicle(Rental rental, int id) { //allocate Vehicle to client, save dates
+    public static void allocateVehicle(RentingApplication rental, String id) { //allocate Vehicle to client, save dates
         for (Vehicle vehicle : vehicles) {
             if (vehicle.getId().equals(id)) {
                 vehicle.addRental(rental);

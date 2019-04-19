@@ -21,10 +21,7 @@ public class Customer {
         return name+" "+surname;
     }
 
-    public RentingApplication createApplication(LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation){
-        RentingApplication R = new RentingApplication(startDate, endDate, replyDate, id, customerLocation, companyLocation);
-        return R;
-    }
+
 
 
 }

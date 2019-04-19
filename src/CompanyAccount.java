@@ -25,7 +25,7 @@ public class CompanyAccount {
         this.vehicles = new ArrayList<>();
         this.email = email;
         this.password = calculateHash(password);
-        this.logs = "";
+        this.logs = "Account created\n";
     }
 
     public int authorizeLogin(String password) { //checking email/password credentials

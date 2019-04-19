@@ -16,12 +16,13 @@ public class RentingApplication {
     public RentingApplication() {
     }
 
-    public RentingApplication(int companyId, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
+    public RentingApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
         this.companyId = companyId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.replyDate = replyDate;
         this.id = id;
+        this.vehicle = vehicle;
         this.customerLocation = customerLocation;
         this.companyLocation = companyLocation;
         comments = "";

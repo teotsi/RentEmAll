@@ -36,6 +36,22 @@ public class Vehicle {
         this.upcomingRentals = new ArrayList<>();
     }
 
+    public Vehicle(Vehicle vehicle){
+        this.companyId = vehicle.companyId;
+        this.brand = vehicle.brand;
+        this.model = vehicle.model;
+        this.type = vehicle.type;
+        this.id = String.valueOf(String.valueOf(vehicle.hashCode()).hashCode());
+        this.seats = vehicle.seats;
+        this.fuelType = vehicle.fuelType;
+        this.pce = vehicle.pce;
+        this.rate = vehicle.rate;
+        this.extra = vehicle.extra;
+        this.transmissionType = vehicle.transmissionType;
+        this.date = vehicle.date;
+        this.upcomingRentals = new ArrayList<>();
+    }
+
     public String getTransmissionType() {
         return transmissionType;
     }
@@ -104,6 +120,9 @@ public class Vehicle {
         this.extra = extra;
     }
 
+    public String getModel() {
+        return model;
+    }
 
     public void addRental(RentingApplication newApplication) {
         if (this.upcomingRentals.isEmpty()) {
@@ -177,5 +196,9 @@ public class Vehicle {
     public String toString() {
         return brand + " " + model + ", seats: " + seats + ", type: " + type + ", fuel: " + fuelType + ", rate: " + rate +
                 "/day, PCE: " + pce + ", transimission: " + transmissionType + ", extras: " + extra;
+    }
+
+    public String getName(){
+        return brand+" "+model;
     }
 }

@@ -26,6 +26,10 @@ public class SearchService extends Service {
         }
     }
 
+    public RentingApplication createApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
+        return new RentingApplication(companyId, vehicle, startDate, endDate, replyDate, id, customerLocation, companyLocation);
+    }
+
     public List<Vehicle> getFilteredVehicleList(LocalDate startDate, LocalDate endDate, String filters) {
         List<Vehicle> availableVehicles = getUnfilteredVehicleList(startDate, endDate);
         StringTokenizer filterTokenizer = new StringTokenizer(filters, ",");
