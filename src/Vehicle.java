@@ -17,12 +17,11 @@ public class Vehicle {
     private float rate;
     private String extra;
     private String transmissionType;
-    private DateFormat date;
+    private LocalDate date;
     private List<RentingApplication> upcomingRentals;
     private boolean available = true;
 
-    public Vehicle(int id, String brand, String model, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, DateFormat date, boolean available) {
-        this.companyId = id;
+    public Vehicle(String brand, String model, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, LocalDate date, boolean available) {
         this.brand = brand;
         this.model = model;
         this.type = type;
@@ -33,6 +32,7 @@ public class Vehicle {
         this.extra = extra;
         this.transmissionType = transmissionType;
         this.date = date;
+        this.available = available;
         this.upcomingRentals = new ArrayList<>();
     }
 
@@ -62,6 +62,13 @@ public class Vehicle {
 
     public String getId() {
         return id;
+    }
+
+    public int getCompanyId(){
+        return companyId;
+    }
+    public void setCompanyId(int companyId){
+        this.companyId = companyId;
     }
 
     public String getBrand() {
@@ -166,7 +173,7 @@ public class Vehicle {
         return true;
     }
 
-    public void setDate(DateFormat date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -1,0 +1,20 @@
+Kostas' Car Rental{
+Nissan/Micra/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Peugeot/206/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Opel/Corsa/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+}
+Theodore's Car Rental{
+Nissan/Micra/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Nissan/Micra/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Nissan/Micra/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Peugeot/206/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Opel/Corsa/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+}
+Chris' Car Rental{
+Nissan/Micra/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Nissan/Micra/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Peugeot/206/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Opel/Corsa/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Peugeot/206/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+Opel/Corsa/Car/5/Diesel/true/20/Extras/Automatic/2019-05-03/true
+}

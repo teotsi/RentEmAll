@@ -18,16 +18,33 @@ public class CompanyAccount {
     private String password;
     private Address address;
 
-    public CompanyAccount(String companyName, String policy, String description, float range, String email, String password) {
+    public CompanyAccount(String companyName, String policy, String description, float range, String email, String password, boolean flag) {
         this.companyName = companyName;
-        this.id = this.hashCode();
+        this.id = this.companyName.hashCode();
         this.policy = policy;
         this.description = description;
         this.range = range;
         this.vehicles = new ArrayList<>();
         this.email = email;
-        this.password = calculateHash(password);
+        if(flag){
+            this.password = calculateHash(password.trim());
+            System.out.println(password + "\n\n");
+        }else{
+            this.password = password;
+        }
         this.logs = "Account created\n";
+    }
+
+    public String toString(){
+        return (this.companyName + "/"  + this.policy + "/" + this.description + "/" + this.range + "/" + this.email + "/" + this.password); 
+    }
+
+    public void addMultipleVehicles(List<Vehicle> cars){
+        vehicles.addAll(cars);
+
+        for(Vehicle v : cars){
+            System.out.println(v);
+        }
     }
 
     public int authorizeLogin(String password) { //checking email/password credentials
