@@ -28,7 +28,7 @@ public class RentingApplication {
         this.vehicle = vehicle;
         this.customerLocation = customerLocation;
         this.companyLocation = companyLocation;
-        this.customer=customer;
+        this.customer = customer;
         comments = "";
     }
 

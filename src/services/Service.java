@@ -1,5 +1,6 @@
 package services;
 import classes.CompanyAccount;
+import classes.RentingApplication;
 import classes.Vehicle;
 
 import java.io.*;
@@ -80,11 +81,18 @@ public class Service {
             owner = owner.substring(0, owner.length() - 1);
             String line = s.nextLine();
             List<Vehicle> cars = new ArrayList<>();
+            int counter = -1;
+
+
             while(!line.contains("}")){
                 StringTokenizer st = new StringTokenizer(line, "/");
                 cars.add(new Vehicle(st.nextToken(), st.nextToken(), st.nextToken(), Integer.parseInt(st.nextToken()), st.nextToken(), Boolean.parseBoolean(st.nextToken()), Float.parseFloat(st.nextToken()), st.nextToken(), st.nextToken(), LocalDate.parse(st.nextToken()), Boolean.parseBoolean(st.nextToken())));
+                counter++;
+                cars.get(counter).addUpcomingRentals(new RentingApplication(owner.hashCode(), LocalDate.parse(st.nextToken()), LocalDate.parse(st.nextToken()), LocalDate.parse(st.nextToken()), st.nextToken(), cars.get(counter), st.nextToken(), st.nextToken(), new Customer(st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken())));
+                
                 line = s.nextLine();
             }   
+            counter = -1;
             for(CompanyAccount c : companies){
                 if(c.getCompanyName().equals(owner)){
                     c.addMultipleVehicles(cars);
@@ -103,4 +111,12 @@ public class Service {
         }
         s.close();
     }
+
+    public static List<RentingApplication> CarApplicationHandler(){
+        List<RentingApplication> l = new ArrayList<>();
+
+
+        return l;
+    }
+
 }

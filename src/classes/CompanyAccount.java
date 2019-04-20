@@ -46,10 +46,10 @@ public class CompanyAccount {
 
     public void addMultipleVehicles(List<Vehicle> cars){
         vehicles.addAll(cars);
+    }
 
-        for(Vehicle v : cars){
-            System.out.println(v);
-        }
+    public void addMultipleApplications(List<RentingApplication> l){
+        applications.addAll(l);
     }
 
     public int authorizeLogin(String password) { //checking email/password credentials

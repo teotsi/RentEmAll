@@ -53,6 +53,9 @@ public class Vehicle {
         this.upcomingRentals = new ArrayList<>();
     }
 
+    public void addUpcomingRentals(RentingApplication ra){
+        upcomingRentals.add(ra);
+    }
     public String getTransmissionType() {
         return transmissionType;
     }
