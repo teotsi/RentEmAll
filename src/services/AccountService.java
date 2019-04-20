@@ -12,8 +12,8 @@ import java.util.List;
 
 public class AccountService extends Service {
     private static int currentAccountID;
-    private static List<Vehicle> vehicles;
-    private static List<RentingApplication> applications;
+    private static List<Vehicle> vehicles=new ArrayList<>();
+    private static List<RentingApplication> applications=new ArrayList<>();
     private static String logs = "";
     private static BankAccount bankAccount;
 
@@ -65,8 +65,21 @@ public class AccountService extends Service {
         return password.matches(passwordPattern);
     }
 
-    public static void register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount) {
-        companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount));
+    public static int register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount) {
+        if(emailIsValid(email)){
+            if(emailIsAvailable(email)){
+                if(passwordIsValid(password)){
+                    companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount));
+                    return 0;
+                }else{
+                    return 1;
+                }
+            }else{
+                return 2;
+            }
+        }else{
+            return 3;
+        }
     }
 
     public static void save() {
@@ -90,12 +103,12 @@ public class AccountService extends Service {
 
     }
 
-    public static void removeVehicle(Vehicle vehicleToRemove) {
+    public static void removeVehicle(String id) {
         for (Iterator<Vehicle> it = vehicles.iterator(); it.hasNext(); ) {
             Vehicle vehicle = it.next();
-            if (vehicle.equals(vehicleToRemove)) {
+            if (vehicle.getId().equals(id)) {
                 it.remove();
-                logEvent("Removed " + vehicleToRemove.getName() + ", id " + vehicleToRemove.getId());
+                logEvent("Removed " + vehicle.getName() + ", id " + vehicle.getId());
                 return;
             }
         }
@@ -157,6 +170,7 @@ public class AccountService extends Service {
 
     public static List<RentingApplication> getPendingApplications() { //returns all pending applications
         List<RentingApplication> pendingApplications = new ArrayList<>();
+        if(applications==null) return null;
         for (RentingApplication application : applications) {
             if (application.isPending()) {
                 pendingApplications.add(application);
@@ -187,6 +201,14 @@ public class AccountService extends Service {
 
     public void addToBalance(double moneyyy) {
         bankAccount.addBalance(moneyyy);
+    }
+
+    public static List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public static int getNumberOfVehicles(){
+        return vehicles.size();
     }
 
 }

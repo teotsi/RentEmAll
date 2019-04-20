@@ -32,6 +32,7 @@ public class CompanyAccount {
         this.latitude = latitude;
         this.longitude = longitude;
         this.vehicles = new ArrayList<>();
+        this.applications = new ArrayList<>();
         this.email = email;
         this.bankAccount = bankAccount;
         if (isNewAccount) { //if we are reading created accounts we don't have to hash thei passwords again
@@ -130,6 +131,7 @@ public class CompanyAccount {
     }
 
     public List<RentingApplication> getApplications() {
+
         return applications;
     }
 

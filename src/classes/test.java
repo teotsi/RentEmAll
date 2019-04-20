@@ -1,25 +1,95 @@
 package classes;
 
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 import services.AccountService;
+import services.SearchService;
 import services.Service;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 public class test {
-    public static void main(String[] args) {
-       /* System.out.println(AccountService.passwordIsValid("Qwerty!2"));
-        System.out.println(AccountService.emailIsValid("kati@gmail.com"));
-        AccountService.register("","",(float) 0.0,"kati@aueb.com","Qwerty!2");
-        
-        AccountService.save();*/
-        try{
-            Service.CompanyReader("Companies.txt");
-            Service.vehicleReader("Vehicles.txt");
-            Service.CompanyWriter("Companies.txt");
-            Service.VehicleWriter("testVehicle.txt");
-            System.out.println(AccountService.login("costasxusa@gmail.com","Qwerty!2"));
-        }catch(IOException e ){
-            System.err.println("Hi");
-        }    
+
+@Test
+public void totalTest(){
+    try {
+        int status;
+        status = Service.CompanyReader("");
+        Assert.assertEquals(status,1);
+        status = Service.CompanyReader("Companies.txt");
+        Assert.assertEquals(status,0);
+
+        status=Service.vehicleReader("");
+        Assert.assertEquals(status,1);
+        status=Service.vehicleReader("Vehicles.txt");
+        Assert.assertEquals(status,0);
+
+        int registerStatus = AccountService.register("Makis Rentals", "Makis policy",
+                "Makis description", 50, 38.080641, 23.687001,
+                "teotsi@mailcom", "Makis12", new BankAccount("Makis", "43", 65));
+        Assert.assertEquals(registerStatus,3);
+
+        registerStatus =AccountService.register("Makis Rentals", "Makis policy",
+                "Makis description", 50, 38.080641, 23.687001,
+                "teotsi@gmail.com", "Makis12", new BankAccount("Makis", "43", 65));
+        Assert.assertEquals(registerStatus,2);
+
+        registerStatus =AccountService.register("Makis Rentals", "Makis policy",
+                "Makis description", 50, 38.080641, 23.687001,
+                "makaros@gmail.com", "Makis12", new BankAccount("Makis", "43", 65));
+        Assert.assertEquals(registerStatus,1);
+
+        registerStatus =AccountService.register("Makis Rentals", "Makis policy",
+                "Makis description", 50, 38.080641, 23.687001,
+                "makaros@gmail.com", "Makaros!2", new BankAccount("Makis", "43", 65));
+        Assert.assertEquals(registerStatus,0);
+
+
+        boolean loginStatus = AccountService.login("makaros@mailcom", "Makaros!2");
+        Assert.assertEquals(loginStatus,false);
+
+        loginStatus=AccountService.login("makaros@gmail.com","Makaros!2");
+        Assert.assertEquals(loginStatus,true);
+
+        int numberOfVehicles = AccountService.getNumberOfVehicles();
+        Vehicle astra = new Vehicle("Opel", "Astra","Car", 5, "Diesel", false, 20,
+                "extra", "Automatic", LocalDate.parse("2018-06-06"), true);
+        AccountService.addVehicle(astra,2);
+        int expected = numberOfVehicles+2;
+        Assert.assertEquals(expected,AccountService.getNumberOfVehicles());
+
+
+        expected -=1;
+        AccountService.removeVehicle(AccountService.getVehicles().get(0).getId());
+        Assert.assertEquals(expected,AccountService.getNumberOfVehicles());
+        List<RentingApplication> list = AccountService.getPendingApplications();
+        Assert.assertEquals(true,list.isEmpty());
+
+        AccountService.signOut();
+
+        AccountService.login("teotsi@gmail.com","Qwerty!2");
+
+        int size = AccountService.getPendingApplications().size();
+        List<Vehicle> vehicles = SearchService.getUnfilteredVehicleList(LocalDate.parse("2018-08-08"),LocalDate.parse("2018-08-09"),
+                38.080650,23.687501 );
+        SearchService.createApplication(vehicles.get(0).getCompanyId(),vehicles.get(4),LocalDate.parse("2018-08-08"),LocalDate.parse("2018-08-09"),
+                LocalDate.parse("2018-07-07"),"0","Athens","salonika",
+                new Customer("john","papajohn","5235235","john@email.com"));
+        expected = size;
+        Assert.assertEquals(expected,AccountService.getPendingApplications().size());
+
+        list = AccountService.getPendingApplications();
+        expected=list.size()-1;
+        AccountService.rejectApplication(list.get(0).getId(),"Client asked for cancel");
+        Assert.assertEquals(expected,AccountService.getPendingApplications().size());
+
+
+        Service.CompanyWriter("CompaniesOut.txt");
+        Service.VehicleWriter("testVehicleOut.txt");
+    } catch (IOException e) {
+        System.err.println("Hi");
     }
+}
 }

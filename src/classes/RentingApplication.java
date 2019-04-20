@@ -19,17 +19,21 @@ public class RentingApplication {
     public RentingApplication() {
     }
 
-    public RentingApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation, Customer customer) {
+    public RentingApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation, Customer customer, boolean isNewApplication) {
         this.companyId = companyId;
         this.startDate = startDate;
         this.endDate = endDate;
         this.replyDate = replyDate;
-        this.id = id;
         this.vehicle = vehicle;
         this.customerLocation = customerLocation;
         this.companyLocation = companyLocation;
         this.customer = customer;
         comments = "";
+        if(isNewApplication){
+            this.id = String.valueOf(String.valueOf(this.toString().hashCode()).hashCode());
+        }else{
+            this.id = id;
+        }
     }
 
     public String getId() {
@@ -94,6 +98,6 @@ public class RentingApplication {
 
     @Override
     public String toString() {
-        return startDate + "/" + endDate + "/" + replyDate + "/" + id + "/" + customerLocation + "/" + companyLocation + "/" + customer.toString();
+        return startDate + "/" + endDate + "/" + replyDate + "/" + id + "/" + customerLocation + "/" + companyLocation + "/" + customer.toString()+"/";
     }
 }

@@ -195,19 +195,6 @@ public class Vehicle {
         this.available = available;
     }
 
-    @Override
-    public boolean equals(Object obj) { //overriding equals class to improve code readability
-        if (obj == null) {
-            return false;
-        }
-
-        if (!Vehicle.class.isAssignableFrom(obj.getClass())) {
-            return false;
-        }
-
-        final Vehicle other = (Vehicle) obj;
-        return Objects.equals(this.id, other.id);
-    }
 
     @Override
     public String toString() {

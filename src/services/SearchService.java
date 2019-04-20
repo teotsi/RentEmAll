@@ -79,7 +79,7 @@ public class SearchService extends Service {
     }
 
     public static RentingApplication createApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation, Customer customer) {
-        return new RentingApplication(companyId, vehicle, startDate, endDate, replyDate, id, customerLocation, companyLocation, customer);
+        return new RentingApplication(companyId, vehicle, startDate, endDate, replyDate, id, customerLocation, companyLocation, customer, true);
     }
 
     public static double calculateDistance(double lat1, double long1, double lat2, double long2) {
