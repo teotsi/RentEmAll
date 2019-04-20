@@ -135,6 +135,10 @@ public class Vehicle {
         return model;
     }
 
+    public List<RentingApplication> getUpcomingRentals() {
+        return upcomingRentals;
+    }
+
     public void addRental(RentingApplication newApplication) {
         if (this.upcomingRentals.isEmpty()) {
             this.upcomingRentals.add(newApplication);
