@@ -4,7 +4,7 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>310</y>
       <w>20</w>
       <h>50</h>
@@ -15,7 +15,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
+      <x>20</x>
       <y>290</y>
       <w>280</w>
       <h>40</h>
@@ -27,7 +27,7 @@ newAccountButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>610</x>
+      <x>250</x>
       <y>220</y>
       <w>100</w>
       <h>30</h>
@@ -38,7 +38,7 @@ newAccountButton()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>240</y>
       <w>30</w>
       <h>90</h>
@@ -49,7 +49,7 @@ newAccountButton()</panel_attributes>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>360</x>
+      <x>0</x>
       <y>210</y>
       <w>60</w>
       <h>110</h>
@@ -60,7 +60,7 @@ newAccountButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>380</x>
+      <x>20</x>
       <y>310</y>
       <w>20</w>
       <h>340</h>
@@ -71,18 +71,18 @@ newAccountButton()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>830</x>
+      <x>470</x>
       <y>220</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>:RentalController</panel_attributes>
+    <panel_attributes>:AccountService</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
+      <x>30</x>
       <y>350</y>
       <w>270</w>
       <h>40</h>
@@ -94,7 +94,7 @@ ReadInfo()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>370</y>
       <w>20</w>
       <h>50</h>
@@ -105,7 +105,7 @@ ReadInfo()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>520</x>
       <y>240</y>
       <w>30</w>
       <h>170</h>
@@ -116,7 +116,7 @@ ReadInfo()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
+      <x>290</x>
       <y>370</y>
       <w>250</w>
       <h>50</h>
@@ -129,7 +129,7 @@ address, email, logo, description)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>880</x>
+      <x>520</x>
       <y>390</y>
       <w>20</w>
       <h>50</h>
@@ -140,7 +140,7 @@ address, email, logo, description)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
+      <x>30</x>
       <y>420</y>
       <w>270</w>
       <h>40</h>
@@ -152,7 +152,7 @@ ReadForm()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>440</y>
       <w>20</w>
       <h>50</h>
@@ -163,7 +163,7 @@ ReadForm()</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>880</x>
+      <x>520</x>
       <y>460</y>
       <w>20</w>
       <h>50</h>
@@ -174,7 +174,7 @@ ReadForm()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
+      <x>290</x>
       <y>440</y>
       <w>250</w>
       <h>40</h>
@@ -186,7 +186,7 @@ SetForm(range, age, work_season)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
+      <x>290</x>
       <y>510</y>
       <w>250</w>
       <h>50</h>
@@ -199,7 +199,7 @@ name)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>880</x>
+      <x>520</x>
       <y>530</y>
       <w>20</w>
       <h>50</h>
@@ -210,7 +210,7 @@ name)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>510</y>
       <w>20</w>
       <h>50</h>
@@ -221,7 +221,7 @@ name)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
+      <x>30</x>
       <y>490</y>
       <w>270</w>
       <h>40</h>
@@ -233,20 +233,20 @@ ReadBankAccount()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
+      <x>290</x>
       <y>570</y>
       <w>250</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-CreateAccount(Info, Form,
+register(Info, Form,
 Account)</panel_attributes>
     <additional_attributes>230.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>880</x>
+      <x>520</x>
       <y>590</y>
       <w>20</w>
       <h>60</h>
@@ -257,7 +257,7 @@ Account)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>570</y>
       <w>20</w>
       <h>50</h>
@@ -268,7 +268,7 @@ Account)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>890</x>
+      <x>530</x>
       <y>590</y>
       <w>230</w>
       <h>40</h>
@@ -280,18 +280,18 @@ create</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1100</x>
+      <x>740</x>
       <y>600</y>
-      <w>100</w>
+      <w>120</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>:Account</panel_attributes>
+    <panel_attributes>:CompanyAccount</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>350</y>
       <w>30</w>
       <h>40</h>
@@ -302,7 +302,7 @@ create</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>410</y>
       <w>30</w>
       <h>50</h>
@@ -313,7 +313,7 @@ create</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>480</y>
       <w>30</w>
       <h>50</h>
@@ -324,7 +324,7 @@ create</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>550</y>
       <w>30</w>
       <h>40</h>
@@ -335,7 +335,7 @@ create</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>520</x>
       <y>430</y>
       <w>30</w>
       <h>50</h>
@@ -346,7 +346,7 @@ create</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>520</x>
       <y>500</y>
       <w>30</w>
       <h>50</h>
@@ -357,7 +357,7 @@ create</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
+      <x>520</x>
       <y>570</y>
       <w>30</w>
       <h>40</h>
@@ -368,7 +368,7 @@ create</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>280</x>
       <y>610</y>
       <w>30</w>
       <h>60</h>

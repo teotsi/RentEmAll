@@ -1,5 +1,6 @@
 package services;
 import classes.CompanyAccount;
+import classes.Customer;
 import classes.RentingApplication;
 import classes.Vehicle;
 
@@ -88,8 +89,8 @@ public class Service {
                 StringTokenizer st = new StringTokenizer(line, "/");
                 cars.add(new Vehicle(st.nextToken(), st.nextToken(), st.nextToken(), Integer.parseInt(st.nextToken()), st.nextToken(), Boolean.parseBoolean(st.nextToken()), Float.parseFloat(st.nextToken()), st.nextToken(), st.nextToken(), LocalDate.parse(st.nextToken()), Boolean.parseBoolean(st.nextToken())));
                 counter++;
-                cars.get(counter).addUpcomingRentals(new RentingApplication(owner.hashCode(), LocalDate.parse(st.nextToken()), LocalDate.parse(st.nextToken()), LocalDate.parse(st.nextToken()), st.nextToken(), cars.get(counter), st.nextToken(), st.nextToken(), new Customer(st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken())));
-                
+                cars.get(counter).addUpcomingRentals(new RentingApplication(owner.hashCode(), cars.get(counter), LocalDate.parse(st.nextToken()), LocalDate.parse(st.nextToken()), LocalDate.parse(st.nextToken()), st.nextToken(), st.nextToken(), st.nextToken(), new Customer(st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken())));
+
                 line = s.nextLine();
             }   
             counter = -1;
