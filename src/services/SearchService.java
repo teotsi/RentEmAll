@@ -1,6 +1,7 @@
 package services;
 
 import classes.CompanyAccount;
+import classes.Customer;
 import classes.RentingApplication;
 import classes.Vehicle;
 
@@ -34,8 +35,12 @@ public class SearchService extends Service {
         }
     }
 
-    public static RentingApplication createApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
-        return new RentingApplication(companyId, vehicle, startDate, endDate, replyDate, id, customerLocation, companyLocation);
+    public static Customer createCustomer(String name, String surname, String telephone, String email){
+        return new Customer(name, surname, telephone, email);
+    }
+
+    public static RentingApplication createApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation, Customer customer) {
+        return new RentingApplication(companyId, vehicle, startDate, endDate, replyDate, id, customerLocation, companyLocation, customer);
     }
 
     public static double calculateDistance(double lat1, double long1, double lat2, double long2) {
