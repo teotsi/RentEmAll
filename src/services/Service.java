@@ -52,7 +52,24 @@ public class Service {
     }
 
     public static void VehicleWriter(String file) throws IOException{
-        
+        BufferedWriter writer = null;
+        try{
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(PATH+file))));
+        }catch(FileNotFoundException e){
+            System.err.println("Hi");
+        }
+        try{
+            for(CompanyAccount c : companies){
+                writer.write(c.getCompanyName() + "{\n");
+                for(Vehicle v : c.getVehicles()){
+                    writer.write(v.toString());
+                }
+                writer.write("}\n");
+            }
+            writer.close();
+        }catch(IOException t){
+            System.err.println("Hi1");
+        }
     }
 
     public static void CarReader(String file) throws IOException{
