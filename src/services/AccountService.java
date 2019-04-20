@@ -24,6 +24,7 @@ public class AccountService extends Service {
 
     public static String statistics(int weeks){
         return  "0";
+
     }
 
     public void addToBalance(double moneyyy){
