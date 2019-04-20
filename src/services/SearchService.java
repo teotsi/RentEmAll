@@ -32,8 +32,13 @@ public class SearchService extends Service {
         for (CompanyAccount companyAccount : companies) {
             if (application.getCompanyId() == companyAccount.getId()) {
                 companyAccount.addApplication(application);
+                sendRentInfo(application);
             }
         }
+    }
+
+    public static void sendRentInfo(RentingApplication application){
+        String email=application.toString();
     }
 
     public static Customer createCustomer(String name, String surname, String telephone, String email){

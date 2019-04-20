@@ -88,4 +88,9 @@ public class RentingApplication {
         return companyId;
     }
     public Customer getCustomer(){ return this.customer;}
+
+    public String toString() {
+        return startDate + "/" + endDate + "/" + id + "/" + customerLocation + "/" + companyLocation +
+                "/" + accepted + "/" + pending + "/" + comments + "/" + "Vehicle: "+ vehicle.toString() + "/" + companyId + "/" +"Customer: " +customer.toString();
+    }
 }

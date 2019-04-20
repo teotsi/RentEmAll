@@ -23,7 +23,7 @@ public class Customer {
         return name+" "+surname;
     }
 
-
-
-
+    public String toString(){
+        return name + "/" + surname + "/" + telephone + "/" + email;
+    }
 }

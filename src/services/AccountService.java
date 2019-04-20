@@ -22,6 +22,10 @@ public class AccountService extends Service {
         return email.matches(emailPattern);
     }
 
+    public static String statistics(int weeks){
+        return  "0";
+    }
+
     public void addToBalance(double moneyyy){
         bankAccount.addBalance(moneyyy);
     }
