@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: test</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">classes</a> ]
+</div>
+
+<h1>Coverage Summary for Class: test (classes)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">test</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.2%
+  </span>
+  <span class="absValue">
+    (51/ 53)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package classes;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.junit.Assert;
+<i>4</i>&nbsp;import org.junit.jupiter.api.Test;
+<i>5</i>&nbsp;import services.AccountService;
+<i>6</i>&nbsp;import services.SearchService;
+<i>7</i>&nbsp;import services.Service;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.io.IOException;
+<i>10</i>&nbsp;import java.time.LocalDate;
+<i>11</i>&nbsp;import java.util.List;
+<i>12</i>&nbsp;
+<b class="fc"><i>13</i>&nbsp;public class test {</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;@Test
+<i>16</i>&nbsp;public void totalTest(){
+<i>17</i>&nbsp;    try {
+<i>18</i>&nbsp;        int status;
+<b class="fc"><i>19</i>&nbsp;        status = Service.CompanyReader(&quot;&quot;);</b>
+<b class="fc"><i>20</i>&nbsp;        Assert.assertEquals(status,1);</b>
+<b class="fc"><i>21</i>&nbsp;        status = Service.CompanyReader(&quot;Companies.txt&quot;);</b>
+<b class="fc"><i>22</i>&nbsp;        Assert.assertEquals(status,0);</b>
+<i>23</i>&nbsp;
+<b class="fc"><i>24</i>&nbsp;        status=Service.vehicleReader(&quot;&quot;);</b>
+<b class="fc"><i>25</i>&nbsp;        Assert.assertEquals(status,1);</b>
+<b class="fc"><i>26</i>&nbsp;        status=Service.vehicleReader(&quot;Vehicles.txt&quot;);</b>
+<b class="fc"><i>27</i>&nbsp;        Assert.assertEquals(status,0);</b>
+<i>28</i>&nbsp;
+<b class="fc"><i>29</i>&nbsp;        int registerStatus = AccountService.register(&quot;Makis Rentals&quot;, &quot;Makis policy&quot;,</b>
+<i>30</i>&nbsp;                &quot;Makis description&quot;, 50, 38.080641, 23.687001,
+<i>31</i>&nbsp;                &quot;teotsi@mailcom&quot;, &quot;Makis12&quot;, new BankAccount(&quot;Makis&quot;, &quot;43&quot;, 65));
+<b class="fc"><i>32</i>&nbsp;        Assert.assertEquals(registerStatus,3);</b>
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;        registerStatus =AccountService.register(&quot;Makis Rentals&quot;, &quot;Makis policy&quot;,</b>
+<i>35</i>&nbsp;                &quot;Makis description&quot;, 50, 38.080641, 23.687001,
+<i>36</i>&nbsp;                &quot;teotsi@gmail.com&quot;, &quot;Makis12&quot;, new BankAccount(&quot;Makis&quot;, &quot;43&quot;, 65));
+<b class="fc"><i>37</i>&nbsp;        Assert.assertEquals(registerStatus,2);</b>
+<i>38</i>&nbsp;
+<b class="fc"><i>39</i>&nbsp;        registerStatus =AccountService.register(&quot;Makis Rentals&quot;, &quot;Makis policy&quot;,</b>
+<i>40</i>&nbsp;                &quot;Makis description&quot;, 50, 38.080641, 23.687001,
+<i>41</i>&nbsp;                &quot;makaros@gmail.com&quot;, &quot;Makis12&quot;, new BankAccount(&quot;Makis&quot;, &quot;43&quot;, 65));
+<b class="fc"><i>42</i>&nbsp;        Assert.assertEquals(registerStatus,1);</b>
+<i>43</i>&nbsp;
+<b class="fc"><i>44</i>&nbsp;        registerStatus =AccountService.register(&quot;Makis Rentals&quot;, &quot;Makis policy&quot;,</b>
+<i>45</i>&nbsp;                &quot;Makis description&quot;, 50, 38.080641, 23.687001,
+<i>46</i>&nbsp;                &quot;makaros@gmail.com&quot;, &quot;Makaros!2&quot;, new BankAccount(&quot;Makis&quot;, &quot;43&quot;, 65));
+<b class="fc"><i>47</i>&nbsp;        Assert.assertEquals(registerStatus,0);</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;
+<b class="fc"><i>50</i>&nbsp;        boolean loginStatus = AccountService.login(&quot;makaros@mailcom&quot;, &quot;Makaros!2&quot;);</b>
+<b class="fc"><i>51</i>&nbsp;        Assert.assertEquals(loginStatus,false);</b>
+<i>52</i>&nbsp;
+<b class="fc"><i>53</i>&nbsp;        loginStatus=AccountService.login(&quot;makaros@gmail.com&quot;,&quot;Makaros!2&quot;);</b>
+<b class="fc"><i>54</i>&nbsp;        Assert.assertEquals(loginStatus,true);</b>
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;        int numberOfVehicles = AccountService.getNumberOfVehicles();</b>
+<b class="fc"><i>57</i>&nbsp;        Vehicle astra = new Vehicle(&quot;Opel&quot;, &quot;Astra&quot;,&quot;Car&quot;, 5, &quot;Diesel&quot;, false, 20,</b>
+<b class="fc"><i>58</i>&nbsp;                &quot;extra&quot;, &quot;Automatic&quot;, LocalDate.parse(&quot;2018-06-06&quot;), true);</b>
+<b class="fc"><i>59</i>&nbsp;        AccountService.addVehicle(astra,2);</b>
+<b class="fc"><i>60</i>&nbsp;        int expected = numberOfVehicles+2;</b>
+<b class="fc"><i>61</i>&nbsp;        Assert.assertEquals(expected,AccountService.getNumberOfVehicles());</b>
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;
+<b class="fc"><i>64</i>&nbsp;        expected -=1;</b>
+<b class="fc"><i>65</i>&nbsp;        AccountService.removeVehicle(AccountService.getVehicles().get(0).getId());</b>
+<b class="fc"><i>66</i>&nbsp;        Assert.assertEquals(expected,AccountService.getNumberOfVehicles());</b>
+<b class="fc"><i>67</i>&nbsp;        List&lt;RentingApplication&gt; list = AccountService.getPendingApplications();</b>
+<b class="fc"><i>68</i>&nbsp;        Assert.assertEquals(true,list.isEmpty());</b>
+<i>69</i>&nbsp;
+<b class="fc"><i>70</i>&nbsp;        AccountService.signOut();</b>
+<i>71</i>&nbsp;
+<b class="fc"><i>72</i>&nbsp;        AccountService.login(&quot;teotsi@gmail.com&quot;,&quot;Qwerty!2&quot;);</b>
+<i>73</i>&nbsp;
+<b class="fc"><i>74</i>&nbsp;        int size = AccountService.getPendingApplications().size();</b>
+<b class="fc"><i>75</i>&nbsp;        List&lt;Vehicle&gt; vehicles = SearchService.getUnfilteredVehicleList(LocalDate.parse(&quot;2018-08-08&quot;),LocalDate.parse(&quot;2018-08-09&quot;),</b>
+<i>76</i>&nbsp;                38.080650,23.687501 );
+<b class="fc"><i>77</i>&nbsp;        RentingApplication application = SearchService.createApplication(vehicles.get(0).getCompanyId(),vehicles.get(4),LocalDate.parse(&quot;2018-08-08&quot;),LocalDate.parse(&quot;2018-08-09&quot;),</b>
+<b class="fc"><i>78</i>&nbsp;                LocalDate.parse(&quot;2018-07-07&quot;),&quot;0&quot;,&quot;Athens&quot;,&quot;salonika&quot;,</b>
+<i>79</i>&nbsp;                new Customer(&quot;john&quot;,&quot;papajohn&quot;,&quot;5235235&quot;,&quot;john@email.com&quot;));
+<b class="fc"><i>80</i>&nbsp;        SearchService.submitApplication(application);</b>
+<b class="fc"><i>81</i>&nbsp;        expected = size+1;</b>
+<b class="fc"><i>82</i>&nbsp;        Assert.assertEquals(expected,AccountService.getPendingApplications().size());</b>
+<i>83</i>&nbsp;
+<b class="fc"><i>84</i>&nbsp;        list = AccountService.getPendingApplications();</b>
+<b class="fc"><i>85</i>&nbsp;        expected=list.size()-1;</b>
+<b class="fc"><i>86</i>&nbsp;        AccountService.rejectApplication(list.get(0).getId(),&quot;Client asked for cancel&quot;);</b>
+<b class="fc"><i>87</i>&nbsp;        Assert.assertEquals(expected,AccountService.getPendingApplications().size());</b>
+<i>88</i>&nbsp;
+<b class="fc"><i>89</i>&nbsp;        vehicles = SearchService.getFilteredVehicleList(LocalDate.parse(&quot;2018-08-08&quot;),LocalDate.parse(&quot;2018-08-09&quot;),&quot;brand,Opel,seats,5&quot;,</b>
+<i>90</i>&nbsp;                38.080650,23.687501 );
+<b class="fc"><i>91</i>&nbsp;        Assert.assertEquals(&quot;Opel&quot;,vehicles.get(0).getBrand());</b>
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;
+<b class="fc"><i>94</i>&nbsp;        Service.CompanyWriter(&quot;CompaniesOut.txt&quot;);</b>
+<b class="fc"><i>95</i>&nbsp;        Service.VehicleWriter(&quot;testVehicleOut.txt&quot;);</b>
+<b class="nc"><i>96</i>&nbsp;    } catch (IOException e) {</b>
+<b class="nc"><i>97</i>&nbsp;        System.err.println(&quot;Hi&quot;);</b>
+<b class="fc"><i>98</i>&nbsp;    }</b>
+<b class="fc"><i>99</i>&nbsp;}</b>
+<i>100</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-04-20 23:13</div>
+</div>
+</body>
+</html>

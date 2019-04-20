@@ -1,0 +1,242 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CompanyAccount</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">classes</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CompanyAccount (classes)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CompanyAccount</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    65.4%
+  </span>
+  <span class="absValue">
+    (17/ 26)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.7%
+  </span>
+  <span class="absValue">
+    (48/ 66)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package classes;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.math.BigInteger;
+<i>4</i>&nbsp;import java.security.MessageDigest;
+<i>5</i>&nbsp;import java.security.NoSuchAlgorithmException;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<b class="fc"><i>9</i>&nbsp;public class CompanyAccount {</b>
+<i>10</i>&nbsp;    public List&lt;Rental&gt; rentals;
+<i>11</i>&nbsp;    private String companyName;
+<i>12</i>&nbsp;    private int id;
+<i>13</i>&nbsp;    private String policy;
+<i>14</i>&nbsp;    private String description;
+<i>15</i>&nbsp;    private String logs;
+<i>16</i>&nbsp;    private float range;
+<i>17</i>&nbsp;    private double latitude;
+<i>18</i>&nbsp;    private double longitude;
+<i>19</i>&nbsp;    private List&lt;Vehicle&gt; vehicles;
+<i>20</i>&nbsp;    private List&lt;RentingApplication&gt; applications;
+<i>21</i>&nbsp;    private String email;
+<i>22</i>&nbsp;    private String password;
+<i>23</i>&nbsp;    private BankAccount bankAccount;
+<i>24</i>&nbsp;    private Address address;
+<i>25</i>&nbsp;
+<b class="fc"><i>26</i>&nbsp;    public CompanyAccount(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, boolean isNewAccount, BankAccount bankAccount) {</b>
+<b class="fc"><i>27</i>&nbsp;        this.companyName = companyName;</b>
+<b class="fc"><i>28</i>&nbsp;        this.id = this.companyName.hashCode();</b>
+<b class="fc"><i>29</i>&nbsp;        this.policy = policy;</b>
+<b class="fc"><i>30</i>&nbsp;        this.description = description;</b>
+<b class="fc"><i>31</i>&nbsp;        this.range = range;</b>
+<b class="fc"><i>32</i>&nbsp;        this.latitude = latitude;</b>
+<b class="fc"><i>33</i>&nbsp;        this.longitude = longitude;</b>
+<b class="fc"><i>34</i>&nbsp;        this.vehicles = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>35</i>&nbsp;        this.applications = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>36</i>&nbsp;        this.email = email;</b>
+<b class="fc"><i>37</i>&nbsp;        this.bankAccount = bankAccount;</b>
+<b class="fc"><i>38</i>&nbsp;        if (isNewAccount) { //if we are reading created accounts we don&#39;t have to hash thei passwords again</b>
+<b class="fc"><i>39</i>&nbsp;            this.password = calculateHash(password.trim());</b>
+<i>40</i>&nbsp;        } else {
+<b class="fc"><i>41</i>&nbsp;            this.password = password;</b>
+<i>42</i>&nbsp;        }
+<b class="fc"><i>43</i>&nbsp;        this.logs = &quot;Account created\n&quot;;</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public String toString() {
+<b class="fc"><i>47</i>&nbsp;        return (this.companyName + &quot;/&quot; + this.policy + &quot;/&quot; + this.description + &quot;/&quot; + this.range + &quot;/&quot; + this.latitude + &quot;/&quot; + this.longitude + &quot;/&quot; + this.email + &quot;/&quot; + this.password + &quot;/&quot; + bankAccount.toString());</b>
+<i>48</i>&nbsp;    }
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;    public void addMultipleVehicles(List&lt;Vehicle&gt; cars) {
+<b class="fc"><i>51</i>&nbsp;        vehicles.addAll(cars);</b>
+<b class="fc"><i>52</i>&nbsp;    }</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public void addMultipleApplications(List&lt;RentingApplication&gt; l) {
+<b class="fc"><i>55</i>&nbsp;        applications.addAll(l);</b>
+<b class="fc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public int authorizeLogin(String password) { //checking email/password credentials
+<b class="fc"><i>59</i>&nbsp;        if (this.password.equals(calculateHash(password))) {</b>
+<b class="fc"><i>60</i>&nbsp;            return this.id;</b>
+<b class="nc"><i>61</i>&nbsp;        } else return -1;</b>
+<i>62</i>&nbsp;    }
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;    public void addApplication(RentingApplication r) { //adding application
+<b class="fc"><i>65</i>&nbsp;        applications.add(r);</b>
+<b class="fc"><i>66</i>&nbsp;        r.getVehicle().addRental(r);</b>
+<b class="fc"><i>67</i>&nbsp;    }</b>
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    public void logSession(String message) {
+<b class="nc"><i>70</i>&nbsp;        this.logs += message + &quot;\n&quot;;</b>
+<b class="nc"><i>71</i>&nbsp;    }</b>
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    public String getCompanyName() {
+<b class="fc"><i>74</i>&nbsp;        return companyName;</b>
+<i>75</i>&nbsp;    }
+<i>76</i>&nbsp;
+<i>77</i>&nbsp;    public int getId() {
+<b class="fc"><i>78</i>&nbsp;        return id;</b>
+<i>79</i>&nbsp;    }
+<i>80</i>&nbsp;
+<i>81</i>&nbsp;    public double getLatitude() {
+<b class="fc"><i>82</i>&nbsp;        return latitude;</b>
+<i>83</i>&nbsp;    }
+<i>84</i>&nbsp;
+<i>85</i>&nbsp;    public double getLongitude() {
+<b class="fc"><i>86</i>&nbsp;        return longitude;</b>
+<i>87</i>&nbsp;    }
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;    public String getPolicy() {
+<b class="nc"><i>90</i>&nbsp;        return policy;</b>
+<i>91</i>&nbsp;    }
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    public void setPolicy(String policy) {
+<b class="nc"><i>94</i>&nbsp;        this.policy = policy;</b>
+<b class="nc"><i>95</i>&nbsp;    }</b>
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    public String getDescription() {
+<b class="nc"><i>98</i>&nbsp;        return description;</b>
+<i>99</i>&nbsp;    }
+<i>100</i>&nbsp;
+<i>101</i>&nbsp;    public void setDescription(String description) {
+<b class="nc"><i>102</i>&nbsp;        this.description = description;</b>
+<b class="nc"><i>103</i>&nbsp;    }</b>
+<i>104</i>&nbsp;
+<i>105</i>&nbsp;    public String getLogs() {
+<b class="nc"><i>106</i>&nbsp;        return logs;</b>
+<i>107</i>&nbsp;    }
+<i>108</i>&nbsp;
+<i>109</i>&nbsp;    public float getRange() {
+<b class="fc"><i>110</i>&nbsp;        return range;</b>
+<i>111</i>&nbsp;    }
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;    public void setRange(float range) {
+<b class="nc"><i>114</i>&nbsp;        this.range = range;</b>
+<b class="nc"><i>115</i>&nbsp;    }</b>
+<i>116</i>&nbsp;
+<i>117</i>&nbsp;    public String getEmail() {
+<b class="fc"><i>118</i>&nbsp;        return email;</b>
+<i>119</i>&nbsp;    }
+<i>120</i>&nbsp;
+<i>121</i>&nbsp;    public BankAccount getBankAccount() {
+<b class="fc"><i>122</i>&nbsp;        return this.bankAccount;</b>
+<i>123</i>&nbsp;    }
+<i>124</i>&nbsp;
+<i>125</i>&nbsp;    public List&lt;Vehicle&gt; getVehicles() {
+<b class="fc"><i>126</i>&nbsp;        return vehicles;</b>
+<i>127</i>&nbsp;    }
+<i>128</i>&nbsp;
+<i>129</i>&nbsp;    public void setVehicles(List&lt;Vehicle&gt; vehicles) {
+<b class="nc"><i>130</i>&nbsp;        this.vehicles = vehicles;</b>
+<b class="nc"><i>131</i>&nbsp;    }</b>
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;    public List&lt;RentingApplication&gt; getApplications() {
+<i>134</i>&nbsp;
+<b class="fc"><i>135</i>&nbsp;        return applications;</b>
+<i>136</i>&nbsp;    }
+<i>137</i>&nbsp;
+<i>138</i>&nbsp;    public void setApplications(List&lt;RentingApplication&gt; applications) {
+<b class="nc"><i>139</i>&nbsp;        this.applications = applications;</b>
+<b class="nc"><i>140</i>&nbsp;    }</b>
+<i>141</i>&nbsp;
+<i>142</i>&nbsp;    private String calculateHash(String message) {//hashing function for safe password
+<b class="fc"><i>143</i>&nbsp;        MessageDigest md5 = null;</b>
+<i>144</i>&nbsp;        try {
+<b class="fc"><i>145</i>&nbsp;            md5 = MessageDigest.getInstance(&quot;MD5&quot;); //using MD5 algorithm</b>
+<b class="nc"><i>146</i>&nbsp;        } catch (NoSuchAlgorithmException e) {</b>
+<b class="nc"><i>147</i>&nbsp;            e.printStackTrace();</b>
+<b class="fc"><i>148</i>&nbsp;        }</b>
+<b class="fc"><i>149</i>&nbsp;        assert md5 != null;</b>
+<b class="fc"><i>150</i>&nbsp;        md5.update((message).getBytes());</b>
+<b class="fc"><i>151</i>&nbsp;        byte[] md = md5.digest();</b>
+<b class="fc"><i>152</i>&nbsp;        BigInteger big = new BigInteger(1, md);</b>
+<b class="fc"><i>153</i>&nbsp;        String hash = big.toString(16);</b>
+<b class="fc"><i>154</i>&nbsp;        while (hash.length() &lt; 32) {</b>
+<b class="fc"><i>155</i>&nbsp;            hash += &quot;0&quot;;</b>
+<i>156</i>&nbsp;        }
+<b class="fc"><i>157</i>&nbsp;        return big.toString();</b>
+<i>158</i>&nbsp;    }
+<i>159</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-04-20 23:35</div>
+</div>
+</body>
+</html>

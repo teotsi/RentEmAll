@@ -1,0 +1,186 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: RentingApplication</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">classes</a> ]
+</div>
+
+<h1>Coverage Summary for Class: RentingApplication (classes)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RentingApplication</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    61.1%
+  </span>
+  <span class="absValue">
+    (11/ 18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70.3%
+  </span>
+  <span class="absValue">
+    (26/ 37)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package classes;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.time.LocalDate;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;public class RentingApplication {
+<i>6</i>&nbsp;    private LocalDate startDate;
+<i>7</i>&nbsp;    private LocalDate endDate;
+<i>8</i>&nbsp;    private LocalDate replyDate;
+<i>9</i>&nbsp;    private String id;
+<i>10</i>&nbsp;    private String customerLocation;
+<i>11</i>&nbsp;    private String companyLocation;
+<b class="fc"><i>12</i>&nbsp;    private boolean accepted = false;</b>
+<b class="fc"><i>13</i>&nbsp;    private boolean pending = true;</b>
+<i>14</i>&nbsp;    private String comments;
+<i>15</i>&nbsp;    private Vehicle vehicle;
+<i>16</i>&nbsp;    private int companyId;
+<i>17</i>&nbsp;    private Customer customer;
+<i>18</i>&nbsp;
+<b class="nc"><i>19</i>&nbsp;    public RentingApplication() {</b>
+<b class="nc"><i>20</i>&nbsp;    }</b>
+<i>21</i>&nbsp;
+<b class="fc"><i>22</i>&nbsp;    public RentingApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation, Customer customer, boolean isNewApplication) {</b>
+<b class="fc"><i>23</i>&nbsp;        this.companyId = companyId;</b>
+<b class="fc"><i>24</i>&nbsp;        this.startDate = startDate;</b>
+<b class="fc"><i>25</i>&nbsp;        this.endDate = endDate;</b>
+<b class="fc"><i>26</i>&nbsp;        this.replyDate = replyDate;</b>
+<b class="fc"><i>27</i>&nbsp;        this.vehicle = vehicle;</b>
+<b class="fc"><i>28</i>&nbsp;        this.customerLocation = customerLocation;</b>
+<b class="fc"><i>29</i>&nbsp;        this.companyLocation = companyLocation;</b>
+<b class="fc"><i>30</i>&nbsp;        this.customer = customer;</b>
+<b class="fc"><i>31</i>&nbsp;        comments = &quot;&quot;;</b>
+<b class="fc"><i>32</i>&nbsp;        if(isNewApplication){</b>
+<b class="fc"><i>33</i>&nbsp;            this.id = String.valueOf(String.valueOf(this.toString().hashCode()).hashCode());</b>
+<i>34</i>&nbsp;        }else{
+<b class="nc"><i>35</i>&nbsp;            this.id = id;</b>
+<i>36</i>&nbsp;        }
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public String getId() {
+<b class="fc"><i>40</i>&nbsp;        return id;</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public boolean isPending() {
+<b class="fc"><i>44</i>&nbsp;        return pending;</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public void setPending(boolean pending) {
+<b class="fc"><i>48</i>&nbsp;        this.pending = pending;</b>
+<b class="fc"><i>49</i>&nbsp;    }</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public LocalDate getStartDate() {
+<b class="fc"><i>52</i>&nbsp;        return startDate;</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    public LocalDate getEndDate() {
+<b class="fc"><i>56</i>&nbsp;        return endDate;</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    public LocalDate getReplyDate() {
+<b class="nc"><i>60</i>&nbsp;        return replyDate;</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public String getCustomerLocation() {
+<b class="nc"><i>64</i>&nbsp;        return customerLocation;</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public String getCompanyLocation() {
+<b class="nc"><i>68</i>&nbsp;        return companyLocation;</b>
+<i>69</i>&nbsp;    }
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public boolean isAccepted() {
+<b class="nc"><i>72</i>&nbsp;        return accepted;</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    public void setAccepted(boolean accepted) {
+<b class="nc"><i>76</i>&nbsp;        this.accepted = accepted;</b>
+<b class="nc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    public String getComments() {
+<b class="nc"><i>80</i>&nbsp;        return comments;</b>
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public void setComments(String comments) {
+<b class="fc"><i>84</i>&nbsp;        this.comments = comments;</b>
+<b class="fc"><i>85</i>&nbsp;    }</b>
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    public Vehicle getVehicle() {
+<b class="fc"><i>88</i>&nbsp;        return vehicle;</b>
+<i>89</i>&nbsp;    }
+<i>90</i>&nbsp;
+<i>91</i>&nbsp;    public int getCompanyId() {
+<b class="fc"><i>92</i>&nbsp;        return companyId;</b>
+<i>93</i>&nbsp;    }
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public Customer getCustomer() {
+<b class="nc"><i>96</i>&nbsp;        return this.customer;</b>
+<i>97</i>&nbsp;    }
+<i>98</i>&nbsp;
+<i>99</i>&nbsp;    @Override
+<i>100</i>&nbsp;    public String toString() {
+<b class="fc"><i>101</i>&nbsp;        return startDate + &quot;/&quot; + endDate + &quot;/&quot; + replyDate + &quot;/&quot; + id + &quot;/&quot; + customerLocation + &quot;/&quot; + companyLocation + &quot;/&quot; + customer.toString()+&quot;/&quot;;</b>
+<i>102</i>&nbsp;    }
+<i>103</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-04-20 23:35</div>
+</div>
+</body>
+</html>
