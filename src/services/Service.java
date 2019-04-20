@@ -6,6 +6,7 @@ import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ import java.util.StringTokenizer;
 
 public class Service {
     private static final String PATH = "../dataset/";
+    private static final double COMMISSION = 15 / 100;
     //    protected static File vehiclesFile= new File("");
     protected static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     protected static List<CompanyAccount> companies = new ArrayList<>(); //all companies
@@ -38,6 +40,11 @@ public class Service {
     public static void increaseAppBalance(double commission) {
         AppBalance += commission;
 
+    }
+
+    public static double calculateCost(Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
+        long elapsedDays = ChronoUnit.DAYS.between(startDate, endDate);
+        return elapsedDays * vehicle.getRate();
     }
 
     public static void CompanyWriter(String file) throws IOException {
@@ -69,8 +76,8 @@ public class Service {
                 writer.write(c.getCompanyName() + "{\n");
                 for (Vehicle v : c.getVehicles()) {
                     writer.write(v.toString() + "\n{\n");
-                    for(RentingApplication application:v.getUpcomingRentals()){
-                        writer.write(application.toString()+"\n");
+                    for (RentingApplication application : v.getUpcomingRentals()) {
+                        writer.write(application.toString() + "\n");
                     }
                     writer.write("}\n");
                 }
@@ -132,4 +139,16 @@ public class Service {
         return l;
     }
 
+    protected static void completePayment(RentingApplication application) {
+        double cost = calculateCost(application.getVehicle(), application.getStartDate(), application.getEndDate());
+        double earnings = COMMISSION * cost;
+        increaseAppBalance(earnings);
+        for (CompanyAccount companyAccount : companies) {
+            if (application.getCompanyId() == companyAccount.getId()) {
+                companyAccount.getBankAccount().addBalance(cost - earnings);
+                return;
+            }
+        }
+    }
 }
+

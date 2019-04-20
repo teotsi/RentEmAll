@@ -19,10 +19,12 @@ public class BankAccount {
         return iban;
     }
 
-    public void addBalance(double moneyyy){ balance+=moneyyy;}
+    public void addBalance(double moneyyy) {
+        balance += moneyyy;
+    }
 
     @Override
-    public String toString(){
-        return accountHolder+"/"+iban+"/"+balance;
+    public String toString() {
+        return accountHolder + "/" + iban + "/" + balance;
     }
 }

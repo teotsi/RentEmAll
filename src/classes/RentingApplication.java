@@ -87,10 +87,13 @@ public class RentingApplication {
     public int getCompanyId() {
         return companyId;
     }
-    public Customer getCustomer(){ return this.customer;}
+
+    public Customer getCustomer() {
+        return this.customer;
+    }
 
     @Override
-    public String toString(){
-        return startDate+"/"+endDate+"/"+replyDate+"/"+id+"/"+customerLocation+"/"+companyLocation+"/"+customer.toString();
+    public String toString() {
+        return startDate + "/" + endDate + "/" + replyDate + "/" + id + "/" + customerLocation + "/" + companyLocation + "/" + customer.toString();
     }
 }

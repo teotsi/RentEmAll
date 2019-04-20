@@ -14,9 +14,10 @@ import java.util.StringTokenizer;
 public class SearchService extends Service {
 
     public static List<Vehicle> getUnfilteredVehicleList(LocalDate startDate, LocalDate endDate, double latitude, double longitude) {
-        List<Vehicle> availableVehicles = new ArrayList<>();
-        for (CompanyAccount companyAccount : companies) {
+        List<Vehicle> availableVehicles = new ArrayList<>(); //this list will be filled with valid vehicles
+        for (CompanyAccount companyAccount : companies) { //iterating over all companies
             if (calculateDistance(latitude, longitude, companyAccount.getLatitude(), companyAccount.getLongitude()) <= companyAccount.getRange()) {
+                //if company is within our range
                 List<Vehicle> vehicles = companyAccount.getVehicles();
                 for (Vehicle vehicle : vehicles) {
                     if (vehicle.isAvailable() && vehicle.isFree(startDate, endDate)) {
@@ -28,52 +29,53 @@ public class SearchService extends Service {
         return availableVehicles;
     }
 
-    public static void submitApplication(RentingApplication application) {
+    public static void submitApplication(RentingApplication application, double cost) {
         for (CompanyAccount companyAccount : companies) {
             if (application.getCompanyId() == companyAccount.getId()) {
                 companyAccount.addApplication(application);
+                Service.completePayment(application);
                 sendRentInfo(application);
+                break;
             }
         }
     }
 
-    public static void sendRentInfo(RentingApplication application){
-        String email=application.toString();
+    public static void sendRentInfo(RentingApplication application) {
+        String email = application.toString();
     }
 
-    public static Customer createCustomer(String name, String surname, String telephone, String email){
+    public static Customer createCustomer(String name, String surname, String telephone, String email) {
         return new Customer(name, surname, telephone, email);
     }
 
-    public static void paymentMethod(String method,Vehicle vehicle, LocalDate startDate,LocalDate endDate){
-        if (method.equals("cc")){
-            cc(vehicle,startDate,endDate);
-        }else if(method.equals("PayPal")){
-            payPal(vehicle,startDate,endDate);
+    public static double paymentMethod(String method, Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
+        if (method.equals("cc")) {
+            cc(vehicle, startDate, endDate);
+        } else if (method.equals("PayPal")) {
+            payPal(vehicle, startDate, endDate);
         }
-        double cost=calculateCost(vehicle, startDate, endDate);
-        double commission=(15/cost)*100;
-        increaseAppBalance(commission);
+        double cost = calculateCost(vehicle, startDate, endDate);
 
+        return cost;
     }
 
-    public static void cc(Vehicle vehicle, LocalDate startDate,LocalDate endDate){
+    public static void cc(Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
         //TODO chack these string arrays for their size to avoid invalid info and buffer overflow
-        String Cnumber=null;
-        String Cname=null;
-        String expDate=null;
-        String cvv=null;
+        String Cnumber = null;
+        String Cname = null;
+        String expDate = null;
+        String cvv = null;
     }
 
-    public static void payPal(Vehicle vehicle, LocalDate startDate,LocalDate endDate){
+    public static void payPal(Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
         // basically paypal should open in a different browser window
-        String PayPalemail=null;
-        String PayPalpassword=null;
+        String PayPalemail = null;
+        String PayPalpassword = null;
     }
 
-    public static double calculateCost(Vehicle vehicle, LocalDate startDate,LocalDate endDate){
+    public static double calculateCost(Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
         long elapsedDays = ChronoUnit.DAYS.between(startDate, endDate);
-        return elapsedDays*vehicle.getRate();
+        return elapsedDays * vehicle.getRate();
     }
 
     public static RentingApplication createApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation, Customer customer) {

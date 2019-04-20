@@ -37,7 +37,7 @@ public class Vehicle {
         this.upcomingRentals = new ArrayList<>();
     }
 
-    public Vehicle(Vehicle vehicle){
+    public Vehicle(Vehicle vehicle) {
         this.companyId = vehicle.companyId;
         this.brand = vehicle.brand;
         this.model = vehicle.model;
@@ -53,9 +53,10 @@ public class Vehicle {
         this.upcomingRentals = new ArrayList<>();
     }
 
-    public void addUpcomingRentals(RentingApplication ra){
+    public void addUpcomingRentals(RentingApplication ra) {
         upcomingRentals.add(ra);
     }
+
     public String getTransmissionType() {
         return transmissionType;
     }
@@ -68,10 +69,11 @@ public class Vehicle {
         return id;
     }
 
-    public int getCompanyId(){
+    public int getCompanyId() {
         return companyId;
     }
-    public void setCompanyId(int companyId){
+
+    public void setCompanyId(int companyId) {
         this.companyId = companyId;
     }
 
@@ -213,7 +215,7 @@ public class Vehicle {
                 "/" + pce + "/" + rate + "/" + extra + "/" + transmissionType + "/" + date + "/" + available;
     }
 
-    public String getName(){
-        return brand+" "+model;
+    public String getName() {
+        return brand + " " + model;
     }
 }

@@ -33,24 +33,24 @@ public class CompanyAccount {
         this.longitude = longitude;
         this.vehicles = new ArrayList<>();
         this.email = email;
-        this.bankAccount=bankAccount;
-        if(isNewAccount){ //if we are reading created accounts we don't have to hash thei passwords again
+        this.bankAccount = bankAccount;
+        if (isNewAccount) { //if we are reading created accounts we don't have to hash thei passwords again
             this.password = calculateHash(password.trim());
-        }else{
+        } else {
             this.password = password;
         }
         this.logs = "Account created\n";
     }
 
-    public String toString(){
-        return (this.companyName + "/"  + this.policy + "/" + this.description + "/" + this.range + "/" +this.latitude+"/"+this.longitude+"/"+ this.email + "/" + this.password+"/"+bankAccount.toString());
+    public String toString() {
+        return (this.companyName + "/" + this.policy + "/" + this.description + "/" + this.range + "/" + this.latitude + "/" + this.longitude + "/" + this.email + "/" + this.password + "/" + bankAccount.toString());
     }
 
-    public void addMultipleVehicles(List<Vehicle> cars){
+    public void addMultipleVehicles(List<Vehicle> cars) {
         vehicles.addAll(cars);
     }
 
-    public void addMultipleApplications(List<RentingApplication> l){
+    public void addMultipleApplications(List<RentingApplication> l) {
         applications.addAll(l);
     }
 
@@ -59,6 +59,7 @@ public class CompanyAccount {
             return this.id;
         } else return -1;
     }
+
     public void addApplication(RentingApplication r) { //adding application
         applications.add(r);
         r.getVehicle().addRental(r);
@@ -68,9 +69,10 @@ public class CompanyAccount {
         this.logs += message + "\n";
     }
 
-    public String getCompanyName(){
+    public String getCompanyName() {
         return companyName;
     }
+
     public int getId() {
         return id;
     }
@@ -115,7 +117,9 @@ public class CompanyAccount {
         return email;
     }
 
-    public BankAccount getBankAccount(){return this.bankAccount;}
+    public BankAccount getBankAccount() {
+        return this.bankAccount;
+    }
 
     public List<Vehicle> getVehicles() {
         return vehicles;

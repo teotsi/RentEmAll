@@ -19,6 +19,14 @@ class ServiceTest {
 
     @org.junit.jupiter.api.Test
     void companyWriter() {
+        try {
+            Service.CompanyReader("Companies.txt");
+            Service.CompanyWriter("Companies.txt");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @org.junit.jupiter.api.Test

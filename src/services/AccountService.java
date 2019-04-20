@@ -1,14 +1,14 @@
 package services;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
 import classes.BankAccount;
 import classes.CompanyAccount;
 import classes.RentingApplication;
 import classes.Vehicle;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 public class AccountService extends Service {
     private static int currentAccountID;
@@ -22,13 +22,9 @@ public class AccountService extends Service {
         return email.matches(emailPattern);
     }
 
-    public static String statistics(int weeks){
-        return  "0";
+    public static String statistics(int weeks) {
+        return "0";
 
-    }
-
-    public void addToBalance(double moneyyy){
-        bankAccount.addBalance(moneyyy);
     }
 
     public static boolean emailIsAvailable(String email) {
@@ -48,7 +44,7 @@ public class AccountService extends Service {
                     currentAccountID = auth;//waste of time if the emails don't match
                     vehicles = companyAccount.getVehicles();
                     applications = companyAccount.getApplications();
-                    bankAccount= companyAccount.getBankAccount();
+                    bankAccount = companyAccount.getBankAccount();
                     logEvent("Logged in at " + dateFormat.format(new Date()));
                     return true;
                 } else {
@@ -70,7 +66,7 @@ public class AccountService extends Service {
     }
 
     public static void register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount) {
-        companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password,true, bankAccount));
+        companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount));
     }
 
     public static void save() {
@@ -182,11 +178,15 @@ public class AccountService extends Service {
     public static List<RentingApplication> getRejectedApplications() { //returns all rejected applications
         List<RentingApplication> rejectedApplications = new ArrayList<>();
         for (RentingApplication application : applications) {
-            if (application.isAccepted() == false && application.isPending() == false) {
+            if (!application.isAccepted() && !application.isPending()) {
                 rejectedApplications.add(application);
             }
         }
         return rejectedApplications;
+    }
+
+    public void addToBalance(double moneyyy) {
+        bankAccount.addBalance(moneyyy);
     }
 
 }
