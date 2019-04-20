@@ -14,11 +14,12 @@ public class RentingApplication {
     private String comments;
     private Vehicle vehicle;
     private int companyId;
+    private Customer customer;
 
     public RentingApplication() {
     }
 
-    public RentingApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
+    public RentingApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation, Customer customer) {
         this.companyId = companyId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -27,6 +28,7 @@ public class RentingApplication {
         this.vehicle = vehicle;
         this.customerLocation = customerLocation;
         this.companyLocation = companyLocation;
+        this.customer=customer;
         comments = "";
     }
 
@@ -85,4 +87,5 @@ public class RentingApplication {
     public int getCompanyId() {
         return companyId;
     }
+    public Customer getCustomer(){ return this.customer;}
 }
