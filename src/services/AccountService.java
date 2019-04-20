@@ -148,7 +148,7 @@ public class AccountService extends Service {
                 application.setComments(reasons); //grounds for denial
                 String vehicleID = application.getVehicle().getId();
                 for (Vehicle vehicle : vehicles) {
-                    if (vehicle.equals(vehicleID)) {
+                    if (vehicle.getId().equals(vehicleID)) {
                         vehicle.removeRental(application); //removing rental to free allocated days
                         break;
                     }

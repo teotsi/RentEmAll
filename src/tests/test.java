@@ -1,5 +1,9 @@
-package classes;
+package tests;
 
+import classes.BankAccount;
+import classes.Customer;
+import classes.RentingApplication;
+import classes.Vehicle;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import services.AccountService;
@@ -74,16 +78,21 @@ public void totalTest(){
         int size = AccountService.getPendingApplications().size();
         List<Vehicle> vehicles = SearchService.getUnfilteredVehicleList(LocalDate.parse("2018-08-08"),LocalDate.parse("2018-08-09"),
                 38.080650,23.687501 );
-        SearchService.createApplication(vehicles.get(0).getCompanyId(),vehicles.get(4),LocalDate.parse("2018-08-08"),LocalDate.parse("2018-08-09"),
+        RentingApplication application = SearchService.createApplication(vehicles.get(0).getCompanyId(),vehicles.get(4),LocalDate.parse("2018-08-08"),LocalDate.parse("2018-08-09"),
                 LocalDate.parse("2018-07-07"),"0","Athens","salonika",
                 new Customer("john","papajohn","5235235","john@email.com"));
-        expected = size;
+        SearchService.submitApplication(application);
+        expected = size+1;
         Assert.assertEquals(expected,AccountService.getPendingApplications().size());
 
         list = AccountService.getPendingApplications();
         expected=list.size()-1;
         AccountService.rejectApplication(list.get(0).getId(),"Client asked for cancel");
         Assert.assertEquals(expected,AccountService.getPendingApplications().size());
+
+        vehicles = SearchService.getFilteredVehicleList(LocalDate.parse("2018-08-08"),LocalDate.parse("2018-08-09"),"brand,Opel,seats,5",
+                38.080650,23.687501 );
+        Assert.assertEquals("Opel",vehicles.get(0).getBrand());
 
 
         Service.CompanyWriter("CompaniesOut.txt");

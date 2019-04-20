@@ -29,7 +29,7 @@ public class SearchService extends Service {
         return availableVehicles;
     }
 
-    public static void submitApplication(RentingApplication application, double cost) {
+    public static void submitApplication(RentingApplication application) {
         for (CompanyAccount companyAccount : companies) {
             if (application.getCompanyId() == companyAccount.getId()) {
                 companyAccount.addApplication(application);
@@ -93,7 +93,7 @@ public class SearchService extends Service {
         return earthRadius * c;
     }
 
-    public List<Vehicle> getFilteredVehicleList(LocalDate startDate, LocalDate endDate, String filters, double latitude, double longitude) {
+    public static List<Vehicle> getFilteredVehicleList(LocalDate startDate, LocalDate endDate, String filters, double latitude, double longitude) {
         List<Vehicle> availableVehicles = getUnfilteredVehicleList(startDate, endDate, latitude, longitude);
         StringTokenizer filterTokenizer = new StringTokenizer(filters, ",");
         while (filterTokenizer.hasMoreTokens()) {

@@ -25,6 +25,6 @@ public class BankAccount {
 
     @Override
     public String toString() {
-        return accountHolder + "/" + iban + "/" + balance;
+        return getAccountHolder() + "/" + getIban() + "/" + balance;
     }
 }
