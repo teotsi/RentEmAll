@@ -62,7 +62,7 @@ public class Service {
             for(CompanyAccount c : companies){
                 writer.write(c.getCompanyName() + "{\n");
                 for(Vehicle v : c.getVehicles()){
-                    writer.write(v.toString());
+                    writer.write(v.toString() + "\n");
                 }
                 writer.write("}\n");
             }

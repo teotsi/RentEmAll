@@ -202,8 +202,8 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return brand + " " + model + ", seats: " + seats + ", type: " + type + ", fuel: " + fuelType + ", rate: " + rate +
-                "/day, PCE: " + pce + ", transmission: " + transmissionType + ", extras: " + extra;
+        return brand + "/" + model + "/" + seats + "/" + type + "/" + fuelType + "/" + rate +
+                "/" + pce + "/" + transmissionType + "/" + extra;
     }
 
     public String getName(){
