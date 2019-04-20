@@ -10,7 +10,7 @@ class ServiceTest {
     @org.junit.jupiter.api.Test
     void companyReader() {
         try {
-            Service.CompanyReader(new File("../dataset/Companies.txt"));
+            Service.CompanyReader("Companies.txt");
             assertEquals (4, Service.companies.size());
         } catch (IOException e) {
             e.printStackTrace();

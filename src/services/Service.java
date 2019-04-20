@@ -16,11 +16,11 @@ public class Service {
 //    protected static File vehiclesFile= new File("");
     protected static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     protected static List<CompanyAccount> companies = new ArrayList<>(); //all companies
-
-    public static void CompanyReader(File f) throws IOException{
+    private static final String PATH = "../dataset/";
+    public static void CompanyReader(String file) throws IOException{
         List<CompanyAccount> companies = new ArrayList<>();
         
-        Scanner s = new Scanner(f);
+        Scanner s = new Scanner(new File(PATH+file));
         while(s.hasNext()){
             String line = s.nextLine();
     
@@ -34,10 +34,10 @@ public class Service {
         s.close();
     }
 
-    public static void CompanyWriter(File f) throws IOException{
+    public static void CompanyWriter(String file) throws IOException{
         BufferedWriter writer = null;
         try{
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f)));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(PATH+file))));
         }catch(FileNotFoundException e){
             System.err.println("Hi");
         }
@@ -51,13 +51,13 @@ public class Service {
         }
     }
 
-    public static void VehicleWriter(File f) throws IOException{
+    public static void VehicleWriter(String file) throws IOException{
         
     }
 
-    public static void CarReader(File f) throws IOException{
+    public static void CarReader(String file) throws IOException{
 
-        Scanner s = new Scanner(f);
+        Scanner s = new Scanner(new File(PATH+file));
         while(s.hasNext()){
             String owner = s.nextLine();
             owner = owner.substring(0, owner.length() - 1);
