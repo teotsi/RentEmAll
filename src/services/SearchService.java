@@ -11,13 +11,15 @@ import java.util.StringTokenizer;
 
 public class SearchService extends Service {
 
-    public static List<Vehicle> getUnfilteredVehicleList(LocalDate startDate, LocalDate endDate) {
+    public static List<Vehicle> getUnfilteredVehicleList(LocalDate startDate, LocalDate endDate, double latitude, double longitude) {
         List<Vehicle> availableVehicles = new ArrayList<>();
         for (CompanyAccount companyAccount : companies) {
-            List<Vehicle> vehicles = companyAccount.getVehicles();
-            for (Vehicle vehicle : vehicles) {
-                if (vehicle.isAvailable() && vehicle.isFree(startDate, endDate)) {
-                    availableVehicles.add(vehicle);
+            if (calculateDistance(latitude, longitude, companyAccount.getLatitude(), companyAccount.getLongitude()) <= companyAccount.getRange()) {
+                List<Vehicle> vehicles = companyAccount.getVehicles();
+                for (Vehicle vehicle : vehicles) {
+                    if (vehicle.isAvailable() && vehicle.isFree(startDate, endDate)) {
+                        availableVehicles.add(vehicle);
+                    }
                 }
             }
         }
@@ -32,12 +34,23 @@ public class SearchService extends Service {
         }
     }
 
-    public RentingApplication createApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
+    public static RentingApplication createApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation) {
         return new RentingApplication(companyId, vehicle, startDate, endDate, replyDate, id, customerLocation, companyLocation);
     }
 
-    public List<Vehicle> getFilteredVehicleList(LocalDate startDate, LocalDate endDate, String filters) {
-        List<Vehicle> availableVehicles = getUnfilteredVehicleList(startDate, endDate);
+    public static double calculateDistance(double lat1, double long1, double lat2, double long2) {
+        double earthRadius = 6371;
+        double latDistance = Math.toRadians(lat1 - lat2);
+        double longDistance = Math.toRadians(long1 - long2);
+        double a = (Math.sin(latDistance / 2) * Math.sin(latDistance / 2)) +
+                (Math.cos(Math.toRadians(lat1))) * (Math.cos(Math.toRadians(lat2))) *
+                        (Math.sin(longDistance / 2)) * Math.sin(longDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return earthRadius * c;
+    }
+
+    public List<Vehicle> getFilteredVehicleList(LocalDate startDate, LocalDate endDate, String filters, double latitude, double longitude) {
+        List<Vehicle> availableVehicles = getUnfilteredVehicleList(startDate, endDate, latitude, longitude);
         StringTokenizer filterTokenizer = new StringTokenizer(filters, ",");
         while (filterTokenizer.hasMoreTokens()) {
             String filter = filterTokenizer.nextToken();

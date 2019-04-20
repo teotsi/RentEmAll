@@ -14,18 +14,22 @@ public class CompanyAccount {
     private String description;
     private String logs;
     private float range;
+    private double latitude;
+    private double longitude;
     private List<Vehicle> vehicles;
     private List<RentingApplication> applications;
     private String email;
     private String password;
     private Address address;
 
-    public CompanyAccount(String companyName, String policy, String description, float range, String email, String password, boolean isNewAccount) {
+    public CompanyAccount(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, boolean isNewAccount) {
         this.companyName = companyName;
         this.id = this.companyName.hashCode();
         this.policy = policy;
         this.description = description;
         this.range = range;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.vehicles = new ArrayList<>();
         this.email = email;
         if(isNewAccount){ //if we are reading created accounts we don't have to hash thei passwords again
@@ -67,6 +71,14 @@ public class CompanyAccount {
     }
     public int getId() {
         return id;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     public String getPolicy() {

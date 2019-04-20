@@ -2,6 +2,7 @@ package services;
 import classes.CompanyAccount;
 import classes.Vehicle;
 
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -10,12 +11,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
 
 public class Service {
 //    protected static File vehiclesFile= new File("");
@@ -30,7 +25,7 @@ public class Service {
             String line = s.nextLine();
     
             StringTokenizer st = new StringTokenizer(line, "/");
-            companies.add(new CompanyAccount(st.nextToken(), st.nextToken(), st.nextToken(), Float.parseFloat(st.nextToken()), st.nextToken(), st.nextToken(), false));
+            companies.add(new CompanyAccount(st.nextToken(), st.nextToken(), st.nextToken(), Float.parseFloat(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), st.nextToken(), st.nextToken(), false));
         }
         Service.companies = companies;
         for(CompanyAccount c : companies){

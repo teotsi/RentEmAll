@@ -57,8 +57,8 @@ public class AccountService extends Service {
         return password.matches(passwordPattern);
     }
 
-    public static void register(String companyName, String policy, String description, float range, String email, String password) {
-        companies.add(new CompanyAccount(companyName, policy, description, range, email, password,true));
+    public static void register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password) {
+        companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password,true));
     }
 
     public static void save() {
