@@ -17,6 +17,7 @@ public class test {
             Service.CompanyReader("Companies.txt");
             Service.CarReader("Vehicles.txt");
             Service.CompanyWriter("Companies.txt");
+            Service.VehicleWriter("testVehicle.txt");
             System.out.println(AccountService.login("costasxusa@gmail.com","Qwerty!2"));
         }catch(IOException e ){
             System.err.println("Hi");
