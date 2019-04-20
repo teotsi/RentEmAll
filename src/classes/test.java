@@ -3,7 +3,6 @@ package classes;
 import services.AccountService;
 import services.Service;
 
-import java.io.File;
 import java.io.IOException;
 
 public class test {
@@ -15,7 +14,7 @@ public class test {
         AccountService.save();*/
         try{
             Service.CompanyReader("Companies.txt");
-            Service.CarReader("Vehicles.txt");
+            Service.vehicleReader("Vehicles.txt");
             Service.CompanyWriter("Companies.txt");
             Service.VehicleWriter("testVehicle.txt");
             System.out.println(AccountService.login("costasxusa@gmail.com","Qwerty!2"));
