@@ -6,6 +6,7 @@ import classes.RentingApplication;
 import classes.Vehicle;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -37,6 +38,37 @@ public class SearchService extends Service {
 
     public static Customer createCustomer(String name, String surname, String telephone, String email){
         return new Customer(name, surname, telephone, email);
+    }
+
+    public static void paymentMethod(String method,Vehicle vehicle, LocalDate startDate,LocalDate endDate){
+        if (method.equals("cc")){
+            cc(vehicle,startDate,endDate);
+        }else if(method.equals("PayPal")){
+            payPal(vehicle,startDate,endDate);
+        }
+        double cost=calculateCost(vehicle, startDate, endDate);
+        double commission=(15/cost)*100;
+        increaseAppBalance(commission);
+
+    }
+
+    public static void cc(Vehicle vehicle, LocalDate startDate,LocalDate endDate){
+        //TODO chack these string arrays for their size to avoid invalid info and buffer overflow
+        String Cnumber=null;
+        String Cname=null;
+        String expDate=null;
+        String cvv=null;
+    }
+
+    public static void payPal(Vehicle vehicle, LocalDate startDate,LocalDate endDate){
+        // basically paypal should open in a different browser window
+        String PayPalemail=null;
+        String PayPalpassword=null;
+    }
+
+    public static double calculateCost(Vehicle vehicle, LocalDate startDate,LocalDate endDate){
+        long elapsedDays = ChronoUnit.DAYS.between(startDate, endDate);
+        return elapsedDays*vehicle.getRate();
     }
 
     public static RentingApplication createApplication(int companyId, Vehicle vehicle, LocalDate startDate, LocalDate endDate, LocalDate replyDate, String id, String customerLocation, String companyLocation, Customer customer) {

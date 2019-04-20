@@ -20,9 +20,10 @@ public class CompanyAccount {
     private List<RentingApplication> applications;
     private String email;
     private String password;
+    private BankAccount bankAccount;
     private Address address;
 
-    public CompanyAccount(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, boolean isNewAccount) {
+    public CompanyAccount(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, boolean isNewAccount, BankAccount bankAccount) {
         this.companyName = companyName;
         this.id = this.companyName.hashCode();
         this.policy = policy;
@@ -32,6 +33,7 @@ public class CompanyAccount {
         this.longitude = longitude;
         this.vehicles = new ArrayList<>();
         this.email = email;
+        this.bankAccount=bankAccount;
         if(isNewAccount){ //if we are reading created accounts we don't have to hash thei passwords again
             this.password = calculateHash(password.trim());
         }else{
@@ -112,6 +114,8 @@ public class CompanyAccount {
     public String getEmail() {
         return email;
     }
+
+    public BankAccount getBankAccount(){return this.bankAccount;}
 
     public List<Vehicle> getVehicles() {
         return vehicles;

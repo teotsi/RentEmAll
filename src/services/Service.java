@@ -19,6 +19,7 @@ public class Service {
     protected static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     protected static List<CompanyAccount> companies = new ArrayList<>(); //all companies
     private static final String PATH = "../dataset/";
+    private static double AppBalance=0;
     public static void CompanyReader(String file) throws IOException{
         List<CompanyAccount> companies = new ArrayList<>();
         
@@ -34,6 +35,11 @@ public class Service {
             System.out.println(c.toString());
         }
         s.close();
+    }
+
+    public static void increaseAppBalance(double commission){
+        AppBalance+=commission;
+
     }
 
     public static void CompanyWriter(String file) throws IOException{

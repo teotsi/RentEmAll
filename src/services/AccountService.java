@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import classes.BankAccount;
 import classes.CompanyAccount;
 import classes.RentingApplication;
 import classes.Vehicle;
@@ -14,10 +15,15 @@ public class AccountService extends Service {
     private static List<Vehicle> vehicles;
     private static List<RentingApplication> applications;
     private static String logs = "";
+    private static BankAccount bankAccount;
 
     public static boolean emailIsValid(String email) {
         String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return email.matches(emailPattern);
+    }
+
+    public void addToBalance(double moneyyy){
+        bankAccount.addBalance(moneyyy);
     }
 
     public static boolean emailIsAvailable(String email) {
@@ -37,7 +43,8 @@ public class AccountService extends Service {
                     currentAccountID = auth;//waste of time if the emails don't match
                     vehicles = companyAccount.getVehicles();
                     applications = companyAccount.getApplications();
-                    logEvent("\"Logged in at \" + dateFormat.format(new Date())");
+                    bankAccount= companyAccount.getBankAccount();
+                    logEvent("Logged in at " + dateFormat.format(new Date()));
                     return true;
                 } else {
                     companyAccount.logSession("Invalid login attempt at " + dateFormat.format(new Date()));
@@ -57,8 +64,8 @@ public class AccountService extends Service {
         return password.matches(passwordPattern);
     }
 
-    public static void register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password) {
-        companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password,true));
+    public static void register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount) {
+        companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password,true, bankAccount));
     }
 
     public static void save() {
