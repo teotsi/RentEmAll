@@ -3,11 +3,12 @@ package classes;
 public class BankAccount {
     private String accountHolder;
     private String iban;
-    private double balance=0;
+    private double balance;
 
-    public BankAccount(String accountHolder, String iban) {
+    public BankAccount(String accountHolder, String iban, double balance) {
         this.accountHolder = accountHolder;
         this.iban = iban;
+        this.balance = balance;
     }
 
     public String getAccountHolder() {
@@ -19,4 +20,9 @@ public class BankAccount {
     }
 
     public void addBalance(double moneyyy){ balance+=moneyyy;}
+
+    @Override
+    public String toString(){
+        return accountHolder+"/"+iban+"/"+balance;
+    }
 }

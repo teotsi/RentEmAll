@@ -43,7 +43,7 @@ public class CompanyAccount {
     }
 
     public String toString(){
-        return (this.companyName + "/"  + this.policy + "/" + this.description + "/" + this.range + "/" +this.latitude+"/"+this.longitude+"/"+ this.email + "/" + this.password);
+        return (this.companyName + "/"  + this.policy + "/" + this.description + "/" + this.range + "/" +this.latitude+"/"+this.longitude+"/"+ this.email + "/" + this.password+"/"+bankAccount.toString());
     }
 
     public void addMultipleVehicles(List<Vehicle> cars){

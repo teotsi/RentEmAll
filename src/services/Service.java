@@ -1,8 +1,5 @@
 package services;
-import classes.CompanyAccount;
-import classes.Customer;
-import classes.RentingApplication;
-import classes.Vehicle;
+import classes.*;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -28,7 +25,7 @@ public class Service {
             String line = s.nextLine();
     
             StringTokenizer st = new StringTokenizer(line, "/");
-            companies.add(new CompanyAccount(st.nextToken(), st.nextToken(), st.nextToken(), Float.parseFloat(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), st.nextToken(), st.nextToken(), false));
+            companies.add(new CompanyAccount(st.nextToken(), st.nextToken(), st.nextToken(), Float.parseFloat(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), st.nextToken(), st.nextToken(), false,new BankAccount(st.nextToken(),st.nextToken(),Double.parseDouble(st.nextToken()))));
         }
         Service.companies = companies;
         for(CompanyAccount c : companies){
