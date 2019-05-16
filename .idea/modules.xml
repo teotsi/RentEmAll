@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/javaImpl.iml" filepath="$PROJECT_DIR$/javaImpl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/softEngCarApp.iml" filepath="$PROJECT_DIR$/softEngCarApp.iml" />
     </modules>
   </component>
 </project>
