@@ -1,6 +1,6 @@
 package model.services;
 
-import classes.*;
+import model.classes.*;
 import model.classes.BankAccount;
 import model.classes.CompanyAccount;
 import model.classes.Customer;
