@@ -172,12 +172,17 @@ public class Service {
         }
     }
 
-    protected static void mergeApplications(List<RentingApplication> updatedApplications){
+    protected static void mergeLists(List<RentingApplication> updatedApplications, List<Rental> updatedRentals){
         for(RentingApplication application: updatedApplications){
-            Applications.removeIf(old_application -> !old_application.getId().equals(application.getId()));
+            Applications.removeIf(old_application -> old_application.getId().equals(application.getId()));
 
         }
         Applications.addAll(updatedApplications);
+        for(Rental rental: updatedRentals){
+            Rentals.removeIf(old_rental -> old_rental.getId().equals(rental.getId()));
+        }
+        Rentals.addAll((updatedRentals));
+
     }
 
     public static void main(String[] args) {

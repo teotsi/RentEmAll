@@ -93,7 +93,7 @@ public class AccountService extends Service {
                 companyAccount.setVehicles(vehicles);
                 companyAccount.setApplications(applications);
                 companyAccount.setRentals(rentals);
-                Service.mergeApplications(applications);
+                Service.mergeLists(applications, rentals);
                 break;
             }
         }
