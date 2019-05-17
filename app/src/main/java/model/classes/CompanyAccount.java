@@ -66,6 +66,10 @@ public class CompanyAccount {
         r.getVehicle().addRental(r);
     }
 
+    public List<Rental> getRentals(){
+        return rentals;
+    }
+
     public void logSession(String message) {
         this.logs += message + "\n";
     }

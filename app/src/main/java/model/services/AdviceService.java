@@ -2,14 +2,16 @@ package model.services;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import model.classes.CompanyAccount;
+import model.classes.Rental;
 import model.classes.RentingApplication;
+import model.classes.Vehicle;
 
 
-public class AdviceService extends Service{
+public class AdviceService extends Service {
     private String id;
     private LocalDate date;
     private String text;
@@ -20,15 +22,55 @@ public class AdviceService extends Service{
         this.text = text;
     }
 
-    public void vehicle_advice(){
-        List<Map.Entry<RentingApplication,Integer>> countVecs=new ArrayList<Map.Entry<RentingApplication,Integer>>();
-        for(RentingApplication application: Applications){
-
+    public String vehicle_advice() {
+        String advice_text="something went wrong for vehicle advice";
+        List<Integer> vecs = new ArrayList<Integer>();
+        List<Integer> countvalues = new ArrayList<Integer>();
+        for (RentingApplication application : Applications) {
+            boolean flag = false;
+            int position = 0;
+            for (Integer vec : vecs) {
+                if (vec.intValue() == application.getVehicle().getGlobalId()) {
+                    flag = true;
+                    countvalues.add(position, (new Integer(vec.intValue() + 1)));
+                }
+                if (flag) {
+                    break;
+                }
+                position++;
+            }
+            if (!flag) {
+                vecs.add(application.getVehicle().getGlobalId());
+            }
         }
-        for(CompanyAccount company: companies){
-
+        Integer BestSellerNum; //the rentals of the best seller
+        BestSellerNum = Collections.max(countvalues);
+        Integer BestSeller = vecs.get(countvalues.indexOf(BestSellerNum));
+        for (CompanyAccount company : companies) {//search for the companies that do not have the bestseller
+            boolean flag = false;
+            for (Vehicle vec : company.getVehicles()) {
+                if (vec.getGlobalId() == BestSeller.intValue()) {
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                advice_text = "It seems that you do not have the bestseller in the app, perhaps it would help your rentals if you could add it in your vehicle list. The vehicle with global id " + (BestSeller.intValue()) + " is the bestseller";
+            } else {
+                advice_text = "Well done, you have in your vehicle list the app's bestseller. The vehicle with global id " + (BestSeller.intValue()) + " is the bestseller";
+            }
         }
+        return advice_text;
     }
+
+    public String income_stats(CompanyAccount company, LocalDate dateOfStats){//company's income based on rentals and no on applications
+            double income= 0;
+            for(Rental rental: company.getRentals()){
+                if(dateOfStats.isBefore(rental.getStartDate())) {
+                    income += rental.profit(rental.getVehicle(), rental.getReceiptDate(), rental.getDeliveryDate());
+                }
+            }
+            return "Your income from the date you chose till today is: "+ income;
+        }
 
 
 //    public void exportAdvice(CompanyAccount C, String timeframe){
