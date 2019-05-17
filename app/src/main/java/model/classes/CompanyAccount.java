@@ -156,4 +156,8 @@ public class CompanyAccount {
         }
         return big.toString();
     }
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals=rentals;
+    }
 }

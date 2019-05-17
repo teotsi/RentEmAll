@@ -175,6 +175,7 @@ public class Service {
     protected static void mergeApplications(List<RentingApplication> updatedApplications){
         for(RentingApplication application: updatedApplications){
             Applications.removeIf(old_application -> !old_application.getId().equals(application.getId()));
+
         }
         Applications.addAll(updatedApplications);
     }

@@ -73,7 +73,6 @@ public class ExampleUnitTest {
             Assert.assertEquals(expected,AccountService.getNumberOfVehicles());
             List<RentingApplication> list = AccountService.getPendingApplications();
             Assert.assertEquals(true,list.isEmpty());
-
             AccountService.signOut();
 
             AccountService.login("teotsi@gmail.com","Qwerty!2");
@@ -100,7 +99,7 @@ public class ExampleUnitTest {
 
             Service.CompanyWriter("CompaniesOut.txt");
             Service.VehicleWriter("testVehicleOut.txt");
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println("Hi");
         }
     }

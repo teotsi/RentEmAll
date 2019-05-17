@@ -92,6 +92,8 @@ public class AccountService extends Service {
                 System.out.println(companyAccount.getLogs());
                 companyAccount.setVehicles(vehicles);
                 companyAccount.setApplications(applications);
+                companyAccount.setRentals(rentals);
+                Service.mergeApplications(applications);
                 break;
             }
         }
@@ -196,6 +198,10 @@ public class AccountService extends Service {
                 return;
             }
         }
+    }
+
+    public static List<RentingApplication> getApplications() {
+        return applications;
     }
 
     public static List<RentingApplication> getPendingApplications() { //returns all pending applications
