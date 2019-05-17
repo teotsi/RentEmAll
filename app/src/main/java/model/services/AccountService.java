@@ -1,19 +1,22 @@
 package model.services;
 
-import model.classes.BankAccount;
-import model.classes.CompanyAccount;
-import model.classes.RentingApplication;
-import model.classes.Vehicle;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import model.classes.BankAccount;
+import model.classes.CompanyAccount;
+import model.classes.Rental;
+import model.classes.RentingApplication;
+import model.classes.Vehicle;
+
 public class AccountService extends Service {
     private static int currentAccountID;
-    private static List<Vehicle> vehicles=new ArrayList<>();
-    private static List<RentingApplication> applications=new ArrayList<>();
+    private static List<Vehicle> vehicles = new ArrayList<>();
+    private static List<RentingApplication> applications = new ArrayList<>();
+    private static List<Rental> rentals = new ArrayList<>();
     private static String logs = "";
     private static BankAccount bankAccount;
 
@@ -66,18 +69,18 @@ public class AccountService extends Service {
     }
 
     public static int register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount) {
-        if(emailIsValid(email)){
-            if(emailIsAvailable(email)){
-                if(passwordIsValid(password)){
+        if (emailIsValid(email)) {
+            if (emailIsAvailable(email)) {
+                if (passwordIsValid(password)) {
                     companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount));
                     return 0;
-                }else{
+                } else {
                     return 1;
                 }
-            }else{
+            } else {
                 return 2;
             }
-        }else{
+        } else {
             return 3;
         }
     }
@@ -132,10 +135,37 @@ public class AccountService extends Service {
             if (application.getId().equals(id)) {
                 application.setPending(false);
                 application.setAccepted(true);
+                Rental rental = new Rental(application);
+                rentals.add(new Rental(application));
+                Rentals.add(new Rental(application));
+                logEvent("Accepted application #" + application.getId());
                 return;
             }
         }
     }
+
+    public static void confirmReceipt(String id) {
+        for (Rental rental : rentals) {
+            if (rental.getId().equals(id)) {
+                LocalDate date = LocalDate.now();
+                rental.confirmReceipt(date);
+                logEvent("Rental #" + rental.getId() + ": Customer received at" + dateFormat.format(date));
+                return;
+            }
+        }
+    }
+
+    public static void confirmDelivery(String id) {
+        for (Rental rental : rentals) {
+            if (rental.getId().equals(id)) {
+                LocalDate date = LocalDate.now();
+                rental.confirmDelivery(date);
+                logEvent("Rental #" + rental.getId() + ": Customer delivered at " + dateFormat.format(date));
+                return;
+            }
+        }
+    }
+
 
     private static void logEvent(String event) {
         logs += event + "\n";
@@ -170,7 +200,7 @@ public class AccountService extends Service {
 
     public static List<RentingApplication> getPendingApplications() { //returns all pending applications
         List<RentingApplication> pendingApplications = new ArrayList<>();
-        if(applications==null) return null;
+        if (applications == null) return null;
         for (RentingApplication application : applications) {
             if (application.isPending()) {
                 pendingApplications.add(application);
@@ -199,16 +229,16 @@ public class AccountService extends Service {
         return rejectedApplications;
     }
 
-    public void addToBalance(double moneyyy) {
-        bankAccount.addBalance(moneyyy);
-    }
-
     public static List<Vehicle> getVehicles() {
         return vehicles;
     }
 
-    public static int getNumberOfVehicles(){
+    public static int getNumberOfVehicles() {
         return vehicles.size();
+    }
+
+    public void addToBalance(double moneyyy) {
+        bankAccount.addBalance(moneyyy);
     }
 
 }
