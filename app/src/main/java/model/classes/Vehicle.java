@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Vehicle {
     private String id = String.valueOf(this.hashCode());
+    private int globalId;
     private int companyId;
     private String brand;
     private String model;
@@ -34,6 +35,7 @@ public class Vehicle {
         this.date = date;
         this.available = available;
         this.upcomingRentals = new ArrayList<>();
+        this.globalId=(brand+model).hashCode();
     }
 
     public Vehicle(Vehicle vehicle) {
@@ -62,6 +64,10 @@ public class Vehicle {
 
     public void setTransmissionType(String transmissionType) {
         this.transmissionType = transmissionType;
+    }
+
+    public int getGlobalId(){
+        return this.globalId;
     }
 
     public String getId() {

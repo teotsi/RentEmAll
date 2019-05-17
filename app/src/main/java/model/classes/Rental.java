@@ -1,6 +1,8 @@
 package model.classes;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import model.services.*;
 
 public class Rental extends RentingApplication {
     private String id;
@@ -15,5 +17,17 @@ public class Rental extends RentingApplication {
 
     public void confirmDelivery(LocalDate date){
         deliveryDate = date;
+    }
+
+    public LocalDate getReceiptDate(){
+        return receiptDate;
+    }
+
+    public LocalDate getDeliveryDate(){
+        return deliveryDate;
+    }
+
+    public double profit(Vehicle v, LocalDate receiptDate, LocalDate deliveryDate){
+        return Service.calculateCost(v, receiptDate, deliveryDate);
     }
 }
