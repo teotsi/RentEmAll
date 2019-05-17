@@ -36,6 +36,20 @@ public class RentingApplication {
         }
     }
 
+
+    public RentingApplication(RentingApplication rentingApplication) {
+        this.companyId = rentingApplication.companyId;
+        this.startDate = rentingApplication.startDate;
+        this.endDate = rentingApplication.endDate;
+        this.replyDate = rentingApplication.replyDate;
+        this.vehicle = rentingApplication.vehicle;
+        this.customerLocation = rentingApplication.customerLocation;
+        this.companyLocation = rentingApplication.companyLocation;
+        this.customer = rentingApplication.customer;
+        this.comments = rentingApplication.comments;
+        this.id = rentingApplication.id;
+    }
+
     public String getId() {
         return id;
     }
