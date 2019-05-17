@@ -1,6 +1,6 @@
 package model.services;
 
-import classes.*;
+import model.classes.*;
 import model.classes.BankAccount;
 import model.classes.CompanyAccount;
 import model.classes.Customer;
@@ -20,6 +20,8 @@ public class Service {
     //    protected static File vehiclesFile= new File("");
     protected static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     protected static List<CompanyAccount> companies = new ArrayList<>(); //all companies
+    protected static List<RentingApplication> Applications= new ArrayList<>();//all renting application
+    protected static List<Rental> Rentals=new ArrayList<>();//all rentals
     private static double AppBalance = 0;
 
     public static int CompanyReader(String file) {

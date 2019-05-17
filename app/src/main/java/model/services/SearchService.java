@@ -1,15 +1,16 @@
 package model.services;
 
-import model.classes.CompanyAccount;
-import model.classes.Customer;
-import model.classes.RentingApplication;
-import model.classes.Vehicle;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+
+import model.classes.CompanyAccount;
+import model.classes.Customer;
+import model.classes.RentingApplication;
+import model.classes.Vehicle;
 
 public class SearchService extends Service {
 
@@ -30,7 +31,8 @@ public class SearchService extends Service {
     }
 
     public static void submitApplication(RentingApplication application) {
-        for (CompanyAccount companyAccount : companies) {
+        Applications.add(application);//add it to the list with all renting applications
+        for (CompanyAccount companyAccount : companies) {// add it to the company applications
             if (application.getCompanyId() == companyAccount.getId()) {
                 companyAccount.addApplication(application);
                 completePayment(application);
