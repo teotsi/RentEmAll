@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Service {
-    private static final String PATH = "../dataset/";
+    private static final String PATH = "src/main/java/model/dataset/";
     private static final double COMMISSION = 15 / 100;
     //    protected static File vehiclesFile= new File("");
     protected static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -172,8 +172,15 @@ public class Service {
         }
     }
 
+    protected static void mergeApplications(List<RentingApplication> updatedApplications){
+        for(RentingApplication application: updatedApplications){
+            Applications.removeIf(old_application -> !old_application.getId().equals(application.getId()));
+        }
+        Applications.addAll(updatedApplications);
+    }
+
     public static void main(String[] args) {
-        System.out.println("hey");
+        System.out.println("Hey");
     }
 }
 

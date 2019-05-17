@@ -92,10 +92,10 @@ public class AccountService extends Service {
                 System.out.println(companyAccount.getLogs());
                 companyAccount.setVehicles(vehicles);
                 companyAccount.setApplications(applications);
-//                compa
                 break;
             }
         }
+
     }
 
     public static void addVehicle(Vehicle vehicle, int amount) { //adding an x amount of a Vehicle
