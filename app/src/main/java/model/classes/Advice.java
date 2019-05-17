@@ -13,6 +13,9 @@ public class Advice {
         this.date = date;
         this.text = text;
     }
+
+    //public void
+
 //    public void exportAdvice(CompanyAccount C, String timeframe){
 //        //Advice for accepted applications
 //        for(RentingApplication r : C.getAcceptedApplications()){

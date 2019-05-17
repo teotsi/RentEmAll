@@ -20,6 +20,8 @@ public class Service {
     //    protected static File vehiclesFile= new File("");
     protected static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     protected static List<CompanyAccount> companies = new ArrayList<>(); //all companies
+    protected static List<RentingApplication> RentingApplication= new ArrayList<>();//all renting application
+    protected static List<Rental> Rentals=new ArrayList<>();//all rentals
     private static double AppBalance = 0;
 
     public static int CompanyReader(String file) {
