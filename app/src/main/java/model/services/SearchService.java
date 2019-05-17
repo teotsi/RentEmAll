@@ -31,7 +31,7 @@ public class SearchService extends Service {
     }
 
     public static void submitApplication(RentingApplication application) {
-        RentingApplication.add(application);//add it to the list with all renting applications
+        Applications.add(application);//add it to the list with all renting applications
         for (CompanyAccount companyAccount : companies) {// add it to the company applications
             if (application.getCompanyId() == companyAccount.getId()) {
                 companyAccount.addApplication(application);

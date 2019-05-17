@@ -1,6 +1,9 @@
 package model.services;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import model.classes.CompanyAccount;
 import model.classes.RentingApplication;
@@ -18,7 +21,10 @@ public class AdviceService extends Service{
     }
 
     public void vehicle_advice(){
-        for(model.classes.RentingApplication)
+        List<Map.Entry<RentingApplication,Integer>> countVecs=new ArrayList<Map.Entry<RentingApplication,Integer>>();
+        for(RentingApplication application: Applications){
+
+        }
         for(CompanyAccount company: companies){
 
         }
