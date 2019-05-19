@@ -6,29 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/WelcomeText"
-        android:layout_width="332dp"
-        android:layout_height="40dp"
-        android:text="Welcome to Rent em All"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </RelativeLayout>
+            android:layout_height="66dp"
+            android:foreground="@android:color/holo_orange_dark">
 
+            <TextView
+                android:id="@+id/WelcomeText"
+                android:layout_width="119dp"
+                android:layout_height="31dp"
+                android:text="Welcome to Rent em All" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@color/lightOrange">
+
+        </RelativeLayout>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
