@@ -1,5 +1,7 @@
 package model.services;
 
+import android.content.ContextWrapper;
+
 import model.classes.*;
 import model.classes.BankAccount;
 import model.classes.CompanyAccount;
@@ -24,10 +26,54 @@ public class Service {
     protected static List<Rental> Rentals=new ArrayList<>();//all rentals
     private static double AppBalance = 0;
 
+    public static void printAllJavaFiles(String directory) {
+        File f = new File(directory);
+        if (f.isDirectory()) {
+            File[] subDirectories = f.listFiles();
+            System.out.println(subDirectories);
+        }else {
+            printFile(f);
+        }
+    }
+
+    private static void printFile(File file) {
+        // Get file extension
+        String fileExtension = "";
+        int i = file.getName().lastIndexOf('.');
+        if (i >= 0) {
+            fileExtension = file.getName().substring(i + 1);
+        }
+
+        if (fileExtension.equals("java")) {
+            System.out.println("File: " + file.getName() + " Size: " + file.length());
+        }
+    }
+
+    public static int CompanyReader(InputStream stream) {
+        try {
+            List<CompanyAccount> companies = new ArrayList<>();
+            Scanner s = new Scanner(stream);
+            while (s.hasNext()) {
+                String line = s.nextLine();
+
+                StringTokenizer st = new StringTokenizer(line, "/");
+                companies.add(new CompanyAccount(st.nextToken(), st.nextToken(), st.nextToken(), Float.parseFloat(st.nextToken()), Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), st.nextToken(), st.nextToken(), false, new BankAccount(st.nextToken(), st.nextToken(), Double.parseDouble(st.nextToken()))));
+            }
+            Service.companies = companies;
+            for (CompanyAccount c : companies) {
+                System.out.println(c.toString());
+            }
+            s.close();
+            return 0;
+        } catch (NoSuchElementException e){
+            return 2;
+        }
+    }
+
+
     public static int CompanyReader(String file) {
         try {
             List<CompanyAccount> companies = new ArrayList<>();
-
             Scanner s = new Scanner(new File(PATH + file));
             while (s.hasNext()) {
                 String line = s.nextLine();

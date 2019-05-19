@@ -21,8 +21,7 @@ public class AccountService extends Service {
     private static BankAccount bankAccount;
 
     public static boolean emailIsValid(String email) {
-        String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        return email.matches(emailPattern);
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
     public static String statistics(int weeks) {
