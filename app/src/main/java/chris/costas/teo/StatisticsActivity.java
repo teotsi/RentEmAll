@@ -26,10 +26,11 @@ public class StatisticsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 date=LocalDate.parse(dateInput.getText().toString());
+                TextView Statistics = (TextView) findViewById(R.id.StatsResults);
+                String income = AccountService.incomeStats(date);
+                Statistics.setText(income);
             }
         });
-        TextView Statistics = (TextView) findViewById(R.id.StatsResults);
-        String income = AccountService.incomeStats(date);
-        Statistics.setText(income);
+
     }
 }
