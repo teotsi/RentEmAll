@@ -23,7 +23,7 @@ public class CompanyAccount {
     private BankAccount bankAccount;
     private Address address;
 
-    public CompanyAccount(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, boolean isNewAccount, BankAccount bankAccount) {
+    public CompanyAccount(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, boolean isNewAccount, BankAccount bankAccount, Address address) {
         this.companyName = companyName;
         this.id = this.companyName.hashCode();
         this.policy = policy;
@@ -35,6 +35,7 @@ public class CompanyAccount {
         this.applications = new ArrayList<>();
         this.email = email;
         this.bankAccount = bankAccount;
+        this.address=address;
         if (isNewAccount) { //if we are reading created accounts we don't have to hash thei passwords again
             this.password = calculateHash(password.trim());
         } else {

@@ -6,14 +6,17 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import model.classes.Address;
 import model.classes.BankAccount;
 import model.classes.CompanyAccount;
 import model.classes.Rental;
 import model.classes.RentingApplication;
 import model.classes.Vehicle;
+import model.services.AdviceService;
 
 public class AccountService extends Service {
     private static int currentAccountID;
+    private static CompanyAccount Company;
     private static List<Vehicle> vehicles = new ArrayList<>();
     private static List<RentingApplication> applications = new ArrayList<>();
     private static List<Rental> rentals = new ArrayList<>();
@@ -24,9 +27,13 @@ public class AccountService extends Service {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-    public static String statistics(int weeks) {
-        return "0";
+    public static String incomeStats(LocalDate date){
+        return  AdviceService.income_stats(Company, date);
 
+    }
+
+    public static String getName(){// returns the name of the company
+        return Company.getCompanyName();
     }
 
     public static boolean emailIsAvailable(String email) {
@@ -44,6 +51,7 @@ public class AccountService extends Service {
                 int auth = companyAccount.authorizeLogin(password);
                 if (auth != -1) {//authorizeLogin compares a hash to another hash, a
                     currentAccountID = auth;//waste of time if the emails don't match
+                    Company=companyAccount;
                     vehicles = companyAccount.getVehicles();
                     applications = companyAccount.getApplications();
                     bankAccount = companyAccount.getBankAccount();
@@ -67,11 +75,11 @@ public class AccountService extends Service {
         return password.matches(passwordPattern);
     }
 
-    public static int register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount) {
+    public static int register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount, Address address) {
         if (emailIsValid(email)) {
             if (emailIsAvailable(email)) {
                 if (passwordIsValid(password)) {
-                    companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount));
+                    companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount, address));
                     return 0;
                 } else {
                     return 1;

@@ -14,13 +14,13 @@ import model.classes.Vehicle;
 public class AdviceService extends Service {
     private String id;
     private LocalDate date;
-    private String text;
-
-    public AdviceService(String id, LocalDate date, String text) {
-        this.id = id;
-        this.date = date;
-        this.text = text;
-    }
+//    private String text;
+//
+//    public AdviceService(String id, LocalDate date, String text) {
+//        this.id = id;
+//        this.date = date;
+//        this.text = text;
+//    }
 
     public String vehicle_advice() {
         String advice_text="something went wrong for vehicle advice";
@@ -62,13 +62,13 @@ public class AdviceService extends Service {
         return advice_text;
     }
 
-    public String income_stats(CompanyAccount company, LocalDate dateOfStats){//company's income based on rentals and no on applications
+    public static String income_stats(CompanyAccount company, LocalDate dateOfStats){//company's income based on rentals and no on applications
             double income= 0;
-            for(Rental rental: company.getRentals()){
-                if(dateOfStats.isBefore(rental.getStartDate())) {
-                    income += rental.profit(rental.getVehicle(), rental.getReceiptDate(), rental.getDeliveryDate());
-                }
-            }
+//            for(Rental rental: company.getRentals()){
+//                if(dateOfStats.isBefore(rental.getStartDate())) {
+//                    income += rental.profit(rental.getVehicle(), rental.getReceiptDate(), rental.getDeliveryDate());
+//                }
+//            }
             return "Your income from the date you chose till today is: "+ income;
         }
 
