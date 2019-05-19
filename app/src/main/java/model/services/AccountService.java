@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import model.classes.Address;
 import model.classes.BankAccount;
 import model.classes.CompanyAccount;
 import model.classes.Rental;
@@ -75,11 +74,11 @@ public class AccountService extends Service {
         return password.matches(passwordPattern);
     }
 
-    public static int register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount, Address address) {
+    public static int register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount) {
         if (emailIsValid(email)) {
             if (emailIsAvailable(email)) {
                 if (passwordIsValid(password)) {
-                    companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount, address));
+                    companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount));
                     return 0;
                 } else {
                     return 1;
