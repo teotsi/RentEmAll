@@ -242,11 +242,16 @@ public class AccountService extends Service {
     }
 
     public static List<Vehicle> getVehicles() {
+        System.out.println("hollllaa");
         return vehicles;
     }
 
     public static int getNumberOfVehicles() {
         return vehicles.size();
+    }
+
+    public static void removeVehicle(int adapterPosition) {
+        vehicles.remove(adapterPosition);
     }
 
     public void addToBalance(double moneyyy) {

@@ -3,9 +3,6 @@ package chris.costas.teo;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,9 +20,9 @@ public class ExampleUnitTest {
     public void totalTest(){
         try {
             int status;
-            status = Service.CompanyReader("");
+            status = Service.companyReader("");
             Assert.assertEquals(status,1);
-            status = Service.CompanyReader("Companies.txt");
+            status = Service.companyReader("Companies.txt");
             Assert.assertEquals(status,0);
 
             status=Service.vehicleReader("");

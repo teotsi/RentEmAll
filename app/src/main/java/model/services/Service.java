@@ -49,7 +49,7 @@ public class Service {
         }
     }
 
-    public static int CompanyReader(InputStream stream) {
+    public static int companyReader(InputStream stream) {
         try {
             List<CompanyAccount> companies = new ArrayList<>();
             Scanner s = new Scanner(stream);
@@ -71,7 +71,7 @@ public class Service {
     }
 
 
-    public static int CompanyReader(String file) {
+    public static int companyReader(String file) {
         try {
             List<CompanyAccount> companies = new ArrayList<>();
             Scanner s = new Scanner(new File(PATH + file));
@@ -195,6 +195,57 @@ public class Service {
         } catch (FileNotFoundException e) {
             return 1;
         }catch(NoSuchElementException e){
+            return 2;
+        }
+    }
+
+    public static int vehicleReader(InputStream file)  {
+        try {
+            Scanner s = new Scanner(file);
+            while (s.hasNext()) {
+                String owner = s.nextLine();
+                owner = owner.substring(0, owner.length() - 1);
+                String line = s.nextLine();
+                List<Vehicle> cars = new ArrayList<>();
+                List<RentingApplication> rentals = new ArrayList<>();
+                int counter = -1;
+
+
+                while (!line.contains("}")) {
+                    StringTokenizer st = new StringTokenizer(line, "/");
+                    Vehicle vehicle = new Vehicle(st.nextToken(), st.nextToken(), st.nextToken(), Integer.parseInt(st.nextToken()), st.nextToken(), Boolean.parseBoolean(st.nextToken()), Float.parseFloat(st.nextToken()), st.nextToken(), st.nextToken(), LocalDate.parse(st.nextToken()), Boolean.parseBoolean(st.nextToken()));
+                    s.nextLine();
+                    line = s.nextLine();
+                    while (!line.trim().equals("}")) {
+                        StringTokenizer st1 = new StringTokenizer(line, "/");
+                        RentingApplication application = new RentingApplication(owner.hashCode(), vehicle, LocalDate.parse(st1.nextToken()), LocalDate.parse(st1.nextToken()), LocalDate.parse(st1.nextToken()), st1.nextToken(), st1.nextToken(), st1.nextToken(), new Customer(st1.nextToken(), st1.nextToken(), st1.nextToken(), st1.nextToken()),true);
+                        vehicle.addUpcomingRentals(application);
+                        rentals.add(application);
+                        line = s.nextLine();
+                    }
+                    cars.add(vehicle);
+                    line = s.nextLine();
+                }
+                for (CompanyAccount c : companies) {
+                    if (c.getCompanyName().equals(owner)) {
+                        c.addMultipleVehicles(cars);
+                        c.addMultipleApplications(rentals);
+                        for (Vehicle v : c.getVehicles()) {
+                            v.setCompanyId(c.getId());
+                        }
+                    }
+                }
+            }
+            for (CompanyAccount c : companies) {
+                System.out.println(c.getCompanyName() + "{\n");
+                for (Vehicle v : c.getVehicles()) {
+                    System.out.println(v.toString());
+                }
+                System.out.println("\n}");
+            }
+            s.close();
+            return 0;
+        } catch(NoSuchElementException e){
             return 2;
         }
     }

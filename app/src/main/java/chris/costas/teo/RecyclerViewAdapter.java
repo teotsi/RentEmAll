@@ -1,0 +1,83 @@
+package chris.costas.teo;
+
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import model.classes.Vehicle;
+import model.services.AccountService;
+
+import static java.lang.Thread.sleep;
+
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
+
+    Context mContext;
+    List<Vehicle> mVehicles;
+
+    public RecyclerViewAdapter(Context mContext, List<Vehicle> mVehicles) {
+        this.mContext = mContext;
+        this.mVehicles = mVehicles;
+    }
+
+    @NonNull
+    @Override
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.list_item,viewGroup,false);
+        return new CustomViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CustomViewHolder customViewHolder, int i) {
+        Vehicle vehicle = mVehicles.get(i);
+        customViewHolder.id.setText(vehicle.getId());
+        customViewHolder.data.setText(vehicle.getBrand()+" "+vehicle.getModel());
+        //TODO image
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return mVehicles.size();
+    }
+    public void removeItem(int index){
+        mVehicles.remove(index);
+        notifyDataSetChanged();
+    }
+    public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        TextView id;
+        TextView data;
+        ImageView pic;
+        ImageView delete_vehicle;
+        ImageView edit_vehicle;
+        public CustomViewHolder(@NonNull View itemView) {
+            super(itemView);
+            id = (TextView) itemView.findViewById(R.id.vehicle_id);
+            data = (TextView) itemView.findViewById(R.id.vehicle_data);
+            pic = (ImageView) itemView.findViewById(R.id.vehicle_pic);
+            delete_vehicle =(ImageView) itemView.findViewById(R.id.delete_vehicle);
+            edit_vehicle =(ImageView) itemView.findViewById(R.id.edit_vehicle);
+
+            delete_vehicle.setOnClickListener(this);
+            edit_vehicle.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(v.getId() == delete_vehicle.getId()){
+                int position = getAdapterPosition();
+                Toast.makeText(v.getContext(), "ITEM PRESSED = " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+                AccountService.removeVehicle(position);
+                removeItem(position);
+            }
+        }
+    }
+}

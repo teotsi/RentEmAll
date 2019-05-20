@@ -7,6 +7,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -29,8 +30,6 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -70,11 +69,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         try {
             File f = null;
-            Service.CompanyReader(this.getAssets().open("dataset/Companies.txt"));
+            AssetManager assets = this.getAssets();
+            Service.companyReader(assets.open("dataset/Companies.txt"));
+            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(Service.CompanyReader("Companies.txt"));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
