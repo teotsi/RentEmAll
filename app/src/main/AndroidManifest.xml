@@ -17,7 +17,10 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".StatisticsActivity"
             android:exported="true"
-            android:label="@string/statistics"></activity>
+            android:label="@string/statistics"> </activity>
+        <activity android:name=".ApplicationActivity"
+            android:exported="true"
+            android:label="@string/applications"> </activity>
         <activity
             android:name=".AccountOptions"
             android:exported="true"
@@ -36,9 +39,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".vehicle_management"
-            android:exported="true">
         </activity>
     </application>
 
