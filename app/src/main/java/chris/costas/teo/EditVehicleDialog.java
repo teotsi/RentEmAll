@@ -24,6 +24,7 @@ public class EditVehicleDialog extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog);
     }
 
     @Override
@@ -56,6 +57,7 @@ public class EditVehicleDialog extends DialogFragment {
             int width = ViewGroup.LayoutParams.MATCH_PARENT;
             int height = ViewGroup.LayoutParams.MATCH_PARENT;
             dialog.getWindow().setLayout(width, height);
+            dialog.getWindow().setWindowAnimations(R.style.AppTheme_Slide);
         }
     }
 
