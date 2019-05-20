@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,7 +71,6 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
             pic = (ImageView) itemView.findViewById(R.id.vehicle_pic);
             delete_vehicle =(ImageView) itemView.findViewById(R.id.delete_vehicle);
             edit_vehicle =(ImageView) itemView.findViewById(R.id.edit_vehicle);
-
             delete_vehicle.setOnClickListener(this);
             edit_vehicle.setOnClickListener(this);
         }
@@ -82,7 +83,9 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
                 AccountService.removeVehicle(position);
                 removeItem(position);
             }else if(v.getId() == edit_vehicle.getId()){
-                EditVehicleDialog.display(fragmentManager);
+                int position = getAdapterPosition();
+                EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position));
+
             }
         }
     }

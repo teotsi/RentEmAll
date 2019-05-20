@@ -30,4 +30,32 @@
     <string name="title_activity_vehicle_management">vehicle_management</string>
     <string name="statistics">Statistics</string>
     <string name="applications">Applications</string>
+    <string-array name="number_of_seats">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="types">
+        <item>Sport</item>
+        <item>SUV</item>
+        <item>Bike</item>
+        <item>MiniVan</item>
+        <item>Convertible</item>
+        <item>Car</item>
+        <item>Coupe</item>
+    </string-array>
+    <string-array name="transmission_types">
+        <item>Automatic</item>
+        <item>Semi</item>
+        <item>Manual</item>
+    </string-array>
+    <string-array name="fuel_types">
+        <item>Gas</item>
+        <item>Diesel</item>
+        <item>Natural Gas</item>
+    </string-array>
 </resources>
