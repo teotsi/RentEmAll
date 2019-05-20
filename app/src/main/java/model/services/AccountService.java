@@ -246,6 +246,7 @@ public class AccountService extends Service {
         return vehicles;
     }
 
+
     public static int getNumberOfVehicles() {
         return vehicles.size();
     }

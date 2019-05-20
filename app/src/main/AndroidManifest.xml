@@ -18,9 +18,9 @@
         <activity android:name=".StatisticsActivity"
             android:exported="true"
             android:label="@string/statistics"> </activity>
-        <activity android:name=".ApplicationActivity"
+        <activity android:name=".vehicle_management"
             android:exported="true"
-            android:label="@string/applications"> </activity>
+            android:label="Vehicles"> </activity>
         <activity
             android:name=".AccountOptions"
             android:exported="true"
