@@ -29,7 +29,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         View v;
         v= LayoutInflater.from(mContext).inflate(R.layout.item_application,parent, false);
         MyViewHolder vHolder=new MyViewHolder(v);
-        return null;
+        return vHolder;
     }
 
     @Override
@@ -59,5 +59,9 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
             end_date= (TextView) itemView.findViewById(R.id.end_date_id);
 
         }
+    }
+
+    public interface OnNoteListener{
+        void onNoteClick(int position);
     }
 }
