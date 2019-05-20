@@ -64,11 +64,11 @@ public class AdviceService extends Service {
 
     public static String income_stats(CompanyAccount company, LocalDate dateOfStats){//company's income based on rentals and no on applications
             double income= 0;
-//            for(Rental rental: company.getRentals()){
-//                if(dateOfStats.isBefore(rental.getStartDate())) {
-//                    income += rental.profit(rental.getVehicle(), rental.getReceiptDate(), rental.getDeliveryDate());
-//                }
-//            }
+            for(Rental rental: company.getRentals()){
+                if(dateOfStats.isBefore(rental.getStartDate())) {
+                    income += rental.profit(rental.getVehicle(), rental.getReceiptDate(), rental.getDeliveryDate());
+                }
+            }
             return "Your income from the date you chose till today is: "+ income;
         }
 
