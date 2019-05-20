@@ -2,7 +2,7 @@ package chris.costas.teo;
 
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,9 +41,9 @@ public class vehicle_management extends AppCompatActivity {
         vehicles = AccountService.getVehicles();
 
         recyclerView = (RecyclerView) findViewById(R.id.vehicle_list);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
+        VehicleAdapter vehicleAdapter = new VehicleAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerView.setAdapter(vehicleAdapter);
         FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
@@ -51,8 +51,8 @@ public class vehicle_management extends AppCompatActivity {
                 Vehicle vehicle = new Vehicle("Nisssan","NIzmo","great",5,"diezzel",true,532,"awesome",
                         "he", LocalDate.parse("2016-05-03"),true);
                 vehicles.add(vehicle);
-                recyclerViewAdapter.notifyItemInserted(vehicles.size()-1);
-                recyclerViewAdapter.notifyItemRangeChanged(vehicles.size()-1,vehicles.size());
+                vehicleAdapter.notifyItemInserted(vehicles.size()-1);
+                vehicleAdapter.notifyItemRangeChanged(vehicles.size()-1,vehicles.size());
                 return false;
             }
         });

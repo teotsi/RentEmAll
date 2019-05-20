@@ -15,10 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".StatisticsActivity"
+        <activity android:name=".ApplicationsActivity"
+            android:exported="true"
+            android:label="Pending applications"> </activity>
+        <activity
+            android:name=".StatisticsActivity"
             android:exported="true"
             android:label="@string/statistics"> </activity>
-        <activity android:name=".vehicle_management"
+        <activity
+            android:name=".vehicle_management"
             android:exported="true"
             android:label="Vehicles"> </activity>
         <activity

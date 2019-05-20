@@ -19,13 +19,13 @@ import model.services.AccountService;
 
 import static java.lang.Thread.sleep;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.CustomViewHolder> {
+public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomViewHolder> {
 
     Context mContext;
     List<Vehicle> mVehicles;
     FragmentManager fragmentManager;
 
-    public RecyclerViewAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager) {
+    public VehicleAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager) {
         this.mContext = mContext;
         this.mVehicles = mVehicles;
         this.fragmentManager = fragmentManager;
@@ -39,10 +39,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder customViewHolder, int i) {
+    public void onBindViewHolder(@NonNull CustomViewHolder myViewHolder, int i) {
         Vehicle vehicle = mVehicles.get(i);
-        customViewHolder.id.setText(vehicle.getId());
-        customViewHolder.data.setText(vehicle.getBrand()+" "+vehicle.getModel());
+        myViewHolder.id.setText(vehicle.getId());
+        myViewHolder.data.setText(vehicle.getBrand()+" "+vehicle.getModel());
         //TODO image
 
     }
