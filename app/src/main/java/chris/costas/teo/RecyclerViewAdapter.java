@@ -48,8 +48,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mVehicles.size();
     }
     public void removeItem(int index){
-        mVehicles.remove(index);
-        notifyDataSetChanged();
+        notifyItemRemoved(index);
+        notifyItemRangeChanged(index,mVehicles.size());
     }
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
