@@ -49,6 +49,10 @@ public class Service {
         }
     }
 
+    public static List<CompanyAccount> getCompanies(){
+        return companies;
+    }
+
     public static int companyReader(InputStream stream) {
         try {
             List<CompanyAccount> companies = new ArrayList<>();
