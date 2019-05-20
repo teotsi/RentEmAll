@@ -34,9 +34,9 @@ public class ApplicationsActivity extends AppCompatActivity implements Applicati
             e.printStackTrace();
         }
         AccountService.login("teotsi@gmail.com","Qwerty!2");
-        applications = AccountService.getApplications();
+        applications = AccountService.getPendingApplications();
         myrecyclerview = (RecyclerView) findViewById(R.id.ApplicationRecyclerView);
-        ApplicationAdapter appAdapter=new ApplicationAdapter(getApplicationContext(), applications);
+        ApplicationAdapter appAdapter=new ApplicationAdapter(getApplicationContext(), applications, this, getSupportFragmentManager());
         myrecyclerview.setLayoutManager(new LinearLayoutManager(this));
         myrecyclerview.setAdapter(appAdapter);
 
@@ -44,6 +44,11 @@ public class ApplicationsActivity extends AppCompatActivity implements Applicati
 
     @Override
     public void onNoteClick(int position) {
-
+        // TODO: display application info in the text area, also display is not the on that calls the other methods, decline doesn't close
+        System.out.println("its ok");
+        ApplicationDialog.display(getSupportFragmentManager());
+        AccountService.getApplications().get(position).setAccepted(ApplicationDialog.Accepted());
+        //AccountService.getApplications().get(position).setPending(false);
+        System.out.println("It works!!!!!!!");
     }
 }
