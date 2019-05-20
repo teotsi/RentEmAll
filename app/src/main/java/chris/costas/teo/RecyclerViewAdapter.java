@@ -1,14 +1,16 @@
 package chris.costas.teo;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import java.util.List;
 
@@ -21,10 +23,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     Context mContext;
     List<Vehicle> mVehicles;
+    FragmentManager fragmentManager;
 
-    public RecyclerViewAdapter(Context mContext, List<Vehicle> mVehicles) {
+    public RecyclerViewAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager) {
         this.mContext = mContext;
         this.mVehicles = mVehicles;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -77,6 +81,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Toast.makeText(v.getContext(), "ITEM PRESSED = " + String.valueOf(position), Toast.LENGTH_SHORT).show();
                 AccountService.removeVehicle(position);
                 removeItem(position);
+            }else if(v.getId() == edit_vehicle.getId()){
+                EditVehicleDialog.display(fragmentManager);
             }
         }
     }

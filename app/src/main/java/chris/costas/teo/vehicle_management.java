@@ -1,15 +1,13 @@
 package chris.costas.teo;
 
-import android.app.Activity;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -23,7 +21,7 @@ import model.services.AccountService;
 import model.services.Service;
 
 
-public class vehicle_management extends Activity {
+public class vehicle_management extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Vehicle> vehicles;
@@ -43,7 +41,7 @@ public class vehicle_management extends Activity {
         vehicles = AccountService.getVehicles();
 
         recyclerView = (RecyclerView) findViewById(R.id.vehicle_list);
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(),vehicles);
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(recyclerViewAdapter);
         FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
