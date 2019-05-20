@@ -28,5 +28,6 @@
         completions."
     </string>
     <string name="title_activity_vehicle_management">vehicle_management</string>
-    <string name="statistics">statistics</string>
+    <string name="statistics">Statistics</string>
+    <string name="applications">Applications</string>
 </resources>
