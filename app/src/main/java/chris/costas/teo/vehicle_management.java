@@ -1,5 +1,7 @@
 package chris.costas.teo;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 
@@ -21,15 +23,18 @@ import model.services.AccountService;
 import model.services.Service;
 
 
-public class vehicle_management extends AppCompatActivity {
+public class vehicle_management extends AppCompatActivity implements DialogInterface.OnDismissListener{
 
     private RecyclerView recyclerView;
     private List<Vehicle> vehicles;
+    private VehicleAdapter vehicleAdapter;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_management);
+        context= getApplicationContext();
         AssetManager assets = this.getAssets();
         try {
         model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
@@ -41,7 +46,7 @@ public class vehicle_management extends AppCompatActivity {
         vehicles = AccountService.getVehicles();
 
         recyclerView = (RecyclerView) findViewById(R.id.vehicle_list);
-        VehicleAdapter vehicleAdapter = new VehicleAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
+        vehicleAdapter = new VehicleAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(vehicleAdapter);
         FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
@@ -58,5 +63,12 @@ public class vehicle_management extends AppCompatActivity {
         });
 
         ImageView delete_view = (ImageView) findViewById(R.id.delete_vehicle);
+    }
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        vehicleAdapter.notifyDataSetChanged();
+    }
+    public static Context getAppContext(){
+        return context;
     }
 }

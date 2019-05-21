@@ -1,5 +1,7 @@
 package model.services;
 
+import android.graphics.drawable.Drawable;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -210,7 +212,7 @@ public class AccountService extends Service {
         }
     }
 
-    public static void editVehicle(int position, String brand, String model, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, boolean available ){
+    public static void editVehicle(int position, String brand, String model, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, boolean available, Drawable pic){
         Vehicle editedVehicle=vehicles.get(position);
         editedVehicle.setBrand(brand);
         editedVehicle.setModel(model);
@@ -222,6 +224,7 @@ public class AccountService extends Service {
         editedVehicle.setExtra(extra);
         editedVehicle.setTransmissionType(transmissionType);
         editedVehicle.setAvailable(available);
+        editedVehicle.setPic(pic);
         vehicles.set(position,editedVehicle);
     }
 

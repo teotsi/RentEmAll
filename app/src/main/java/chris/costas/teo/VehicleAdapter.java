@@ -4,6 +4,10 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.DialogInterface;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import model.classes.Vehicle;
@@ -21,7 +27,7 @@ import model.services.AccountService;
 
 import static java.lang.Thread.sleep;
 
-public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomViewHolder> {
+public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomViewHolder>{
 
     Context mContext;
     List<Vehicle> mVehicles;
@@ -45,6 +51,20 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
         Vehicle vehicle = mVehicles.get(i);
         myViewHolder.id.setText(vehicle.getId());
         myViewHolder.data.setText(vehicle.getBrand()+" "+vehicle.getModel());
+        AssetManager assetManager = mContext.getAssets();
+        Drawable picDrawable = vehicle.getPic();
+        if (picDrawable == null){
+            InputStream pictureStream = null;
+            try {
+                pictureStream = assetManager.open("vehiclePics/"+vehicle.getBrand()+vehicle.getModel()+".png");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Drawable pictureDrawable = Drawable.createFromStream(pictureStream,"");
+            myViewHolder.pic.setImageDrawable(pictureDrawable);
+        }else{
+            myViewHolder.pic.setImageDrawable(vehicle.getPic());
+        }
         //TODO image
 
     }
@@ -62,6 +82,8 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
         notifyItemRemoved(index);
         notifyItemRangeChanged(index,mVehicles.size());
     }
+
+
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView id;
@@ -90,11 +112,13 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
                 removeItem(position);
             }else if(v.getId() == edit_vehicle.getId()){
                 int position = getAdapterPosition();
-                EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position),position);
+                EditVehicleDialog dialog = EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position),position);
+                System.out.println("After display");
                 notifyDataSetChanged();
                 System.out.println("hola muyyy");
             }
         }
+
 
     }
 }

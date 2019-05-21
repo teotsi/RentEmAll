@@ -1,5 +1,8 @@
 package model.classes;
 
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,6 +24,7 @@ public class Vehicle {
     private LocalDate date;
     private List<RentingApplication> upcomingRentals;
     private boolean available = true;
+    private Drawable pic;
 
     public Vehicle(String brand, String model, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, LocalDate date, boolean available) {
         this.brand = brand;
@@ -66,7 +70,13 @@ public class Vehicle {
         this.transmissionType = transmissionType;
     }
 
+    public Drawable getPic() {
+        return pic;
+    }
 
+    public void setPic(Drawable pic) {
+        this.pic = pic;
+    }
 
     public int getGlobalId(){
         return this.globalId;
