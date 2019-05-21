@@ -206,6 +206,21 @@ public class AccountService extends Service {
         }
     }
 
+    public static void editVehicle(int position, String brand, String model, String type, int seats, String fuelType, boolean pce, float rate, String extra, String transmissionType, boolean available ){
+        Vehicle editedVehicle=vehicles.get(position);
+        editedVehicle.setBrand(brand);
+        editedVehicle.setModel(model);
+        editedVehicle.setType(type);
+        editedVehicle.setSeats(seats);
+        editedVehicle.setFuelType(fuelType);
+        editedVehicle.setPce(pce);
+        editedVehicle.setRate(rate);
+        editedVehicle.setExtra(extra);
+        editedVehicle.setTransmissionType(transmissionType);
+        editedVehicle.setAvailable(available);
+        vehicles.set(position,editedVehicle);
+    }
+
     public static List<RentingApplication> getApplications() {
         return applications;
     }

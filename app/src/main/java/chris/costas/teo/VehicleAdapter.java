@@ -84,7 +84,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
                 removeItem(position);
             }else if(v.getId() == edit_vehicle.getId()){
                 int position = getAdapterPosition();
-                EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position));
+                EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position),position);
 
             }
         }

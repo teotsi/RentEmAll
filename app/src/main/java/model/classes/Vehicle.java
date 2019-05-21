@@ -66,6 +66,8 @@ public class Vehicle {
         this.transmissionType = transmissionType;
     }
 
+
+
     public int getGlobalId(){
         return this.globalId;
     }
@@ -209,5 +211,9 @@ public class Vehicle {
 
     public String getName() {
         return brand + " " + model;
+    }
+
+    public void setModel(String model) {
+        this.model=model;
     }
 }

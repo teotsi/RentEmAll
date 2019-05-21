@@ -9,13 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Switch;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
@@ -27,6 +22,7 @@ public class EditVehicleDialog extends DialogFragment {
 
     public static final String TAG = "edit_vehicle_dialog";
     private static Vehicle vehicle;
+    private static int position;
     private Toolbar toolbar;
     private Spinner seats;
     private Spinner transmission;
@@ -40,10 +36,11 @@ public class EditVehicleDialog extends DialogFragment {
     private EditText extra;
     private Button save;
 
-    public static EditVehicleDialog display(FragmentManager fragmentManager, Vehicle vehicle) {
+    public static EditVehicleDialog display(FragmentManager fragmentManager, Vehicle vehicle, int position) {
         EditVehicleDialog exampleDialog = new EditVehicleDialog();
         exampleDialog.show(fragmentManager, TAG);
         EditVehicleDialog.vehicle = vehicle;
+        EditVehicleDialog.position = position;
         System.out.println("Swapped");
         return exampleDialog;
     }
@@ -72,25 +69,39 @@ public class EditVehicleDialog extends DialogFragment {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId()==R.id.action_save){
-                    //TODO
-                }return false;
+                System.out.println(item.getItemId());
+                if (item.getItemId() == R.id.action_save) {
+                    AccountService.editVehicle(position, brand.getText().toString(), model.getText().toString(), type.getSelectedItem().toString(), Integer.parseInt(seats.getSelectedItem().toString()),
+                            fuel.getSelectedItem().toString(), pce.isChecked(), Float.parseFloat(String.valueOf(rate.getText())), extra.getText().toString(), transmission.getSelectedItem().toString(), available.isChecked());
+                    System.out.println("heyyy");
+                }
+                return false;
             }
         });
-        seats=(Spinner)view.findViewById(R.id.edit_seats);
+        toolbar.findViewById(R.id.action_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println(v.getId());
+                    AccountService.editVehicle(position, brand.getText().toString(), model.getText().toString(), type.getSelectedItem().toString(), Integer.parseInt(seats.getSelectedItem().toString()),
+                            fuel.getSelectedItem().toString(), pce.isChecked(), Float.parseFloat(String.valueOf(rate.getText())), extra.getText().toString(), transmission.getSelectedItem().toString(), available.isChecked());
+                    System.out.println("heyyy");
+                dismiss();
+            }
+        });
+        seats = (Spinner) view.findViewById(R.id.edit_seats);
         transmission = (Spinner) view.findViewById(R.id.edit_transmission_type);
         fuel = (Spinner) view.findViewById(R.id.edit_fuel_type);
         type = (Spinner) view.findViewById(R.id.edit_type);
         brand = (EditText) view.findViewById(R.id.edit_brand);
         model = (EditText) view.findViewById(R.id.edit_model);
         pce = (Switch) view.findViewById(R.id.edit_pce);
-        available=(Switch) view.findViewById(R.id.edit_available);
+        available = (Switch) view.findViewById(R.id.edit_available);
         rate = (EditText) view.findViewById(R.id.edit_rate);
         extra = (EditText) view.findViewById(R.id.edit_extra);
-        seats.setSelection(((ArrayAdapter)seats.getAdapter()).getPosition(String.valueOf(vehicle.getSeats())));
-        transmission.setSelection(((ArrayAdapter)transmission.getAdapter()).getPosition(vehicle.getTransmissionType()));
-        fuel.setSelection(((ArrayAdapter)fuel.getAdapter()).getPosition(vehicle.getFuelType()));
-        type.setSelection(((ArrayAdapter)type.getAdapter()).getPosition(vehicle.getType()));
+        seats.setSelection(((ArrayAdapter) seats.getAdapter()).getPosition(String.valueOf(vehicle.getSeats())));
+        transmission.setSelection(((ArrayAdapter) transmission.getAdapter()).getPosition(vehicle.getTransmissionType()));
+        fuel.setSelection(((ArrayAdapter) fuel.getAdapter()).getPosition(vehicle.getFuelType()));
+        type.setSelection(((ArrayAdapter) type.getAdapter()).getPosition(vehicle.getType()));
         brand.setText(vehicle.getBrand());
         model.setText(vehicle.getModel());
         pce.setChecked(vehicle.isPce());
