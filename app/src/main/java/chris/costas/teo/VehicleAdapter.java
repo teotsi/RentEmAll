@@ -85,8 +85,10 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
             }else if(v.getId() == edit_vehicle.getId()){
                 int position = getAdapterPosition();
                 EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position),position);
-
+                notifyDataSetChanged();
+                System.out.println("hola muyyy");
             }
         }
+
     }
 }

@@ -56,6 +56,7 @@ public class vehicle_management extends AppCompatActivity {
                 return false;
             }
         });
+
         ImageView delete_view = (ImageView) findViewById(R.id.delete_vehicle);
     }
 }
