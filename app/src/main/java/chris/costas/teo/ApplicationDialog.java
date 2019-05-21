@@ -13,7 +13,6 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import model.services.AccountService;
 
@@ -79,7 +78,7 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) { // TODO: 21/5/2019 get only the pending applications, when they get accepted or rejected, don't show them here
         LocalDate localDate = LocalDate.now();
         switch (v.getId()){
             case R.id.AcceptButton:
