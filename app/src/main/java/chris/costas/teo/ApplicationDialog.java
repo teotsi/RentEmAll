@@ -6,27 +6,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
-public class ApplicationDialog extends DialogFragment {
-    public static final String TAG = "application_dialog";
-    private static boolean accepted;
+import java.time.LocalDate;
 
+import model.services.AccountService;
+
+public class ApplicationDialog extends DialogFragment implements View.OnClickListener {
+    public static final String TAG = "application_dialog";
     private Toolbar toolbar;
     Button accept;
     Button decline;
+    private static int position;
+    TextView Info;
 
-    public static ApplicationDialog display(FragmentManager fragmentManager) {
+    public static ApplicationDialog display(FragmentManager fragmentManager, int pos) {
+        position=pos;
         ApplicationDialog exampleDialog = new ApplicationDialog();
         exampleDialog.show(fragmentManager, TAG);
         return exampleDialog;
-    }
-
-    public static boolean Accepted(){
-        return accepted;
     }
 
     @Override
@@ -41,21 +43,12 @@ public class ApplicationDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.application_dialog, container, false);
         toolbar = view.findViewById(R.id.Application_Toolbar);
         accept=(Button) view.findViewById(R.id.AcceptButton);
-        accept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                accepted=true;
-                dismiss();
-            }
-        });
-        decline=(Button) view.findViewById(R.id.AcceptButton);
-        decline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                accepted=false;
-                dismiss();
-            }
-        });
+        decline=(Button) view.findViewById(R.id.DeclineButton);
+        Info=(TextView) view.findViewById(R.id.ApplicationText);
+        Info.setText(AccountService.getApplications().get(position).toString());
+
+        accept.setOnClickListener(this);
+        decline.setOnClickListener(this);
 
         return view;
     }
@@ -84,4 +77,22 @@ public class ApplicationDialog extends DialogFragment {
         }
     }
 
+    @Override
+    public void onClick(View v) { // TODO: 21/5/2019 get only the pending applications, when they get accepted or rejected, don't show them here
+        LocalDate localDate = LocalDate.now();
+        switch (v.getId()){
+            case R.id.AcceptButton:
+                AccountService.getApplications().get(position).setAccepted(true);
+                AccountService.getApplications().get(position).setPending(false);
+                AccountService.getApplications().get(position).setReplyDate(localDate);
+                dismiss();
+                break;
+            case R.id.DeclineButton:
+                AccountService.getApplications().get(position).setAccepted(false);
+                AccountService.getApplications().get(position).setPending(false);
+                AccountService.getApplications().get(position).setReplyDate(localDate);
+                dismiss();
+                break;
+        }
+    }
 }
