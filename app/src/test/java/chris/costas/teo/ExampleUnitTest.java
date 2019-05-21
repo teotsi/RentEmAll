@@ -86,8 +86,10 @@ public class ExampleUnitTest {
 
             list = AccountService.getPendingApplications();
             expected=list.size()-1;
-            AccountService.rejectApplication(list.get(0).getId(),"Client asked for cancel");
-            Assert.assertEquals(expected,AccountService.getPendingApplications().size());
+            AccountService.acceptApplication(list.get(0).getId());
+            expected = 1;
+            AccountService.save();
+            Assert.assertEquals(expected,Service.getRentals().size());
 
             vehicles = SearchService.getFilteredVehicleList(LocalDate.parse("2018-08-08"),LocalDate.parse("2018-08-09"),"brand,Opel,seats,5",
                     38.080650,23.687501 );
