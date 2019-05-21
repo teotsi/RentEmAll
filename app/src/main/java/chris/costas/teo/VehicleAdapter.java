@@ -49,6 +49,11 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
 
     }
 
+    public void refresh(){
+        notifyDataSetChanged();
+    }
+
+
     @Override
     public int getItemCount() {
         return mVehicles.size();
@@ -74,6 +79,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
             delete_vehicle.setOnClickListener(this);
             edit_vehicle.setOnClickListener(this);
         }
+
 
         @Override
         public void onClick(View v) {

@@ -85,6 +85,7 @@ public class EditVehicleDialog extends DialogFragment {
                     AccountService.editVehicle(position, brand.getText().toString(), model.getText().toString(), type.getSelectedItem().toString(), Integer.parseInt(seats.getSelectedItem().toString()),
                             fuel.getSelectedItem().toString(), pce.isChecked(), Float.parseFloat(String.valueOf(rate.getText())), extra.getText().toString(), transmission.getSelectedItem().toString(), available.isChecked());
                     System.out.println("heyyy");
+
                 dismiss();
             }
         });

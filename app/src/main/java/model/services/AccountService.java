@@ -139,10 +139,12 @@ public class AccountService extends Service {
     }
 
     public static void acceptApplication(String id) { //method to accept application with ID id
+        LocalDate localDate = LocalDate.now();
         for (RentingApplication application : applications) {
             if (application.getId().equals(id)) {
                 application.setPending(false);
                 application.setAccepted(true);
+                application.setReplyDate(localDate);
                 Rental rental = new Rental(application);
                 rentals.add(new Rental(application));
                 Rentals.add(new Rental(application));
@@ -180,10 +182,12 @@ public class AccountService extends Service {
     }
 
     public static void rejectApplication(String id, String reasons) { //method to reject application with ID id, with a message
+        LocalDate localDate = LocalDate.now();
         for (RentingApplication application : applications) {
             if (application.getId().equals(id)) {
                 application.setPending(false); //application has been reviewed now
                 application.setComments(reasons); //grounds for denial
+                application.setReplyDate(localDate);
                 String vehicleID = application.getVehicle().getId();
                 for (Vehicle vehicle : vehicles) {
                     if (vehicle.getId().equals(vehicleID)) {
@@ -221,9 +225,6 @@ public class AccountService extends Service {
         vehicles.set(position,editedVehicle);
     }
 
-    public static List<RentingApplication> getApplications() {
-        return applications;
-    }
 
     public static List<RentingApplication> getPendingApplications() { //returns all pending applications
         List<RentingApplication> pendingApplications = new ArrayList<>();

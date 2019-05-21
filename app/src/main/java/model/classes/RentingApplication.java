@@ -114,6 +114,6 @@ public class RentingApplication {
 
     @Override
     public String toString() {
-        return "Id: "+id+"\n"+"Start date: "+startDate + "\n"+"End date: " + endDate + "\n" +"Vehicle Id: "+ vehicle.getId()+ "\n" + "Vehicle: " + vehicle.getBrand()+" "+ vehicle.getModel() +"\n"+ "Customer's location: " +customerLocation+"\n"+ "Comments: "+ comments+"\n"+"Customer: "+customer.toString();
+        return "Id: "+id+"\n"+"Start date: "+startDate + "\n"+"End date: " + endDate + "\n" +"Vehicle Id: "+ vehicle.getId()+ "\n" + "Vehicle: " + vehicle.getBrand()+" "+ vehicle.getModel() +"\n"+ "Customer's location: " +customerLocation+"\n"+"Customer: "+customer.toString();
     }
 }
