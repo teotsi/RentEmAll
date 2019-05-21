@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ApplicationsActivity"
+        <activity android:name=".RentalsActivity"
+            android:exported="true"
+            android:label="Rentals"> </activity>
+        <activity
+            android:name=".ApplicationsActivity"
             android:exported="true"
             android:label="Pending applications"> </activity>
         <activity

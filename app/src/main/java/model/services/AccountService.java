@@ -28,6 +28,10 @@ public class AccountService extends Service {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    public static List<Rental> getRentals(){
+        return rentals;
+    }
+
     public static String incomeStats(LocalDate date){
         return  AdviceService.income_stats(Company, date);
 
