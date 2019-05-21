@@ -35,6 +35,6 @@ public class Customer {
     }
 
     public String toString() {
-        return name + "/" + surname + "/" + email;
+        return name + " " + surname + "\n"+ "Email: " + email;
     }
 }
