@@ -100,7 +100,7 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
                 startActivity(intentRentals);
                 break;
             case R.id.VehiclesButton:
-                Intent intentVehicles=new Intent(AccountOptions.this, vehicle_management.class);
+                Intent intentVehicles=new Intent(AccountOptions.this, VehicleManagement.class);
                 startActivity(intentVehicles);
                 break;
             case R.id.ApplicationsButton:
