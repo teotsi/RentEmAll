@@ -29,82 +29,114 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TitleTextView">
 
-        <EditText
-            android:id="@+id/CompanyNameTextField"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Company Name"
-            android:inputType="textAutoComplete|textPersonName" />
+            android:layout_height="472dp">
 
-        <EditText
-            android:id="@+id/EmailTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Company Email"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@android:color/darker_gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/PasswordTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:selectAllOnFocus="false"
-            android:singleLine="false" />
+                <EditText
+                    android:id="@+id/CompanyNameTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:hint="Company Name"
+                    android:inputType="textAutoComplete|textPersonName" />
 
-        <EditText
-            android:id="@+id/CompanyAddressTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Company Address"
-            android:inputType="textPostalAddress" />
+                <EditText
+                    android:id="@+id/EmailTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:hint="Company Email"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@android:color/darker_gray" />
 
-        <EditText
-            android:id="@+id/IBANTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="IBAN No."
-            android:inputType="text" />
+                <EditText
+                    android:id="@+id/PasswordTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:selectAllOnFocus="false"
+                    android:singleLine="false" />
 
-        <EditText
-            android:id="@+id/RentalRangeTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Rental Range (In km)"
-            android:inputType="number" />
+                <EditText
+                    android:id="@+id/CompanyAddressTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:hint="Company Address"
+                    android:inputType="textPostalAddress" />
+
+                <EditText
+                    android:id="@+id/IBANTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:hint="IBAN No."
+                    android:inputType="text" />
+
+                <EditText
+                    android:id="@+id/RentalRangeTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:hint="Rental Range (In km)"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/PolicyTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:hint="Policy"
+                    android:inputType="textPersonName" />
+
+                <EditText
+                    android:id="@+id/DescriptionTextField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="8dp"
+                    android:ems="10"
+                    android:hint="Description"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+        </ScrollView>
 
         <Button
             android:id="@+id/CreateAccountButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:text="Create Account" />
     </LinearLayout>
 

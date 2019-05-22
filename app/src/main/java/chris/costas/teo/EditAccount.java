@@ -30,7 +30,7 @@ public class EditAccount extends AppCompatActivity {
         newRentalRange_Text.setText(String.valueOf(currentUser.getRange()));
         //newAddress.setText(currentUser.getAddress());
         newPolicy_Text.setText(currentUser.getPolicy());
-
+        newDescription_Text.setText(currentUser.getDescription());
 
 
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {

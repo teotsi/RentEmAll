@@ -16,7 +16,7 @@ import model.services.Service;
 
 public class CreateNewAccount extends AppCompatActivity {
 
-    EditText CompName, CompEmail, Password, CompAddress, IBAN, RentalRange;
+    EditText CompName, CompEmail, Password, CompAddress, IBAN, RentalRange, Policy, Description;
     Button CreateAccountBtn;
 
     @Override
@@ -30,6 +30,8 @@ public class CreateNewAccount extends AppCompatActivity {
         CompAddress = findViewById(R.id.CompanyAddressTextField);
         IBAN = findViewById(R.id.IBANTextField);
         RentalRange = findViewById(R.id.RentalRangeTextField);
+        Policy = findViewById(R.id.PolicyTextField);
+        Description = findViewById(R.id.DescriptionTextField);
 
         CreateAccountBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -81,6 +83,16 @@ public class CreateNewAccount extends AppCompatActivity {
             Toast t = Toast.makeText(this, "You must enter your rental range", Toast.LENGTH_SHORT);
             t.show();
         }
+        if(isEmpty(Policy)){
+            Toast t = Toast.makeText(this, "You must enter your company policy", Toast.LENGTH_SHORT);
+            t.show();
+        }
+//        Uncomment if you want description to be necessary
+//        if(isEmpty(Description)){
+//            Toast t = Toast.makeText(this, "You must enter a company description", Toast.LENGTH_SHORT);
+//            t.show();
+//        }
+
     }
 
     boolean isEmpty(EditText text){
