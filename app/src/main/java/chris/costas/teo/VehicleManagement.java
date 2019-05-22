@@ -23,7 +23,12 @@ import model.services.AccountService;
 import model.services.Service;
 
 
-public class vehicle_management extends AppCompatActivity implements DialogInterface.OnDismissListener{
+/**
+ * Handles the process of viewing, editing,
+ * deleting and adding new vehicles
+ * to an existing account
+ */
+public class VehicleManagement extends AppCompatActivity implements DialogInterface.OnDismissListener{
 
     private RecyclerView recyclerView;
     private List<Vehicle> vehicles;

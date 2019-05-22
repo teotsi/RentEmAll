@@ -177,7 +177,7 @@ public class EditVehicleDialog extends DialogFragment {
             picUri = data.getData();
             pic.setImageURI(picUri);
             try {
-                InputStream inputStream = vehicle_management.getAppContext().getContentResolver().openInputStream(picUri);
+                InputStream inputStream = VehicleManagement.getAppContext().getContentResolver().openInputStream(picUri);
                 picDrawable = (Drawable) Drawable.createFromStream(inputStream, picUri.toString());
             } catch (FileNotFoundException e) {
                 picDrawable = getResources().getDrawable(R.drawable.ic_add_black_48dp_02);

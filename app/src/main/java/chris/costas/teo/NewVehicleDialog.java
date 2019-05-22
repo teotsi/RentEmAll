@@ -4,17 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -24,7 +21,6 @@ import android.widget.Spinner;
 import android.widget.Switch;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 
@@ -162,7 +158,7 @@ public class NewVehicleDialog extends DialogFragment {
             picUri = data.getData();
             pic.setImageURI(picUri);
             try {
-                InputStream inputStream = vehicle_management.getAppContext().getContentResolver().openInputStream(picUri);
+                InputStream inputStream = VehicleManagement.getAppContext().getContentResolver().openInputStream(picUri);
                 picDrawable = (Drawable) Drawable.createFromStream(inputStream, picUri.toString());
             } catch (FileNotFoundException e) {
                 picDrawable = getResources().getDrawable(R.drawable.ic_add_black_48dp_02);

@@ -37,7 +37,7 @@
             android:exported="true"
             android:label="@string/statistics"> </activity>
         <activity
-            android:name=".vehicle_management"
+            android:name=".VehicleManagement"
             android:exported="true"
             android:label="Vehicles"> </activity>
         <activity
