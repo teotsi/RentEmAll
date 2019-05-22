@@ -33,7 +33,7 @@ public class RentalsActivity extends AppCompatActivity implements RentalAdapter.
             e.printStackTrace();
         }
         AccountService.login("teotsi@gmail.com","Qwerty!2");
-        rentals = AccountService.getRentals();// TODO: 21/5/2019 prepei na einai kenh 
+        rentals = AccountService.getRentals();// TODO: 21/5/2019 einai kenh, na ftiaxtei kai to popup me ta info toy rental
         myrecyclerview = (RecyclerView) findViewById(R.id.RentalRecyclerView);
         rAdapter=new RentalAdapter(getApplicationContext(), rentals, this, getSupportFragmentManager());
         myrecyclerview.setLayoutManager(new LinearLayoutManager(this));
