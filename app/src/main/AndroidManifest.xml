@@ -15,31 +15,38 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".EditAccount"
+        <activity
+            android:name=".SearchActivity"
             android:exported="true"
-            android:label="Edit account"> </activity>
-        <activity android:name=".CreateNewAccount"
+            android:label="Search" />
+        <activity
+            android:name=".EditAccount"
             android:exported="true"
-            android:label="Create new account"> </activity>
-        <activity android:name=".SignIn_UpOption"
+            android:label="Edit account" />
+        <activity
+            android:name=".CreateNewAccount"
             android:exported="true"
-            android:label="Rent em All"> </activity>
+            android:label="Create new account" />
+        <activity
+            android:name=".SignIn_UpOption"
+            android:exported="true"
+            android:label="Rent em All" />
         <activity
             android:name=".RentalsActivity"
             android:exported="true"
-            android:label="Rentals"> </activity>
+            android:label="Rentals" />
         <activity
             android:name=".ApplicationsActivity"
             android:exported="true"
-            android:label="Pending applications"> </activity>
+            android:label="Pending applications" />
         <activity
             android:name=".StatisticsActivity"
             android:exported="true"
-            android:label="@string/statistics"> </activity>
+            android:label="@string/statistics" />
         <activity
             android:name=".VehicleManagement"
             android:exported="true"
-            android:label="Vehicles"> </activity>
+            android:label="Vehicles" />
         <activity
             android:name=".AccountOptions"
             android:exported="true"
