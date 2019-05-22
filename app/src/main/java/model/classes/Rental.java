@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import model.services.*;
 
 public class Rental extends RentingApplication {
-    private String id;
     private LocalDate receiptDate;
     private LocalDate deliveryDate;
     public Rental(RentingApplication rentingApplication) {
@@ -15,10 +14,6 @@ public class Rental extends RentingApplication {
     }
     public void confirmReceipt(LocalDate date){
         receiptDate = date;
-    }
-
-    public String getId(){
-        return this.id;
     }
 
     public void confirmDelivery(LocalDate date){
@@ -38,6 +33,6 @@ public class Rental extends RentingApplication {
     }
 
     public String toSrting(){
-        return "Id: "+ this.id+"\n"+ "Receipt date: "+this.receiptDate+"\n"+"Delivery date: "+this.deliveryDate+"\n"+super.toString();
+        return "Receipt date: "+this.receiptDate+"\n"+"Delivery date: "+this.deliveryDate+"\n"+super.toString();
     }
 }

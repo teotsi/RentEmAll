@@ -35,14 +35,14 @@ public class vehicle_management extends AppCompatActivity implements DialogInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_management);
         context= getApplicationContext();
-        AssetManager assets = this.getAssets();
-        try {
-        model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
-            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        AccountService.login("teotsi@gmail.com","Qwerty!2");
+//        AssetManager assets = this.getAssets();
+//        try {
+//        model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
+//            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        AccountService.login("teotsi@gmail.com","Qwerty!2");
         vehicles = AccountService.getVehicles();
 
         recyclerView = (RecyclerView) findViewById(R.id.vehicle_list);

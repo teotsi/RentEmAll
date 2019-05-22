@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,15 +27,7 @@ public class RentalsActivity extends AppCompatActivity implements RentalAdapter.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rentals);
-        AssetManager assets = this.getAssets();
-        try {
-            model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
-            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        AccountService.login("teotsi@gmail.com","Qwerty!2");
-        rentals = AccountService.getRentals();// TODO: 21/5/2019 einai kenh, na ftiaxtei kai to popup me ta info toy rental
+        rentals = AccountService.getRentals();//
         myrecyclerview = (RecyclerView) findViewById(R.id.RentalRecyclerView);
         rAdapter=new RentalAdapter(getApplicationContext(), rentals, this, getSupportFragmentManager());
         myrecyclerview.setLayoutManager(new LinearLayoutManager(this));
@@ -46,7 +40,12 @@ public class RentalsActivity extends AppCompatActivity implements RentalAdapter.
 
     @Override
     public void onNoteClick(int position) {
-        appDialog=ApplicationDialog.display(getSupportFragmentManager(), position);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Rental Info");
+        TextView text=new TextView(this);
+        text.setText(AccountService.getRentals().get(position).toSrting());
+        builder.setView(text);
+        builder.show();
     }
 
 //    @Override

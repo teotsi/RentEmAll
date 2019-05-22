@@ -21,6 +21,9 @@ import java.time.LocalDate;
 
 import model.services.AccountService;
 
+/**
+ * Creates a dialog to display the application info and from the user to accept or reject it.
+ */
 public class ApplicationDialog extends DialogFragment implements View.OnClickListener {
     public static final String TAG = "application_dialog";
     private Toolbar toolbar;

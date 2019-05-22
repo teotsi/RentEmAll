@@ -26,14 +26,14 @@ public class ApplicationsActivity extends AppCompatActivity implements Applicati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_applications);
-        AssetManager assets = this.getAssets();
-        try {
-            model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
-            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        AccountService.login("teotsi@gmail.com","Qwerty!2");
+//        AssetManager assets = this.getAssets();
+////        try {
+////            model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
+////            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
+////        } catch (IOException e) {
+////            e.printStackTrace();
+////        }
+////        AccountService.login("teotsi@gmail.com","Qwerty!2");
         applications = AccountService.getPendingApplications();
         myrecyclerview = (RecyclerView) findViewById(R.id.ApplicationRecyclerView);
         appAdapter=new ApplicationAdapter(getApplicationContext(), applications, this, getSupportFragmentManager());

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountOptions">
+    tools:context=".AccountOptions"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/CompanyNameText"
-        android:layout_width="211dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="456dp"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_primary"
@@ -24,12 +23,10 @@
 
     <Button
         android:id="@+id/InfoSettingsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="268dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="396dp"
         android:text="Information Settings"
+        android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
@@ -37,23 +34,19 @@
 
     <Button
         android:id="@+id/StatisticsButton"
-        android:layout_width="195dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="320dp"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
         android:text="Statistics"
+        android:layout_gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/RentalsButton"
-        android:layout_width="194dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="240dp"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Rentals"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,11 +55,9 @@
 
     <Button
         android:id="@+id/VehiclesButton"
-        android:layout_width="189dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="176dp"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Vehicles"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,11 +65,9 @@
 
     <Button
         android:id="@+id/ApplicationsButton"
-        android:layout_width="202dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="112dp"
+        android:layout_width="268dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Rental Applications"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,12 +76,12 @@
 
     <Button
         android:id="@+id/signOutButton"
-        android:layout_width="wrap_content"
+        android:layout_width="105dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
+        android:layout_gravity="center_horizontal"
         android:text="Sign out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
