@@ -5,15 +5,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,13 +24,13 @@ import model.services.AccountService;
 
 import static java.lang.Thread.sleep;
 
-public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomViewHolder>{
+public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManagementAdapter.CustomViewHolder>{
 
     Context mContext;
     List<Vehicle> mVehicles;
     FragmentManager fragmentManager;
 
-    public VehicleAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager) {
+    public VehicleManagementAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager) {
         this.mContext = mContext;
         this.mVehicles = mVehicles;
         this.fragmentManager = fragmentManager;
@@ -48,7 +45,7 @@ public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.CustomVi
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder myViewHolder, int i) {
-        Vehicle vehicle = mVehicles.get(i);
+        Vehicle vehicle = AccountService.getVehicles().get(i);
         myViewHolder.id.setText(vehicle.getId());
         myViewHolder.data.setText(vehicle.getBrand()+" "+vehicle.getModel());
         AssetManager assetManager = mContext.getAssets();

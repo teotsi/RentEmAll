@@ -27,7 +27,7 @@ public class vehicle_management extends AppCompatActivity implements DialogInter
 
     private RecyclerView recyclerView;
     private List<Vehicle> vehicles;
-    private VehicleAdapter vehicleAdapter;
+    private VehicleManagementAdapter vehicleManagementAdapter;
     public static Context context;
 
     @Override
@@ -46,19 +46,15 @@ public class vehicle_management extends AppCompatActivity implements DialogInter
         vehicles = AccountService.getVehicles();
 
         recyclerView = (RecyclerView) findViewById(R.id.vehicle_list);
-        vehicleAdapter = new VehicleAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
+        vehicleManagementAdapter = new VehicleManagementAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(vehicleAdapter);
+        recyclerView.setAdapter(vehicleManagementAdapter);
         FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
-                Vehicle vehicle = new Vehicle("Nisssan","NIzmo","great",5,"diezzel",true,532,"awesome",
-                        "he", LocalDate.parse("2016-05-03"),true);
-                vehicles.add(vehicle);
-                vehicleAdapter.notifyItemInserted(vehicles.size()-1);
-                vehicleAdapter.notifyItemRangeChanged(vehicles.size()-1,vehicles.size());
-                return false;
+                NewVehicleDialog.display(getSupportFragmentManager());
+                return true;
             }
         });
 
@@ -66,7 +62,8 @@ public class vehicle_management extends AppCompatActivity implements DialogInter
     }
     @Override
     public void onDismiss(DialogInterface dialog) {
-        vehicleAdapter.notifyDataSetChanged();
+        vehicleManagementAdapter.notifyDataSetChanged();
+        AccountService.save();
     }
     public static Context getAppContext(){
         return context;

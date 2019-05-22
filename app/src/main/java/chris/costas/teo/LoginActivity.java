@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
@@ -194,7 +195,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+            mPasswordView.setError("Invalid password");
             focusView = mPasswordView;
             cancel = true;
         }
@@ -346,7 +347,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-
+                Intent transition = new Intent(LoginActivity.this, AccountOptions.class);
+                startActivity(transition);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
