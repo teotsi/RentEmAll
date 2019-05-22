@@ -78,6 +78,8 @@ public class CompanyAccount {
         return companyName;
     }
 
+    public void setCompanyName(String name){this.companyName = name;}
+
     public int getId() {
         return id;
     }
@@ -133,6 +135,8 @@ public class CompanyAccount {
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
+
+
 
     public List<RentingApplication> getApplications() {
 

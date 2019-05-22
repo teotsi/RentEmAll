@@ -24,12 +24,12 @@ public class CreateNewAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_account);
 
-        CompName = (EditText)findViewById(R.id.CompanyNameTextField);
-        CompEmail = (EditText)findViewById(R.id.EmailTextField);
-        Password = (EditText)findViewById(R.id.PasswordTextField);
-        CompAddress = (EditText)findViewById(R.id.CompanyAddressTextField);
-        IBAN = (EditText)findViewById(R.id.IBANTextField);
-        RentalRange = (EditText)findViewById(R.id.RentalRangeTextField);
+        CompName = findViewById(R.id.CompanyNameTextField);
+        CompEmail = findViewById(R.id.EmailTextField);
+        Password = findViewById(R.id.PasswordTextField);
+        CompAddress = findViewById(R.id.CompanyAddressTextField);
+        IBAN = findViewById(R.id.IBANTextField);
+        RentalRange = findViewById(R.id.RentalRangeTextField);
 
         CreateAccountBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -46,15 +46,13 @@ public class CreateNewAccount extends AppCompatActivity {
         if(isEmail(CompEmail) == false){
             CompEmail.setError("Enter a valid email");
         }
-
-
         if(infoExists(CompName, "name") == true){
             CompName.setError("The company name you entered already exists!");
         }
         if(infoExists(CompEmail, "email") == true){
             CompEmail.setError("The email you entered already exists!");
         }
-//        if(infoExists(CompAddress, "address") == true){
+//        TODO if(infoExists(CompAddress, "address") == true){
 //
 //        }
 
@@ -118,7 +116,7 @@ public class CreateNewAccount extends AppCompatActivity {
                 }
             }
             return emailFlag;
-//       Για να μπει το address εδω πρεπει να φτιαξουμε το maps api
+//TODO       Για να μπει το address εδω πρεπει να φτιαξουμε το maps api
 //
 //        else if(dataType.equals("email")){
 //            List<CompanyAccount> companies = Service.getCompanies();

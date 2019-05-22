@@ -4,108 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateNewAccount">
+    tools:context=".EditAccount">
 
     <TextView
-        android:id="@+id/TitleTextView"
-        android:layout_width="210dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="8dp"
-        android:text="Create A New Account"
+        android:text="Edit Account"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="408dp"
-        android:layout_height="539dp"
+        android:id="@+id/linearLayout3"
+        android:layout_width="414dp"
+        android:layout_height="523dp"
+        android:layout_marginTop="20dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TitleTextView">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <EditText
-            android:id="@+id/CompanyNameTextField"
+            android:id="@+id/NewNameTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="Company Name"
-            android:inputType="textAutoComplete|textPersonName" />
+            android:hint="Name"
+            android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/EmailTextField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:hint="Company Email"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@android:color/darker_gray" />
-
-        <EditText
-            android:id="@+id/PasswordTextField"
+            android:id="@+id/NewRentalRangeTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:selectAllOnFocus="false"
-            android:singleLine="false" />
+            android:hint="RentalRange"
+            android:inputType="number" />
 
         <EditText
-            android:id="@+id/CompanyAddressTextField"
+            android:id="@+id/NewAddressTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="Company Address"
+            android:hint="Address"
             android:inputType="textPostalAddress" />
 
         <EditText
-            android:id="@+id/IBANTextField"
+            android:id="@+id/NewPolicyTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="IBAN No."
-            android:inputType="text" />
+            android:gravity="start|top"
+            android:hint="Policy"
+            android:inputType="textMultiLine" />
 
         <EditText
-            android:id="@+id/RentalRangeTextField"
+            android:id="@+id/NewDescriptionTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="Rental Range (In km)"
-            android:inputType="number" />
+            android:hint="Descrition"
+            android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/CreateAccountButton"
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="8dp"
-            android:text="Create Account" />
+            android:text="Save Changes" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
