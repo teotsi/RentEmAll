@@ -33,7 +33,7 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_options);
         //no need for real
-//        AssetManager assets = this.getAssets();
+        AssetManager assets = this.getAssets();
 //        try {
 //            model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
 //            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));

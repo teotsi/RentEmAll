@@ -1,8 +1,12 @@
 package chris.costas.teo;
 
+import android.content.res.AssetManager;
+
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -15,6 +19,18 @@ import model.services.SearchService;
 import model.services.Service;
 
 public class ExampleUnitTest {
+
+    @Before
+    public void loadData(){
+        AssetManager assets = getA;
+        try {
+            model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
+            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        AccountService.login("teotsi@gmail.com", "Qwerty!2");
+    }
 
     @Test
     public void totalTest(){
