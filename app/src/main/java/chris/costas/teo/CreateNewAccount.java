@@ -41,6 +41,8 @@ public class CreateNewAccount extends AppCompatActivity {
         RentalRange = findViewById(R.id.RentalRangeTextField);
         Policy = findViewById(R.id.PolicyTextField);
         Description = findViewById(R.id.DescriptionTextField);
+        CreateAccountBtn = (Button)findViewById(R.id.CreateAccountButton);
+
 
         addressList = new ArrayList<Address>();
 
@@ -68,6 +70,8 @@ public class CreateNewAccount extends AppCompatActivity {
         boolean flag = true;
         if(isEmail(CompEmail) == false){
             CompEmail.setError("Enter a valid email");
+
+
             flag = false;
         }
         if(infoExists(CompName, "name") == true){

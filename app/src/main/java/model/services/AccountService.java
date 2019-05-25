@@ -278,7 +278,6 @@ public class AccountService extends Service {
     }
 
     public static List<Vehicle> getVehicles() {
-        System.out.println("hollllaa");
         return vehicles;
     }
 

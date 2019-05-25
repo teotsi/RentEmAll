@@ -88,10 +88,15 @@ public class SearchService extends Service {
         }
         String year=yearBuilder.toString();
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        System.out.println(currentYear);
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
         if(Integer.parseInt(year)<currentYear){
+            System.out.println("less");
             return false;
         }else if(Integer.parseInt(year)==currentYear){
+            System.out.println("equals");
+            System.out.println(currentMonth);
+            System.out.println(Integer.parseInt(month));
             if(Integer.parseInt(month)<currentMonth){
                 return false;
             }

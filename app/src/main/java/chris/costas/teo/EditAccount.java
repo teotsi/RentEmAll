@@ -43,6 +43,8 @@ public class EditAccount extends AppCompatActivity {
         newPolicy_Text.setText(currentUser.getPolicy());
         newDescription_Text.setText(currentUser.getDescription());
 
+        saveChangesBtn = (Button)findViewById(R.id.SaveChangesButton);
+
         addressList = new ArrayList<Address>();
 
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {

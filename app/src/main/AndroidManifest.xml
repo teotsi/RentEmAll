@@ -27,7 +27,8 @@
         <activity
             android:name=".CreateNewAccount"
             android:exported="true"
-            android:label="Create new account" />
+            android:label="Create new account"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity
             android:name=".SignIn_UpOption"
             android:exported="true"

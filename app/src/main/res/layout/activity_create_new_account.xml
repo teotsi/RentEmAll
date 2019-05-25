@@ -31,7 +31,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="472dp">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,102 +42,111 @@
                     android:id="@+id/CompanyNameTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="40dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Company Name"
-                    android:inputType="textAutoComplete|textPersonName" />
+                    android:inputType="textAutoComplete|textPersonName"
+                    android:textAlignment="center" />
 
                 <EditText
                     android:id="@+id/EmailTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Company Email"
                     android:inputType="textEmailAddress"
+                    android:textAlignment="center"
                     android:textColorHint="@android:color/darker_gray" />
 
                 <EditText
                     android:id="@+id/PasswordTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:selectAllOnFocus="false"
-                    android:singleLine="false" />
+                    android:singleLine="false"
+                    android:textAlignment="center" />
 
                 <EditText
                     android:id="@+id/CompanyAddressTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Company Address"
-                    android:inputType="textPostalAddress" />
+                    android:inputType="textPostalAddress"
+                    android:textAlignment="center" />
 
                 <EditText
                     android:id="@+id/IBANTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="IBAN No."
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textAlignment="center" />
 
                 <EditText
                     android:id="@+id/RentalRangeTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Rental Range (In km)"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textAlignment="center" />
 
                 <EditText
                     android:id="@+id/PolicyTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Policy"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textAlignment="center" />
 
                 <EditText
                     android:id="@+id/DescriptionTextField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="30dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:ems="10"
                     android:hint="Description"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textAlignment="center" />
+
+                <Button
+                    android:id="@+id/CreateAccountButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Create Account" />
 
             </LinearLayout>
         </ScrollView>
 
-        <Button
-            android:id="@+id/CreateAccountButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="Create Account" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
