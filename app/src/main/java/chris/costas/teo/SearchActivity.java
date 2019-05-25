@@ -4,12 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.time.LocalDate;
 
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
+
+/*Responsible for searching for appropriate vehicles
+based on date, location and filters*/
 public class SearchActivity extends AppCompatActivity {
     private static LocalDate startDate;
     private static LocalDate endDate;
@@ -23,6 +30,15 @@ public class SearchActivity extends AppCompatActivity {
         Button endButton = (Button) findViewById(R.id.end_date_pick);
         startText = (TextView) findViewById(R.id.start_date);
         endText = (TextView) findViewById(R.id.end_date);
+        FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.search_speed_dial);
+        fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
+            @Override
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                NewVehicleDialog.display(getSupportFragmentManager());
+                return true;
+            }
+        });
+        EditText location = (EditText) findViewById(R.id.location_id);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

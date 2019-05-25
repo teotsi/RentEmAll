@@ -3,45 +3,87 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".SearchActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-        <Button
-            android:id="@+id/start_date_pick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Start Date" />
-        <TextView
-            android:id="@+id/start_date"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/start_date_pick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Start Date" />
+
+            <TextView
+                android:id="@+id/start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Date" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Start Date"/>
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/end_date_pick"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select End Date" />
+
+            <TextView
+                android:id="@+id/end_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Date" />
+        </LinearLayout>
+
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
         android:gravity="center">
-
-        <Button
-            android:id="@+id/end_date_pick"
+        <EditText
+            android:id="@+id/location_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select End Date" />
-        <TextView
-            android:id="@+id/end_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="End Date"/>
+            android:hint="Enter a location(City or Address)"/>
     </LinearLayout>
+    <Button
+        android:id="@+id/filter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add filters"/>
 
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+    <io.github.yavski.fabspeeddial.FabSpeedDial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_speed_dial"
+        android:layout_gravity="bottom|end"
+        app:fabGravity="bottom_end"
+        app:fabMenu="@menu/search_menu"
+        app:miniFabBackgroundTint="@android:color/white"
+        app:miniFabDrawableTint="?attr/colorPrimaryDark"
+        app:miniFabTitleTextColor="?attr/colorPrimaryDark"
+        tools:layout_editor_absoluteX="395dp"
+        tools:layout_editor_absoluteY="586dp" />
+    </FrameLayout>
 </LinearLayout>

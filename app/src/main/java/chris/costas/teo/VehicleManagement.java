@@ -58,7 +58,7 @@ public class VehicleManagement extends AppCompatActivity implements DialogInterf
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
-                NewVehicleDialog.display(getSupportFragmentManager());
+                //TODO implement menu buttons
                 return true;
             }
         });

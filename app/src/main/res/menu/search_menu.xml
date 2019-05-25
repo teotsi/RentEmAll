@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/add_filters"
+        android:icon="@drawable/ic_filter"
+        android:title="Add filters" />
+    <item
+        android:id="@+id/search_call"
+        android:icon="@drawable/ic_search"
+        android:title="Search"/>
+</menu>
