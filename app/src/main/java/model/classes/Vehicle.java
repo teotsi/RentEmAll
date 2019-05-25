@@ -3,12 +3,13 @@ package model.classes;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Vehicle {
+public class Vehicle implements Serializable {
     private String id = String.valueOf(this.hashCode());
     private int globalId;
     private int companyId;

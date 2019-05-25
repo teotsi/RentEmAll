@@ -1,10 +1,11 @@
 package model.classes;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import model.services.*;
 
-public class Rental extends RentingApplication {
+public class Rental extends RentingApplication implements Serializable {
     private LocalDate receiptDate;
     private LocalDate deliveryDate;
     public Rental(RentingApplication rentingApplication) {

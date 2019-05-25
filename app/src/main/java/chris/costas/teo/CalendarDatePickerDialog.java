@@ -17,12 +17,13 @@ public class CalendarDatePickerDialog extends DialogFragment {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                     if (tag.equals("start")) {
-                        int viewMonth = view.getMonth();
+                        int viewMonth = view.getMonth()+1;
+                        System.out.println(viewMonth);
                         int viewDay = view.getDayOfMonth();
 
                         String monthString = String.valueOf(viewMonth);
                         if (viewMonth < 10) {
-                            monthString = 0 + String.valueOf(month);
+                            monthString = 0 + String.valueOf(viewMonth);
                         }
                         String dayString = String.valueOf(viewDay);
                         if (viewDay < 10) {
@@ -31,12 +32,12 @@ public class CalendarDatePickerDialog extends DialogFragment {
                         SearchActivity.setStartDate(LocalDate.parse(view.getYear() + "-" +
                                 monthString + "-" + dayString));
                     } else if (tag.equals("end")) {
-                        int viewMonth = view.getMonth();
+                        int viewMonth = view.getMonth()+1;
                         int viewDay = view.getDayOfMonth();
 
                         String monthString = String.valueOf(viewMonth);
                         if (viewMonth < 10) {
-                            monthString = 0 + String.valueOf(month);
+                            monthString = 0 + String.valueOf(viewMonth);
                         }
                         String dayString = String.valueOf(viewDay);
                         if (viewDay < 10) {

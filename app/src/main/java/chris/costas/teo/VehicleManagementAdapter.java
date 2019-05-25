@@ -1,10 +1,6 @@
 package chris.costas.teo;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -14,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,9 +21,7 @@ import java.util.List;
 import model.classes.Vehicle;
 import model.services.AccountService;
 
-import static java.lang.Thread.sleep;
-
-public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManagementAdapter.CustomViewHolder>{
+public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManagementAdapter.CustomViewHolder> {
 
     Context mContext;
     List<Vehicle> mVehicles;
@@ -39,7 +36,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.list_item,viewGroup,false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.rent_list_item, viewGroup, false);
         return new CustomViewHolder(v);
     }
 
@@ -47,26 +44,26 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
     public void onBindViewHolder(@NonNull CustomViewHolder myViewHolder, int i) {
         Vehicle vehicle = AccountService.getVehicles().get(i);
         myViewHolder.id.setText(vehicle.getId());
-        myViewHolder.data.setText(vehicle.getBrand()+" "+vehicle.getModel());
+        myViewHolder.data.setText(vehicle.getBrand() + " " + vehicle.getModel());
         AssetManager assetManager = mContext.getAssets();
         Drawable picDrawable = vehicle.getPic();
-        if (picDrawable == null){
+        if (picDrawable == null) {
             InputStream pictureStream = null;
             try {
-                pictureStream = assetManager.open("vehiclePics/"+vehicle.getBrand()+vehicle.getModel()+".png");
+                pictureStream = assetManager.open("vehiclePics/" + vehicle.getBrand() + vehicle.getModel() + ".png");
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Drawable pictureDrawable = Drawable.createFromStream(pictureStream,"");
+            Drawable pictureDrawable = Drawable.createFromStream(pictureStream, "");
             myViewHolder.pic.setImageDrawable(pictureDrawable);
-        }else{
+        } else {
             myViewHolder.pic.setImageDrawable(vehicle.getPic());
         }
         //TODO image
 
     }
 
-    public void refresh(){
+    public void refresh() {
         notifyDataSetChanged();
     }
 
@@ -75,9 +72,10 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
     public int getItemCount() {
         return mVehicles.size();
     }
-    public void removeItem(int index){
+
+    public void removeItem(int index) {
         notifyItemRemoved(index);
-        notifyItemRangeChanged(index,mVehicles.size());
+        notifyItemRangeChanged(index, mVehicles.size());
     }
 
 
@@ -88,6 +86,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
         ImageView pic;
         ImageView delete_vehicle;
         ImageView edit_vehicle;
+
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             id = itemView.findViewById(R.id.vehicle_id);
@@ -102,14 +101,14 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
 
         @Override
         public void onClick(View v) {
-            if(v.getId() == delete_vehicle.getId()){
+            if (v.getId() == delete_vehicle.getId()) {
                 int position = getAdapterPosition();
                 Toast.makeText(v.getContext(), "ITEM PRESSED = " + position, Toast.LENGTH_SHORT).show();
                 AccountService.removeVehicle(position);
                 removeItem(position);
-            }else if(v.getId() == edit_vehicle.getId()){
+            } else if (v.getId() == edit_vehicle.getId()) {
                 int position = getAdapterPosition();
-                EditVehicleDialog dialog = EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position),position);
+                EditVehicleDialog dialog = EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position), position);
                 System.out.println("After display");
                 notifyDataSetChanged();
                 System.out.println("hola muyyy");

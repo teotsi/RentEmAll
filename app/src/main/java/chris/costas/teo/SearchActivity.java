@@ -1,5 +1,6 @@
 package chris.costas.teo;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.github.yavski.fabspeeddial.FabSpeedDial;
@@ -64,10 +66,15 @@ public class SearchActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    if (!filters) {
-                        List<Vehicle> vehicles = SearchService.getUnfilteredVehicleList(LocalDate.parse(startText.getText().toString()), LocalDate.parse(endText.getText().toString()), latitude, longitude);
-                        for (Vehicle vehicle:vehicles){
-                            System.out.println(vehicle.toString());
+                    if (!datesValid(startDate, endDate)) {
+                        Toast t = Toast.makeText(SearchActivity.this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
+                        t.show();
+                    } else {
+                        if (!filters) {
+                            ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) SearchService.getUnfilteredVehicleList(LocalDate.parse(startText.getText().toString()), LocalDate.parse(endText.getText().toString()), latitude, longitude);
+                            Intent intent=  new Intent(SearchActivity.this, PickVehicle.class);
+                            intent.putExtra("vehicles", vehicles);
+                            startActivity(intent);
                         }
                     }
                 }
@@ -88,6 +95,13 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
+    private boolean datesValid(LocalDate startDate, LocalDate endDate) {
+        if (startDate.isAfter(endDate)) {
+            return false;
+        } else
+            return true;
+    }
+
     private void showDatePicker(String type) {
         DialogFragment datepicker = new CalendarDatePickerDialog();
         datepicker.show(getSupportFragmentManager(), type);
@@ -96,11 +110,11 @@ public class SearchActivity extends AppCompatActivity {
 
     public void setCoordinates() throws IOException {
         Geocoder gc = new Geocoder(this);
+
         List<Address> addressList = gc.getFromLocationName(location.getText().toString(), 1);
 
         if (addressList.size() != 0) {
             Address add = addressList.get(0);
-            System.out.println("HOLAAAAA");
             latitude = add.getLatitude();
             longitude = add.getLongitude();
         } else {
