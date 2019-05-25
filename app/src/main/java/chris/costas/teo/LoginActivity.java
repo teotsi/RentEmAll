@@ -68,14 +68,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        try {
-            File f = null;
-            AssetManager assets = this.getAssets();
-            Service.companyReader(assets.open("dataset/Companies.txt"));
-            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
