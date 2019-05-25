@@ -36,28 +36,7 @@ public class Service {
     private static boolean vehicleRead = false;
     private static double AppBalance = 0;
 
-    public static void printAllJavaFiles(String directory) {
-        File f = new File(directory);
-        if (f.isDirectory()) {
-            File[] subDirectories = f.listFiles();
-            System.out.println(subDirectories);
-        } else {
-            printFile(f);
-        }
-    }
 
-    private static void printFile(File file) {
-        // Get file extension
-        String fileExtension = "";
-        int i = file.getName().lastIndexOf('.');
-        if (i >= 0) {
-            fileExtension = file.getName().substring(i + 1);
-        }
-
-        if (fileExtension.equals("java")) {
-            System.out.println("File: " + file.getName() + " Size: " + file.length());
-        }
-    }
 
     public static List<CompanyAccount> getCompanies() {
         return companies;

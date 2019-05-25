@@ -35,7 +35,7 @@ public class CompanyAccount {
         this.applications = new ArrayList<>();
         this.email = email;
         this.bankAccount = bankAccount;
-        if (isNewAccount) { //if we are reading created accounts we don't have to hash thei passwords again
+        if (isNewAccount) { //if we are reading created accounts we don't have to hash the passwords again
             this.password = calculateHash(password.trim());
         } else {
             this.password = password;
@@ -88,9 +88,13 @@ public class CompanyAccount {
         return latitude;
     }
 
+    public void setLatitude(double latitude) {this.latitude = latitude;}
+
     public double getLongitude() {
         return longitude;
     }
+
+    public void setLongitude(double longitude){this.longitude = longitude;}
 
     public String getPolicy() {
         return policy;

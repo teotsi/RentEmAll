@@ -1,6 +1,9 @@
 package chris.costas.teo;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -9,15 +12,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
+import model.classes.BankAccount;
 import model.classes.CompanyAccount;
+import model.services.AccountService;
 import model.services.Service;
 
 public class CreateNewAccount extends AppCompatActivity {
 
     EditText CompName, CompEmail, Password, CompAddress, IBAN, RentalRange, Policy, Description;
     Button CreateAccountBtn;
+    List<Address> addressList;
+    double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +42,21 @@ public class CreateNewAccount extends AppCompatActivity {
         Policy = findViewById(R.id.PolicyTextField);
         Description = findViewById(R.id.DescriptionTextField);
 
+        addressList = new ArrayList<Address>();
+
         CreateAccountBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                checkDataEntered();
+                if(checkDataEntered()) {
+                    try {
+                        SetCoordinates();
+                    } catch (IOException e) {
+
+                    }
+                    BankAccount newBA = new BankAccount(CompName.getText().toString(), IBAN.getText().toString(), 0);
+                    //TODO ADD new User to dataset here
+                    AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), newBA);
+                }
             }
         });
 
@@ -44,55 +64,67 @@ public class CreateNewAccount extends AppCompatActivity {
 
     }
 
-    void checkDataEntered() {
+    boolean checkDataEntered() {
+        boolean flag = true;
         if(isEmail(CompEmail) == false){
             CompEmail.setError("Enter a valid email");
+            flag = false;
         }
         if(infoExists(CompName, "name") == true){
             CompName.setError("The company name you entered already exists!");
+            flag = false;
         }
         if(infoExists(CompEmail, "email") == true){
             CompEmail.setError("The email you entered already exists!");
+            flag = false;
         }
-//        TODO if(infoExists(CompAddress, "address") == true){
-//
-//        }
+        if(!AccountService.passwordIsValid(Password.toString())){
+            Password.setError("Password must be 8-32 characters long and contain a number, an Uppercase letter, a lowercase letter, and !@#$%^&+=");
+            flag = false;
+        }
 
 
         if(isEmpty(CompName)){
             Toast t = Toast.makeText(this, "You must enter a company name", Toast.LENGTH_SHORT);
             t.show();
+            flag = false;
         }
         if(isEmpty(CompEmail)){
             Toast t = Toast.makeText(this, "You must enter a company email", Toast.LENGTH_SHORT);
             t.show();
+            flag = false;
         }
         if(isEmpty(Password)){
             Toast t = Toast.makeText(this, "You must enter a password", Toast.LENGTH_SHORT);
             t.show();
+            flag = false;
         }
         if(isEmpty(CompAddress)){
             Toast t = Toast.makeText(this, "You must enter a company address", Toast.LENGTH_SHORT);
             t.show();
+            flag = false;
         }
         if(isEmpty(IBAN)){
             Toast t = Toast.makeText(this, "You must enter your company IBAN number", Toast.LENGTH_SHORT);
             t.show();
+            flag = false;
         }
         if(isEmpty(RentalRange)){
             Toast t = Toast.makeText(this, "You must enter your rental range", Toast.LENGTH_SHORT);
             t.show();
+            flag = false;
         }
         if(isEmpty(Policy)){
             Toast t = Toast.makeText(this, "You must enter your company policy", Toast.LENGTH_SHORT);
             t.show();
+            flag = false;
         }
 //        Uncomment if you want description to be necessary
 //        if(isEmpty(Description)){
 //            Toast t = Toast.makeText(this, "You must enter a company description", Toast.LENGTH_SHORT);
 //            t.show();
 //        }
-
+        return flag;
     }
 
     boolean isEmpty(EditText text){
@@ -128,26 +160,21 @@ public class CreateNewAccount extends AppCompatActivity {
                 }
             }
             return emailFlag;
-//TODO       Για να μπει το address εδω πρεπει να φτιαξουμε το maps api
-//
-//        else if(dataType.equals("email")){
-//            List<CompanyAccount> companies = Service.getCompanies();
-//            for (CompanyAccount c : companies){
-//                if(c.getEmail().equals(info)){
-//                    emailFlag = true;
-//                    break;
-//                }
-//            }
-//            return emailFlag;
-//        }else if(dataType.equals("address")){
-//            List<CompanyAccount> companies = Service.getCompanies();
-//            for (CompanyAccount c : companies){
-//                if(c.get().equals(info)){
-//                    addressFlag = true;
-//                    break;
-//                }
-//            }
-//            return addressFlag;
        }return false;
+    }
+
+    public void SetCoordinates() throws IOException {
+        Geocoder gc = new Geocoder(this);
+        addressList = gc.getFromLocationName(CompAddress.toString(), 1);
+
+        if(addressList.size() != 0){
+            Address add = addressList.get(0);
+
+            latitude = add.getLatitude();
+            longitude = add.getLongitude();
+        }else{
+            Toast t = Toast.makeText(this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
+            t.show();
+        }
     }
 }

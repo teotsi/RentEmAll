@@ -37,6 +37,10 @@ public class AccountService extends Service {
 
     }
 
+    public static CompanyAccount getCompany(){
+        return Company;
+    }
+
     public static String getName(){// returns the name of the company
         return Company.getCompanyName();
     }
@@ -96,6 +100,7 @@ public class AccountService extends Service {
             return 3;
         }
     }
+
 
     public static void save() {
         for (CompanyAccount companyAccount : companies) {
@@ -282,4 +287,8 @@ public class AccountService extends Service {
         bankAccount.addBalance(moneyyy);
     }
 
+    public static void updateAccount(CompanyAccount company){
+        AccountService.Company = company;
+        AccountService.save();
+    }
 }
