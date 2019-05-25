@@ -295,4 +295,8 @@ public class AccountService extends Service {
         bankAccount.addBalance(moneyyy);
     }
 
+    public static void updateAccount(CompanyAccount company){
+        AccountService.Company = company;
+        AccountService.save();
+    }
 }
