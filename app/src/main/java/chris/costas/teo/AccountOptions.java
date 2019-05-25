@@ -89,7 +89,8 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.InfoSettingsButton:
                 System.out.println("not ready yet");
-//                Intent intentInfo=new Intent(AccountOptions.this, )
+                Intent intentInfo=new Intent(AccountOptions.this, EditAccount.class);
+                startActivity(intentInfo);
                 break;
             case R.id.StatisticsButton:
                 Intent intentStatistics=new Intent(AccountOptions.this,StatisticsActivity.class);

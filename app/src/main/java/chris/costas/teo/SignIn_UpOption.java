@@ -34,9 +34,8 @@ public class SignIn_UpOption extends AppCompatActivity implements View.OnClickLi
                 Intent intentSignIn=new Intent(SignIn_UpOption.this, LoginActivity.class);
                 startActivity(intentSignIn);
             case R.id.SignUpButton:
-                // TODO: 22/5/2019 when create account is ready remove the comments 
-//                Intent intentSignUp=new Intent(SignIn_UpOption.this, CreateNewAccount.class);
-//                startActivity(intentSignUp);
+                Intent intentSignUp=new Intent(SignIn_UpOption.this, CreateNewAccount.class);
+                startActivity(intentSignUp);
         }
     }
 }
