@@ -50,14 +50,17 @@ public class CreateNewAccount extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 if(checkDataEntered()) {
+
                     try {
-                        SetCoordinates();
+                        if(SetCoordinates()){
+
+                            BankAccount newBA = new BankAccount(CompName.getText().toString(), IBAN.getText().toString(), 0);
+                            //TODO ADD new User to dataset here
+                            AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), newBA);
+                        }
                     } catch (IOException e) {
 
                     }
-                    BankAccount newBA = new BankAccount(CompName.getText().toString(), IBAN.getText().toString(), 0);
-                    //TODO ADD new User to dataset here
-                    AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), newBA);
                 }
             }
         });
@@ -167,18 +170,21 @@ public class CreateNewAccount extends AppCompatActivity {
        }return false;
     }
 
-    public void SetCoordinates() throws IOException {
+    public boolean SetCoordinates() throws IOException {
+        boolean coordflag = false;
         Geocoder gc = new Geocoder(this);
-        addressList = gc.getFromLocationName(CompAddress.toString(), 1);
+        addressList = gc.getFromLocationName(CompAddress.getText().toString(), 1);
 
         if(addressList.size() != 0){
             Address add = addressList.get(0);
 
             latitude = add.getLatitude();
             longitude = add.getLongitude();
+            coordflag = true;
         }else{
             Toast t = Toast.makeText(this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
             t.show();
         }
+        return  coordflag;
     }
 }
