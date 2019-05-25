@@ -30,10 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 System.out.println("Businesssssssssss");
                 Intent intentIn_Up = new Intent(MainActivity.this, SignIn_UpOption.class);
                 startActivity(intentIn_Up);
+                break;
             case R.id.RentAvecButton:
                 Intent intent = new Intent(MainActivity.this,SearchActivity.class);
                 startActivity(intent);
-
+                break;
         }
     }
 }
