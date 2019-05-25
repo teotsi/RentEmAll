@@ -298,5 +298,6 @@ public class AccountService extends Service {
     public static void updateAccount(CompanyAccount company){
         AccountService.Company = company;
         AccountService.save();
+        System.out.println("I saved it");
     }
 }
