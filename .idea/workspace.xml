@@ -15,9 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d40371a7-d798-4205-85d0-407bc35ac0b6" name="Default Changelist" comment="activities add">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/chris/costas/teo/AccountOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/chris/costas/teo/AccountOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/services/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/services/SearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/services/SearchService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/test/java/chris/costas/teo/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/chris/costas/teo/ExampleUnitTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,14 +35,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/test/java/chris/costas/teo/ExampleUnitTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+            <state relative-caret-position="189">
+              <caret line="94" selection-start-line="94" selection-end-line="94" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/model/services/Service.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-380">
+              <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -50,33 +59,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/model/services/AccountService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-221">
-              <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+            <state relative-caret-position="291">
+              <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
               <folding>
-                <element signature="e#1004#1005#0" expanded="true" />
-                <element signature="e#1034#1035#0" expanded="true" />
+                <element signature="e#1277#1278#0" expanded="true" />
+                <element signature="e#1517#1518#0" expanded="true" />
+                <element signature="e#7275#7276#0" expanded="true" />
+                <element signature="e#10647#10648#0" expanded="true" />
+                <element signature="e#10733#10734#0" expanded="true" />
+                <element signature="e#10842#10843#0" expanded="true" />
+                <element signature="e#10937#10938#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/model/dataset/Companies.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="91" selection-start-line="2" selection-start-column="82" selection-end-line="2" selection-end-column="91" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/chris/costas/teo/AccountOptions.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/model/services/SearchService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="35" column="39" lean-forward="true" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1649">
+              <caret line="107" column="25" selection-start-line="107" selection-start-column="25" selection-end-line="107" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -99,7 +101,6 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/services/Service.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/services/SearchService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/model/services/SearchService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/model/tests/test.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
@@ -123,7 +124,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/chris/costas/teo/VehicleAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/chris/costas/teo/EditVehicleDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/model/classes/RentingApplication.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/model/services/AccountService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_rental.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/chris/costas/teo/ApplicationAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_applications.xml" />
@@ -142,6 +142,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/chris/costas/teo/RentalsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/chris/costas/teo/vehicle_management.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/chris/costas/teo/AccountOptions.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/model/dataset/Companies.txt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/model/services/SearchService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/model/services/AccountService.java" />
         <option value="$PROJECT_DIR$/app/src/test/java/chris/costas/teo/ExampleUnitTest.java" />
       </list>
     </option>
@@ -157,6 +160,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,8 +261,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -780,38 +783,45 @@
       <option name="project" value="LOCAL" />
       <updated>1558537754638</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="activities add">
+      <created>1558704927153</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1558704927153</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ExampleUnitTest_totalTest - 2019.05.17 at 16h 43m 15s.xml">
-      <configuration name="ExampleUnitTest.totalTest" configurationId="AndroidJUnit" />
-    </history-entry>
-    <history-entry file="ExampleUnitTest_totalTest - 2019.05.17 at 16h 45m 15s.xml">
-      <configuration name="ExampleUnitTest.totalTest" configurationId="AndroidJUnit" />
-    </history-entry>
-    <history-entry file="ExampleUnitTest_totalTest - 2019.05.17 at 16h 45m 56s.xml">
-      <configuration name="ExampleUnitTest.totalTest" configurationId="AndroidJUnit" />
-    </history-entry>
-    <history-entry file="ExampleUnitTest_totalTest - 2019.05.17 at 16h 46m 54s.xml">
-      <configuration name="ExampleUnitTest.totalTest" configurationId="AndroidJUnit" />
-    </history-entry>
-    <history-entry file="ExampleUnitTest_totalTest - 2019.05.17 at 16h 47m 42s.xml">
-      <configuration name="ExampleUnitTest.totalTest" configurationId="AndroidJUnit" />
-    </history-entry>
-    <history-entry file="ExampleUnitTest_totalTest - 2019.05.17 at 16h 50m 13s.xml">
-      <configuration name="ExampleUnitTest.totalTest" configurationId="AndroidJUnit" />
-    </history-entry>
-    <history-entry file="ExampleUnitTest_totalTest - 2019.05.17 at 16h 52m 31s.xml">
-      <configuration name="ExampleUnitTest.totalTest" configurationId="AndroidJUnit" />
-    </history-entry>
-    <history-entry file="ExampleUnitTest - 2019.05.21 at 20h 31m 49s.xml">
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 25m 25s.xml">
       <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="ExampleUnitTest - 2019.05.24 at 11h 48m 58s.xml">
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 25m 53s.xml">
       <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
-    <history-entry file="ExampleUnitTest - 2019.05.24 at 11h 49m 39s.xml">
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 26m 16s.xml">
+      <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 28m 21s.xml">
+      <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 33m 25s.xml">
+      <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 34m 45s.xml">
+      <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 34m 51s.xml">
+      <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 35m 25s.xml">
+      <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 39m 21s.xml">
+      <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="ExampleUnitTest - 2019.05.25 at 13h 39m 55s.xml">
       <configuration name="ExampleUnitTest" configurationId="AndroidJUnit" />
     </history-entry>
   </component>
@@ -820,7 +830,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.14605543" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14605543" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -828,10 +838,10 @@
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Resources Explorer" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.49520257" visible="true" weight="0.33152762" />
+      <window_info active="true" anchor="bottom" id="Run" order="0" sideWeight="0.49520257" visible="true" weight="0.33152762" />
       <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.4978678" weight="0.32936078" />
       <window_info anchor="bottom" id="TODO" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5042644" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.4989339" weight="0.32936078" />
@@ -891,26 +901,11 @@
     <MESSAGE value="Changes are now being saved properly" />
     <MESSAGE value="activity main" />
     <MESSAGE value="Application dialog half fixed" />
-    <MESSAGE value="activities add" />
     <MESSAGE value="Unite everything for business apart from the acount edit and creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unite everything for business apart from the acount edit and creation" />
+    <MESSAGE value="activities add" />
+    <option name="LAST_COMMIT_MESSAGE" value="activities add" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/model/classes/Address.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build/RecyclerViewAdapter.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_application.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/chris/costas/teo/ApplicationListAdapter.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/chris/costas/teo/ApplicationActivity.java" />
@@ -1182,6 +1177,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
@@ -1190,7 +1186,6 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/chris/costas/teo/vehicle_management.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/chris/costas/teo/RentalsActivity.java">
@@ -1241,13 +1236,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/chris/costas/teo/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="71" column="26" selection-start-line="71" selection-start-column="26" selection-end-line="71" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/chris/costas/teo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1265,23 +1253,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/test/java/chris/costas/teo/ExampleUnitTest.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/chris/costas/teo/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        <state relative-caret-position="4743">
+          <caret line="340" column="19" selection-start-line="340" selection-start-column="19" selection-end-line="340" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/model/services/AccountService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-221">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-          <folding>
-            <element signature="e#1004#1005#0" expanded="true" />
-            <element signature="e#1034#1035#0" expanded="true" />
+            <element signature="e#12281#12282#0" expanded="true" />
+            <element signature="e#12336#12337#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1289,7 +1267,50 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/model/dataset/Companies.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="91" selection-start-line="2" selection-start-column="82" selection-end-line="2" selection-end-column="91" />
+          <caret line="2" column="93" selection-start-line="2" selection-start-column="93" selection-end-line="2" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/model/dataset/Vehicles.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/model/services/SearchService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1649">
+          <caret line="107" column="25" selection-start-line="107" selection-start-column="25" selection-end-line="107" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/model/services/Service.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-380">
+          <caret line="91" column="22" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/model/services/AccountService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+          <folding>
+            <element signature="e#1277#1278#0" expanded="true" />
+            <element signature="e#1517#1518#0" expanded="true" />
+            <element signature="e#7275#7276#0" expanded="true" />
+            <element signature="e#10647#10648#0" expanded="true" />
+            <element signature="e#10733#10734#0" expanded="true" />
+            <element signature="e#10842#10843#0" expanded="true" />
+            <element signature="e#10937#10938#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/test/java/chris/costas/teo/ExampleUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="94" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

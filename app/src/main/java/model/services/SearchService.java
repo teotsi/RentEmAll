@@ -4,6 +4,7 @@ package model.services;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -51,8 +52,11 @@ public class SearchService extends Service {
     }
 
     public static double paymentMethod(String method, Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
+        String cname;
+        String expDate;
+        String cvv;
         if (method.equals("cc")) {
-            cc(vehicle, startDate, endDate);
+            //cc(cname, expDate, cvv);
         } else if (method.equals("PayPal")) {
             payPal(vehicle, startDate, endDate);
         }
@@ -61,12 +65,38 @@ public class SearchService extends Service {
         return cost;
     }
 
-    public static void cc(Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
-        //TODO chack these string arrays for their size to avoid invalid info and buffer overflow
-        String Cnumber = null;
-        String Cname = null;
-        String expDate = null;
-        String cvv = null;
+    public static boolean cc( String Cnumber, String expDate, String cvv) {//check if the numbers of the credit card have a valid length and if the date is in the future
+        if( Cnumber.length()!=16){
+            return false;
+        }
+        if(cvv.length()!=3){
+            return false;
+        }
+        String[] date=expDate.split("(?!^)");
+        StringBuilder monthBuilder = new StringBuilder();
+        for (int i = 0; i < 2; i++) {
+            monthBuilder.append(date[i]);
+        }
+        String month=monthBuilder.toString();
+        if (!(Integer.parseInt(month)>0 && Integer.parseInt(month)<13)){
+            return false;
+        }
+        StringBuilder yearBuilder = new StringBuilder();
+        yearBuilder.append("20");
+        for(int i=3; i< date.length; i++){
+            yearBuilder.append(date[i]);
+        }
+        String year=yearBuilder.toString();
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        if(Integer.parseInt(year)<currentYear){
+            return false;
+        }else if(Integer.parseInt(year)==currentYear){
+            if(Integer.parseInt(month)<currentMonth){
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void payPal(Vehicle vehicle, LocalDate startDate, LocalDate endDate) {

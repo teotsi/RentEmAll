@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import model.classes.BankAccount;
 import model.classes.CompanyAccount;
@@ -25,7 +26,15 @@ public class AccountService extends Service {
     private static BankAccount bankAccount;
 
     public static boolean emailIsValid(String email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\." +
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
     }
 
     public static List<Rental> getRentals(){
@@ -41,7 +50,7 @@ public class AccountService extends Service {
         return Company;
     }
 
-    public static String getName(){// returns the name of the company
+    public static String getName() {// returns the name of the company
         return Company.getCompanyName();
     }
 
@@ -100,7 +109,6 @@ public class AccountService extends Service {
             return 3;
         }
     }
-
 
     public static void save() {
         for (CompanyAccount companyAccount : companies) {
@@ -287,8 +295,4 @@ public class AccountService extends Service {
         bankAccount.addBalance(moneyyy);
     }
 
-    public static void updateAccount(CompanyAccount company){
-        AccountService.Company = company;
-        AccountService.save();
-    }
 }
