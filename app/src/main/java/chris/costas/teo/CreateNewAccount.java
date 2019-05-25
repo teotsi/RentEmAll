@@ -68,6 +68,8 @@ public class CreateNewAccount extends AppCompatActivity {
         boolean flag = true;
         if(isEmail(CompEmail) == false){
             CompEmail.setError("Enter a valid email");
+
+
             flag = false;
         }
         if(infoExists(CompName, "name") == true){
