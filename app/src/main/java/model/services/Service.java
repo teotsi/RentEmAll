@@ -290,5 +290,7 @@ public class Service {
     public static List<Rental> getRentals() {
         return Rentals;
     }
+
+
 }
 

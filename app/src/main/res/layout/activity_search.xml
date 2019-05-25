@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".SearchActivity">
@@ -53,30 +53,29 @@
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
+
         <EditText
             android:id="@+id/location_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter a location(City or Address)"/>
+            android:hint="Enter a location(City or Address)" />
     </LinearLayout>
+
     <Button
         android:id="@+id/filter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add filters"/>
+        android:text="Add filters" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
     <io.github.yavski.fabspeeddial.FabSpeedDial
+        android:id="@+id/search_speed_dial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/search_speed_dial"
         android:layout_gravity="bottom|end"
         app:fabGravity="bottom_end"
         app:fabMenu="@menu/search_menu"
@@ -85,5 +84,5 @@
         app:miniFabTitleTextColor="?attr/colorPrimaryDark"
         tools:layout_editor_absoluteX="395dp"
         tools:layout_editor_absoluteY="586dp" />
-    </FrameLayout>
+
 </LinearLayout>
