@@ -41,7 +41,7 @@ public class CreateNewAccount extends AppCompatActivity {
         RentalRange = findViewById(R.id.RentalRangeTextField);
         Policy = findViewById(R.id.PolicyTextField);
         Description = findViewById(R.id.DescriptionTextField);
-        CreateAccountBtn = (Button)findViewById(R.id.CreateAccountButton);
+        CreateAccountBtn = findViewById(R.id.CreateAccountButton);
 
 
         addressList = new ArrayList<Address>();

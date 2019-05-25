@@ -56,9 +56,9 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.application_dialog, container, false);
         toolbar = view.findViewById(R.id.Application_Toolbar);
-        accept=(Button) view.findViewById(R.id.AcceptButton);
-        decline=(Button) view.findViewById(R.id.DeclineButton);
-        Info=(TextView) view.findViewById(R.id.ApplicationText);
+        accept= view.findViewById(R.id.AcceptButton);
+        decline= view.findViewById(R.id.DeclineButton);
+        Info= view.findViewById(R.id.ApplicationText);
         Info.setText(AccountService.getPendingApplications().get(position).toString());
 
         accept.setOnClickListener(this);

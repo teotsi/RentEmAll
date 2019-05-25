@@ -35,7 +35,7 @@ public class ApplicationsActivity extends AppCompatActivity implements Applicati
 ////        }
 ////        AccountService.login("teotsi@gmail.com","Qwerty!2");
         applications = AccountService.getPendingApplications();
-        myrecyclerview = (RecyclerView) findViewById(R.id.ApplicationRecyclerView);
+        myrecyclerview = findViewById(R.id.ApplicationRecyclerView);
         appAdapter=new ApplicationAdapter(getApplicationContext(), applications, this, getSupportFragmentManager());
         myrecyclerview.setLayoutManager(new LinearLayoutManager(this));
         myrecyclerview.setAdapter(appAdapter);

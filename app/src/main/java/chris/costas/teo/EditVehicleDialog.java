@@ -105,17 +105,17 @@ public class EditVehicleDialog extends DialogFragment {
                 attemptSave();
             }
         });
-        seats = (Spinner) view.findViewById(R.id.edit_seats);
-        transmission = (Spinner) view.findViewById(R.id.edit_transmission_type);
-        fuel = (Spinner) view.findViewById(R.id.edit_fuel_type);
-        type = (Spinner) view.findViewById(R.id.edit_type);
-        brand = (EditText) view.findViewById(R.id.edit_brand);
-        model = (EditText) view.findViewById(R.id.edit_model);
-        pce = (Switch) view.findViewById(R.id.edit_pce);
-        available = (Switch) view.findViewById(R.id.edit_available);
-        rate = (EditText) view.findViewById(R.id.edit_rate);
-        extra = (EditText) view.findViewById(R.id.edit_extra);
-        pic = (ImageView) view.findViewById((R.id.edit_image));
+        seats = view.findViewById(R.id.edit_seats);
+        transmission = view.findViewById(R.id.edit_transmission_type);
+        fuel = view.findViewById(R.id.edit_fuel_type);
+        type = view.findViewById(R.id.edit_type);
+        brand = view.findViewById(R.id.edit_brand);
+        model = view.findViewById(R.id.edit_model);
+        pce = view.findViewById(R.id.edit_pce);
+        available = view.findViewById(R.id.edit_available);
+        rate = view.findViewById(R.id.edit_rate);
+        extra = view.findViewById(R.id.edit_extra);
+        pic = view.findViewById((R.id.edit_image));
         seats.setSelection(((ArrayAdapter) seats.getAdapter()).getPosition(String.valueOf(vehicle.getSeats())));
         transmission.setSelection(((ArrayAdapter) transmission.getAdapter()).getPosition(vehicle.getTransmissionType()));
         fuel.setSelection(((ArrayAdapter) fuel.getAdapter()).getPosition(vehicle.getFuelType()));
@@ -178,7 +178,7 @@ public class EditVehicleDialog extends DialogFragment {
             pic.setImageURI(picUri);
             try {
                 InputStream inputStream = VehicleManagement.getAppContext().getContentResolver().openInputStream(picUri);
-                picDrawable = (Drawable) Drawable.createFromStream(inputStream, picUri.toString());
+                picDrawable = Drawable.createFromStream(inputStream, picUri.toString());
             } catch (FileNotFoundException e) {
                 picDrawable = getResources().getDrawable(R.drawable.ic_add_black_48dp_02);
             }

@@ -97,9 +97,7 @@ public class SearchService extends Service {
             System.out.println("equals");
             System.out.println(currentMonth);
             System.out.println(Integer.parseInt(month));
-            if(Integer.parseInt(month)<currentMonth){
-                return false;
-            }
+            return Integer.parseInt(month) >= currentMonth;
         }
         return true;
     }

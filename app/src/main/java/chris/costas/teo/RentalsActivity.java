@@ -28,7 +28,7 @@ public class RentalsActivity extends AppCompatActivity implements RentalAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rentals);
         rentals = AccountService.getRentals();//
-        myrecyclerview = (RecyclerView) findViewById(R.id.RentalRecyclerView);
+        myrecyclerview = findViewById(R.id.RentalRecyclerView);
         rAdapter=new RentalAdapter(getApplicationContext(), rentals, this, getSupportFragmentManager());
         myrecyclerview.setLayoutManager(new LinearLayoutManager(this));
         myrecyclerview.setAdapter(rAdapter);

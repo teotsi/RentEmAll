@@ -60,9 +60,9 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.MyViewHold
         public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
             super(itemView);
 
-            id= (TextView) itemView.findViewById(R.id.rental_id);
-            start_date= (TextView) itemView.findViewById(R.id.receipt_date_id);
-            end_date= (TextView) itemView.findViewById(R.id.delivery_date_id);
+            id= itemView.findViewById(R.id.rental_id);
+            start_date= itemView.findViewById(R.id.receipt_date_id);
+            end_date= itemView.findViewById(R.id.delivery_date_id);
             this.onNoteListener= onNoteListener;
 
             itemView.setOnClickListener(this);

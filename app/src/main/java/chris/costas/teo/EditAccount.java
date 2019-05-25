@@ -43,7 +43,7 @@ public class EditAccount extends AppCompatActivity {
         newPolicy_Text.setText(currentUser.getPolicy());
         newDescription_Text.setText(currentUser.getDescription());
 
-        saveChangesBtn = (Button)findViewById(R.id.SaveChangesButton);
+        saveChangesBtn = findViewById(R.id.SaveChangesButton);
 
         addressList = new ArrayList<Address>();
 
@@ -77,7 +77,7 @@ public class EditAccount extends AppCompatActivity {
 
     public void SetCoordinates() throws IOException{
         Geocoder gc = new Geocoder(this);
-        addressList = gc.getFromLocationName(newAddress.toString(), 1);
+        addressList = gc.getFromLocationName(newAddress, 1);
 
         if(addressList.size() != 0){
             Address add = addressList.get(0);

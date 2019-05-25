@@ -42,15 +42,15 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
 //        }
 //        AccountService.login("teotsi@gmail.com", "Qwerty!2");
         ///
-        TextView companyName = (TextView) findViewById(R.id.CompanyNameText);
+        TextView companyName = findViewById(R.id.CompanyNameText);
         String name = AccountService.getName();
         companyName.setText(name);
-        signOut = (Button) findViewById(R.id.signOutButton);
-        AccountInfo=(Button) findViewById(R.id.InfoSettingsButton);
-        Statistics=(Button) findViewById(R.id.StatisticsButton);
-        Rentals=(Button) findViewById(R.id.RentalsButton);
-        Vehicles=(Button) findViewById(R.id.VehiclesButton);
-        Applications=(Button) findViewById(R.id.ApplicationsButton);
+        signOut = findViewById(R.id.signOutButton);
+        AccountInfo= findViewById(R.id.InfoSettingsButton);
+        Statistics= findViewById(R.id.StatisticsButton);
+        Rentals= findViewById(R.id.RentalsButton);
+        Vehicles= findViewById(R.id.VehiclesButton);
+        Applications= findViewById(R.id.ApplicationsButton);
         AccountInfo.setOnClickListener(this);
         Statistics.setOnClickListener(this);
         Rentals.setOnClickListener(this);

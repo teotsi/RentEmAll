@@ -20,13 +20,13 @@ public class StatisticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-        dateInput=(EditText) findViewById(R.id.StatsDate);
-        export=(Button) findViewById(R.id.ExportStatsButton);
+        dateInput= findViewById(R.id.StatsDate);
+        export= findViewById(R.id.ExportStatsButton);
         export.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 date=LocalDate.parse(dateInput.getText().toString());
-                TextView Statistics = (TextView) findViewById(R.id.StatsResults);
+                TextView Statistics = findViewById(R.id.StatsResults);
                 String income = AccountService.incomeStats(date);
                 Statistics.setText(income);
             }

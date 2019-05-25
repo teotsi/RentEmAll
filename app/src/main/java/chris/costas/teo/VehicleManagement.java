@@ -50,11 +50,11 @@ public class VehicleManagement extends AppCompatActivity implements DialogInterf
 //        AccountService.login("teotsi@gmail.com","Qwerty!2");
         vehicles = AccountService.getVehicles();
 
-        recyclerView = (RecyclerView) findViewById(R.id.vehicle_list);
+        recyclerView = findViewById(R.id.vehicle_list);
         vehicleManagementAdapter = new VehicleManagementAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(vehicleManagementAdapter);
-        FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
+        FabSpeedDial fabSpeedDial = findViewById(R.id.fab_speed_dial);
         fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
@@ -63,7 +63,7 @@ public class VehicleManagement extends AppCompatActivity implements DialogInterf
             }
         });
 
-        ImageView delete_view = (ImageView) findViewById(R.id.delete_vehicle);
+        ImageView delete_view = findViewById(R.id.delete_vehicle);
     }
     @Override
     public void onDismiss(DialogInterface dialog) {

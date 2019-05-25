@@ -90,11 +90,11 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
         ImageView edit_vehicle;
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            id = (TextView) itemView.findViewById(R.id.vehicle_id);
-            data = (TextView) itemView.findViewById(R.id.vehicle_data);
-            pic = (ImageView) itemView.findViewById(R.id.vehicle_pic);
-            delete_vehicle =(ImageView) itemView.findViewById(R.id.delete_vehicle);
-            edit_vehicle =(ImageView) itemView.findViewById(R.id.edit_vehicle);
+            id = itemView.findViewById(R.id.vehicle_id);
+            data = itemView.findViewById(R.id.vehicle_data);
+            pic = itemView.findViewById(R.id.vehicle_pic);
+            delete_vehicle = itemView.findViewById(R.id.delete_vehicle);
+            edit_vehicle = itemView.findViewById(R.id.edit_vehicle);
             delete_vehicle.setOnClickListener(this);
             edit_vehicle.setOnClickListener(this);
         }
@@ -104,7 +104,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
         public void onClick(View v) {
             if(v.getId() == delete_vehicle.getId()){
                 int position = getAdapterPosition();
-                Toast.makeText(v.getContext(), "ITEM PRESSED = " + String.valueOf(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "ITEM PRESSED = " + position, Toast.LENGTH_SHORT).show();
                 AccountService.removeVehicle(position);
                 removeItem(position);
             }else if(v.getId() == edit_vehicle.getId()){

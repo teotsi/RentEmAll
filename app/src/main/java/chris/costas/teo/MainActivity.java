@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BusinessButton = (Button) findViewById(R.id.BusinessButton);
-        RentButton = (Button) findViewById(R.id.RentAvecButton);
+        BusinessButton = findViewById(R.id.BusinessButton);
+        RentButton = findViewById(R.id.RentAvecButton);
         BusinessButton.setOnClickListener(this);
         RentButton.setOnClickListener(this);
     }

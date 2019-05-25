@@ -21,8 +21,8 @@ public class SignIn_UpOption extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in__up_option);
 
-        SignIn=(Button) findViewById(R.id.SigninButton);
-        SignUp=(Button) findViewById(R.id.SignUpButton);
+        SignIn= findViewById(R.id.SigninButton);
+        SignUp= findViewById(R.id.SignUpButton);
         SignIn.setOnClickListener(this);
         SignUp.setOnClickListener(this);
     }
@@ -33,9 +33,11 @@ public class SignIn_UpOption extends AppCompatActivity implements View.OnClickLi
             case R.id.SigninButton:
                 Intent intentSignIn=new Intent(SignIn_UpOption.this, LoginActivity.class);
                 startActivity(intentSignIn);
+                break;
             case R.id.SignUpButton:
                 Intent intentSignUp=new Intent(SignIn_UpOption.this, CreateNewAccount.class);
                 startActivity(intentSignUp);
+                break;
         }
     }
 }
