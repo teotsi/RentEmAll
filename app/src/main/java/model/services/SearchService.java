@@ -147,7 +147,9 @@ public class SearchService extends Service {
             } else if (filter.equals("transmissionType")) {
                 availableVehicles.removeIf(vehicle -> !vehicle.getTransmissionType().equals(filterChoice));
             } else if (filter.equals("rate")) {
-                availableVehicles.removeIf(vehicle -> vehicle.getRate() > Integer.parseInt(filterChoice));
+                availableVehicles.removeIf(vehicle -> vehicle.getRate() > Float.parseFloat(filterChoice));
+            }else if (filter.equals("model")){
+                availableVehicles.removeIf(vehicle -> !vehicle.getModel().equals(filterChoice));
             }
         }
         return availableVehicles;

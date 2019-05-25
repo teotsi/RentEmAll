@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +34,7 @@ public class SearchActivity extends AppCompatActivity {
     private static TextView endText;
     private EditText location;
     private double longitude, latitude;
-
+    private static String filters = "";
     public static void setStartDate(LocalDate startDate) {
         SearchActivity.startDate = startDate;
         System.out.println("hola");
@@ -50,9 +51,9 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        boolean filters = false;
         Button startButton = (Button) findViewById(R.id.start_date_pick);
         Button endButton = (Button) findViewById(R.id.end_date_pick);
+        Button filterButton = (Button) findViewById(R.id.filter_button);
         startText = (TextView) findViewById(R.id.start_date);
         endText = (TextView) findViewById(R.id.end_date);
         location = (EditText) findViewById(R.id.location_id);
@@ -61,22 +62,34 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.search_call) {
-                    try {
-                        setCoordinates();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    if (!datesValid(startDate, endDate)) {
-                        Toast t = Toast.makeText(SearchActivity.this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
-                        t.show();
-                    } else {
-                        if (!filters) {
-                            ArrayList<Vehicle> vehicles = (ArrayList<Vehicle>) SearchService.getUnfilteredVehicleList(LocalDate.parse(startText.getText().toString()), LocalDate.parse(endText.getText().toString()), latitude, longitude);
+                    if(TextUtils.isEmpty(location.getText().toString())){
+                        location.setError("This field is required");
+                    }else{
+//                        if()
+                        try {
+                            setCoordinates();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        if (!datesValid(startDate, endDate)) {
+                            Toast t = Toast.makeText(SearchActivity.this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
+                            t.show();
+                        } else {
+                            ArrayList<Vehicle> vehicles;
+                            if (filters.equals("")) {
+                                vehicles = (ArrayList<Vehicle>) SearchService.getUnfilteredVehicleList(LocalDate.parse(startText.getText().toString()), LocalDate.parse(endText.getText().toString()), latitude, longitude);
+                            }else{
+                                System.out.println("filtering");
+                                vehicles = (ArrayList<Vehicle>) SearchService.getFilteredVehicleList(LocalDate.parse(startText.getText().toString()), LocalDate.parse(endText.getText().toString()), filters, latitude, longitude);
+                            }
                             Intent intent=  new Intent(SearchActivity.this, PickVehicle.class);
                             intent.putExtra("vehicles", vehicles);
                             startActivity(intent);
                         }
                     }
+
+                }else{
+                    FilterDialog.display(getSupportFragmentManager());
                 }
                 return true;
             }
@@ -93,6 +106,12 @@ public class SearchActivity extends AppCompatActivity {
                 showDatePicker("end");
             }
         });
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FilterDialog.display(getSupportFragmentManager());
+            }
+        });
     }
 
     private boolean datesValid(LocalDate startDate, LocalDate endDate) {
@@ -106,6 +125,19 @@ public class SearchActivity extends AppCompatActivity {
         DialogFragment datepicker = new CalendarDatePickerDialog();
         datepicker.show(getSupportFragmentManager(), type);
 
+    }
+
+    public static void addFilter(String filter, String value){
+        System.out.println("holaaaaaaaaaaaaaaaaaaaaaaa");
+        if(filters.equals("")){
+            filters+=filter+","+value;
+        }else{
+            filters+=","+filter+","+value;
+        }
+    }
+
+    public static String getFilters() {
+        return filters;
     }
 
     public void setCoordinates() throws IOException {

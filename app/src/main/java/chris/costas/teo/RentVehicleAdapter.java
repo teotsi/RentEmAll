@@ -33,7 +33,7 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
     @NonNull
     @Override
     public RentVehicleAdapter.CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.list_item,parent,false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.rent_list_item,parent,false);
 
         return new CustomViewHolder(v);
     }
@@ -62,7 +62,7 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mVehicles.size();
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -70,8 +70,6 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
         TextView id;
         TextView data;
         ImageView pic;
-        ImageView delete_vehicle;
-        ImageView edit_vehicle;
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             id = itemView.findViewById(R.id.rent_vehicle_id);
