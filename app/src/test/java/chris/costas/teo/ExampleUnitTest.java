@@ -99,20 +99,6 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void calculateCostRight(){
-        String startDate="2018-05-03";
-        String endDate="2018-05-05";
-        System.out.println(AccountService.getCompany().getCompanyName());
-        System.out.println("before calculate cost");
-        double expected=AccountService.getVehicles().get(0).getRate()*2;
-        double actual=SearchService.calculateCost(AccountService.getVehicles().get(1),LocalDate.parse(startDate),LocalDate.parse(endDate));
-        System.out.println(expected);
-        System.out.println(actual);
-        Assert.assertEquals(expected, actual);
-        System.out.println("calculate cost");
-    }
-
-    @Test
     public void checkDistanceCalculation(){
         double result=SearchService.calculateDistance(38.0713509,23.7734172,38.0627927,23.7775256);
         System.out.println(result);
