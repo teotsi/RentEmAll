@@ -82,7 +82,7 @@ public class CreateNewAccount extends AppCompatActivity {
             CompEmail.setError("The email you entered already exists!");
             flag = false;
         }
-        if(!AccountService.passwordIsValid(Password.toString())){
+        if(!AccountService.passwordIsValid(Password.getText().toString())){
             Password.setError("Password must be 8-32 characters long and contain a number, an Uppercase letter, a lowercase letter, and !@#$%^&+=");
             flag = false;
         }

@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.github.yavski.fabspeeddial.FabSpeedDial;
@@ -31,6 +32,7 @@ public class SearchActivity extends AppCompatActivity {
     private static TextView endText;
     private EditText location;
     private double longitude, latitude;
+    private List<Address> addressList;
 
     public static void setStartDate(LocalDate startDate) {
         SearchActivity.startDate = startDate;
@@ -48,6 +50,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        addressList = new ArrayList<Address>();
         boolean filters = false;
         Button startButton = (Button) findViewById(R.id.start_date_pick);
         Button endButton = (Button) findViewById(R.id.end_date_pick);
@@ -74,7 +77,7 @@ public class SearchActivity extends AppCompatActivity {
                 return true;
             }
         });
-        EditText location = (EditText) findViewById(R.id.location_id);
+
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +101,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void setCoordinates() throws IOException {
         Geocoder gc = new Geocoder(this);
-        List<Address> addressList = gc.getFromLocationName(location.toString(), 1);
+        addressList = gc.getFromLocationName(location.toString(), 1);
 
         if (addressList.size() != 0) {
             Address add = addressList.get(0);
