@@ -96,11 +96,11 @@ public class SearchActivity extends AppCompatActivity {
 
     public void setCoordinates() throws IOException {
         Geocoder gc = new Geocoder(this);
-        List<Address> addressList = gc.getFromLocationName(location.toString(), 1);
+        List<Address> addressList = gc.getFromLocationName(location.getText().toString(), 1);
 
         if (addressList.size() != 0) {
             Address add = addressList.get(0);
-
+            System.out.println("HOLAAAAA");
             latitude = add.getLatitude();
             longitude = add.getLongitude();
         } else {

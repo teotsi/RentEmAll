@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intentIn_Up = new Intent(MainActivity.this, SignIn_UpOption.class);
                 startActivity(intentIn_Up);
             case R.id.RentAvecButton:
-                System.out.println("Not ready yet");
+                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
 
         }
     }
