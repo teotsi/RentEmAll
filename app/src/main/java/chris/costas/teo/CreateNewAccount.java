@@ -2,6 +2,7 @@ package chris.costas.teo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -62,6 +63,8 @@ public class CreateNewAccount extends AppCompatActivity {
 
                     }
                 }
+                Intent backTosign= new Intent(CreateNewAccount.this, SignIn_UpOption.class);
+                startActivity(backTosign);
             }
         });
 
