@@ -88,13 +88,13 @@ public class ExampleUnitTest {
         Assert.assertEquals("Should return true", true, SearchService.cc("1254235678575126", "05/19", "754"));
         Assert.assertEquals("Should return true", true, SearchService.cc("1254235678575126", "07/19", "754"));
         Assert.assertEquals("Should return true", true, SearchService.cc("1254235678575126", "04/20", "754"));
-       // Assert.assertEquals("Should return false with early month", false, SearchService.cc("1254235678575126", "04/19", "754"));
+        Assert.assertEquals("Should return false with early month", false, SearchService.cc("1254235678575126", "04/19", "754"));
         Assert.assertEquals("Should return false with invalid date", false, SearchService.cc("1254235678575126", "09/18", "754"));
         Assert.assertEquals("Should return false with invalid date and higher cnumber", false, SearchService.cc("12542356758575126", "04/20", "754"));
         Assert.assertEquals("Should return false with higher cnumber", false, SearchService.cc("1254235678575122136", "07/20", "754"));
-        Assert.assertEquals("Should return false with lower cnumber", true, SearchService.cc("125423567126", "07/22", "754"));
-        Assert.assertEquals("Should return false with higher cvv", true, SearchService.cc("1254235678548965", "06/22", "5653"));
-        Assert.assertEquals("Should return false with lower cvv", true, SearchService.cc("1254235678548965", "06/22", "53"));
+        Assert.assertEquals("Should return false with lower cnumber", false, SearchService.cc("125423567126", "07/22", "754"));
+        Assert.assertEquals("Should return false with higher cvv", false, SearchService.cc("1254235678548965", "06/22", "5653"));
+        Assert.assertEquals("Should return false with lower cvv", false, SearchService.cc("1254235678548965", "06/22", "53"));
 
     }
 
@@ -102,8 +102,13 @@ public class ExampleUnitTest {
     public void calculateCostRight(){
         String startDate="2018-05-03";
         String endDate="2018-05-05";
+        System.out.println(AccountService.getCompany().getCompanyName());
         System.out.println("before calculate cost");
-        Assert.assertEquals("Should be correct", AccountService.getVehicles().get(1).getRate()*2,SearchService.calculateCost(AccountService.getVehicles().get(1),LocalDate.parse(startDate),LocalDate.parse(endDate)));
+        double expected=AccountService.getVehicles().get(0).getRate()*2;
+        double actual=SearchService.calculateCost(AccountService.getVehicles().get(1),LocalDate.parse(startDate),LocalDate.parse(endDate));
+        System.out.println(expected);
+        System.out.println(actual);
+        Assert.assertEquals(expected, actual);
         System.out.println("calculate cost");
     }
 
