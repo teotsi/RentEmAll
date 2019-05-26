@@ -93,11 +93,11 @@ public class AccountService extends Service {
         return password.matches(passwordPattern);
     }
 
-    public static int register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, BankAccount bankAccount) {
+    public static int register(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, String afm, BankAccount bankAccount) {
         if (emailIsValid(email)) {
             if (emailIsAvailable(email)) {
                 if (passwordIsValid(password)) {
-                    companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, bankAccount));
+                    companies.add(new CompanyAccount(companyName, policy, description, range, latitude, longitude, email, password, true, afm, bankAccount));
                     return 0;
                 } else {
                     return 1;

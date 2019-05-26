@@ -28,8 +28,9 @@ public class EditAccount extends AppCompatActivity {
     EditText newAddress_Text = findViewById(R.id.NewAddressTextField);
     EditText newPolicy_Text = findViewById(R.id.NewPolicyTextField);
     EditText newDescription_Text = findViewById(R.id.NewDescriptionTextField);
+    EditText TIN = findViewById(R.id.afm);
     Button saveChangesBtn;
-    String newName, newAddress, newPolicy, newDescription;
+    String newName, newAddress, newPolicy, newDescription, newAfm;
     float newRentalRange;
 
     List<Address> addressList;
@@ -43,6 +44,7 @@ public class EditAccount extends AppCompatActivity {
         newRentalRange_Text.setText(String.valueOf(currentUser.getRange()));
         newPolicy_Text.setText(currentUser.getPolicy());
         newDescription_Text.setText(currentUser.getDescription());
+        TIN.setText(currentUser.getAfm());
 
         saveChangesBtn = findViewById(R.id.SaveChangesButton);
 
@@ -56,17 +58,20 @@ public class EditAccount extends AppCompatActivity {
                 newAddress = findViewById(R.id.NewAddressTextField).toString();
                 newPolicy = findViewById(R.id.NewPolicyTextField).toString();
                 newDescription = findViewById(R.id.NewDescriptionTextField).toString();
-                UpdateAccountData(currentUser, newName, newRentalRange, newAddress, newPolicy, newDescription);
+                newAfm = findViewById(R.id.afm).toString();
+
+                UpdateAccountData(currentUser, newName, newRentalRange, newAddress, newPolicy, newDescription, newAfm);
             }
         });
     }
 
 
-    void UpdateAccountData(CompanyAccount currentUser, String name, float rentalRange, String newAddress, String policy, String description){
+    void UpdateAccountData(CompanyAccount currentUser, String name, float rentalRange, String newAddress, String policy, String description, String afm){
         currentUser.setCompanyName(name);
         currentUser.setRange(rentalRange);
         currentUser.setPolicy(policy);
         currentUser.setDescription(description);
+        currentUser.setAfm(afm);
         AccountService.updateAccount(currentUser);
         try {
             SetCoordinates();

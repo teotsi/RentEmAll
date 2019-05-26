@@ -26,7 +26,7 @@ import model.services.Service;
 
 public class CreateNewAccount extends AppCompatActivity {
 
-    EditText CompName, CompEmail, Password, CompAddress, IBAN, RentalRange, Policy, Description;
+    EditText CompName, CompEmail, Password, CompAddress, IBAN, RentalRange, Policy, Description, TIN;
     Button CreateAccountBtn;
     List<Address> addressList;
     double latitude, longitude;
@@ -44,6 +44,7 @@ public class CreateNewAccount extends AppCompatActivity {
         RentalRange = findViewById(R.id.RentalRangeTextField);
         Policy = findViewById(R.id.PolicyTextField);
         Description = findViewById(R.id.DescriptionTextField);
+        TIN = findViewById(R.id.afm);
         CreateAccountBtn = findViewById(R.id.CreateAccountButton);
 
 
@@ -59,7 +60,7 @@ public class CreateNewAccount extends AppCompatActivity {
 
                             BankAccount newBA = new BankAccount(CompName.getText().toString(), IBAN.getText().toString(), 0);
                             //TODO ADD new User to dataset here
-                            AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), newBA);
+                            AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), TIN.getText().toString(),newBA);
                         }
                     } catch (IOException e) {
 

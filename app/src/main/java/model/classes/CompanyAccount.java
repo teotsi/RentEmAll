@@ -22,8 +22,8 @@ public class CompanyAccount {
     private String password;
     private BankAccount bankAccount;
     private Address address;
-
-    public CompanyAccount(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, boolean isNewAccount, BankAccount bankAccount) {
+    private String afm;
+    public CompanyAccount(String companyName, String policy, String description, float range, double latitude, double longitude, String email, String password, boolean isNewAccount,String afm, BankAccount bankAccount) {
         this.companyName = companyName;
         this.id = this.companyName.hashCode();
         this.policy = policy;
@@ -35,6 +35,7 @@ public class CompanyAccount {
         this.applications = new ArrayList<>();
         this.email = email;
         this.bankAccount = bankAccount;
+        this.afm=afm;
         if (isNewAccount) { //if we are reading created accounts we don't have to hash the passwords again
             this.password = calculateHash(password.trim());
         } else {
@@ -171,5 +172,13 @@ public class CompanyAccount {
 
     public void setRentals(List<Rental> rentals) {
         this.rentals=rentals;
+    }
+
+    public String getAfm() {
+        return afm;
+    }
+
+    public void setAfm(String afm) {
+        this.afm = afm;
     }
 }

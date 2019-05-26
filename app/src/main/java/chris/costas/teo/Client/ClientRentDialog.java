@@ -1,7 +1,7 @@
 package chris.costas.teo.Client;
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -32,16 +32,20 @@ public class ClientRentDialog extends DialogFragment {
     private static Vehicle vehicle;
     private static LocalDate startDate;
     private static LocalDate endDate;
+    private static PickVehicle activity;
+    private static FragmentManager fragmentManager;
     private Toolbar toolbar;
     private EditText name;
     private EditText surname;
     private EditText telephone;
     private EditText email;
 
-    public static ClientRentDialog display(FragmentManager fragmentManager, Vehicle vehicle, LocalDate startDate, LocalDate endDate) {
+    public static ClientRentDialog display(FragmentManager fragmentManager, Vehicle vehicle, LocalDate startDate, LocalDate endDate, PickVehicle activity) {
         ClientRentDialog.vehicle = vehicle;
         ClientRentDialog.startDate = startDate;
         ClientRentDialog.endDate = endDate;
+        ClientRentDialog.activity = activity;
+        ClientRentDialog.fragmentManager = fragmentManager;
         ClientRentDialog exampleDialog = new ClientRentDialog();
         exampleDialog.show(fragmentManager, TAG);
         return exampleDialog;
@@ -109,11 +113,6 @@ public class ClientRentDialog extends DialogFragment {
     @Override
     public void onDismiss(final DialogInterface dialog) {
         super.onDismiss(dialog);
-        Activity activity = getActivity();
-        System.out.println(activity.getClass());
-        if (activity instanceof DialogInterface.OnDismissListener) {
-            ((DialogInterface.OnDismissListener) activity).onDismiss(dialog);
-        }
 
     }
 
@@ -154,6 +153,7 @@ public class ClientRentDialog extends DialogFragment {
             errorView.requestFocus();
         } else {
             Customer customer = new Customer(name.getText().toString(), surname.getText().toString(), telephone.getText().toString(), email.getText().toString());
+           Context context = getContext();
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setMessage("Choose payment method.")
                     .setCancelable(false)
@@ -162,6 +162,7 @@ public class ClientRentDialog extends DialogFragment {
                         public void onClick(DialogInterface dialog, int which) {
                             SearchService.submitApplication(SearchService.createApplication(vehicle.getCompanyId(), vehicle, startDate, endDate, LocalDate.now(),
                                     String.valueOf(email.hashCode()), "customer location", "company location", customer));
+                            toMain(context);
                         }
                     })
                     .setNeutralButton("PayPal", new DialogInterface.OnClickListener() {
@@ -169,12 +170,27 @@ public class ClientRentDialog extends DialogFragment {
                         public void onClick(DialogInterface dialog, int which) {
                             SearchService.submitApplication(SearchService.createApplication(vehicle.getCompanyId(), vehicle, startDate, endDate, LocalDate.now(),
                                     String.valueOf(email.hashCode()), "customer location", "company location", customer));
+                        toMain(context);
                         }
                     });
             builder.create().show();
 
+
             dismiss();
         }
+    }
+
+    public void toMain(Context context){
+        AlertDialog.Builder successBuilder = new AlertDialog.Builder(context);
+        successBuilder.setMessage("Success! Your application has been recorded.")
+                .setCancelable(false)
+                .setPositiveButton("Go to main screen", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        activity.backToMain();
+                    }
+                });
+        successBuilder.create().show();
     }
 
 }

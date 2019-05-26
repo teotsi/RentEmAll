@@ -1,5 +1,6 @@
 package chris.costas.teo.Client;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
@@ -29,12 +30,14 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
     Vehicle vehicle;
     LocalDate startDate;
     LocalDate endDate;
-    public RentVehicleAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager, LocalDate startDate, LocalDate endDate){
+    PickVehicle activity;
+    public RentVehicleAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager, LocalDate startDate, LocalDate endDate, PickVehicle pickVehicle){
         this.mContext = mContext;
         this.mVehicles = mVehicles;
         this.fragmentManager= fragmentManager;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.activity = pickVehicle;
     }
     @NonNull
     @Override
@@ -87,7 +90,7 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
             confirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ClientRentDialog dialog = ClientRentDialog.display(fragmentManager,mVehicles.get(getAdapterPosition()),startDate,endDate);
+                    ClientRentDialog dialog = ClientRentDialog.display(fragmentManager,mVehicles.get(getAdapterPosition()),startDate,endDate,activity);
                 }
             });
             info = itemView.findViewById(R.id.info_vehicle);
