@@ -1,8 +1,6 @@
-package chris.costas.teo;
+package chris.costas.teo.Client;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -10,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -21,8 +18,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import chris.costas.teo.R;
 import model.classes.Vehicle;
-import model.services.AccountService;
 
 public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.CustomViewHolder>{
     Context mContext;

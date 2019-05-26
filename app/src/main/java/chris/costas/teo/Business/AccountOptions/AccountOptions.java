@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.AccountOptions;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,7 +11,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import chris.costas.teo.Applications.ApplicationsActivity;
+import chris.costas.teo.Business.Applications.ApplicationsActivity;
+import chris.costas.teo.Business.EditAccount.EditAccount;
+import chris.costas.teo.Business.Main.MainActivity;
+import chris.costas.teo.R;
+import chris.costas.teo.Business.Rentals.RentalsActivity;
+import chris.costas.teo.Business.Statistics.StatisticsActivity;
+import chris.costas.teo.Business.VehicleManagement.VehicleManagement;
 import model.services.AccountService;
 
 public class AccountOptions extends AppCompatActivity implements View.OnClickListener {
@@ -88,7 +94,7 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
                 startActivity(intentInfo);
                 break;
             case R.id.StatisticsButton:
-                Intent intentStatistics=new Intent(AccountOptions.this,StatisticsActivity.class);
+                Intent intentStatistics=new Intent(AccountOptions.this, StatisticsActivity.class);
                 startActivity(intentStatistics);
                 break;
             case R.id.RentalsButton:

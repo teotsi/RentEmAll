@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.Statistics;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.time.LocalDate;
 
+import chris.costas.teo.R;
 import model.services.AccountService;
 
 public class StatisticsActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.Login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -8,7 +8,6 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,12 +31,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.services.Service;
+import chris.costas.teo.Business.AccountOptions.AccountOptions;
+import chris.costas.teo.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
 import static model.services.AccountService.emailIsValid;

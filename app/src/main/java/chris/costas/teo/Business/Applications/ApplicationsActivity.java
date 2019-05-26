@@ -1,4 +1,4 @@
-package chris.costas.teo.Applications;
+package chris.costas.teo.Business.Applications;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

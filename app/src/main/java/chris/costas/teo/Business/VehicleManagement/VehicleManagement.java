@@ -1,8 +1,7 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.VehicleManagement;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,15 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
+import chris.costas.teo.R;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 import model.classes.Vehicle;
 import model.services.AccountService;
-import model.services.Service;
 
 
 /**

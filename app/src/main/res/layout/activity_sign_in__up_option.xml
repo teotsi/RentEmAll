@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignIn_UpOption"
+    tools:context=".Business.SignIn_Up.SignIn_UpOption"
     android:orientation="vertical">
 
     <TextView

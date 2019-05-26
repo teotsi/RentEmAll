@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Client;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

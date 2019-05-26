@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Client;
 
 import android.content.Intent;
 import android.location.Address;
@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import chris.costas.teo.R;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 import model.classes.Vehicle;

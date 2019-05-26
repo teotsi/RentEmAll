@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.EditAccount;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import chris.costas.teo.R;
 import model.classes.CompanyAccount;
 import model.services.AccountService;
 

@@ -1,4 +1,4 @@
-package chris.costas.teo.Applications;
+package chris.costas.teo.Business.Applications;
 
 import android.app.Activity;
 import android.app.AlertDialog;

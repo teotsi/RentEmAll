@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.Rentals;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import chris.costas.teo.Applications.ApplicationDialog;
+import chris.costas.teo.Business.Applications.ApplicationDialog;
+import chris.costas.teo.R;
 import model.classes.Rental;
 import model.services.AccountService;
 

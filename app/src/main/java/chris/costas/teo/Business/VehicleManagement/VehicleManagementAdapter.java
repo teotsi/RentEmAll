@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.VehicleManagement;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import chris.costas.teo.R;
 import model.classes.Vehicle;
 import model.services.AccountService;
 

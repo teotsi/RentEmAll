@@ -1,40 +1,42 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.VehicleManagement;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Switch;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDate;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+
+import chris.costas.teo.R;
 import model.classes.Vehicle;
 import model.services.AccountService;
 
 import static android.app.Activity.RESULT_OK;
 
-public class NewVehicleDialog extends DialogFragment {
+public class EditVehicleDialog extends DialogFragment {
 
-    public static final String TAG = "new_vehicle_dialog";
+    public static final String TAG = "edit_vehicle_dialog";
     private static Vehicle vehicle;
     private static int position;
     private static boolean status = false;
@@ -49,15 +51,16 @@ public class NewVehicleDialog extends DialogFragment {
     private Switch available;
     private EditText rate;
     private EditText extra;
-    private CheckBox multiple;
-    private NumberPicker newNumber;
     private ImageView pic;
     private Uri picUri;
     private Drawable picDrawable;
 
-    public static NewVehicleDialog display(FragmentManager fragmentManager) {
-        NewVehicleDialog exampleDialog = new NewVehicleDialog();
+    public static EditVehicleDialog display(FragmentManager fragmentManager, Vehicle vehicle, int position) {
+        EditVehicleDialog exampleDialog = new EditVehicleDialog();
         exampleDialog.show(fragmentManager, TAG);
+        EditVehicleDialog.vehicle = vehicle;
+        EditVehicleDialog.position = position;
+        System.out.println("Swapped");
         return exampleDialog;
     }
 
@@ -74,7 +77,7 @@ public class NewVehicleDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.new_vehicle_dialog, container, false);
+        View view = inflater.inflate(R.layout.edit_vehicle_dialog, container, false);
 
         toolbar = view.findViewById(R.id.toolbar);
         return view;
@@ -84,7 +87,7 @@ public class NewVehicleDialog extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         toolbar.setNavigationOnClickListener(v -> dismiss());
-        toolbar.setTitle("Add vehicle(s)");
+        toolbar.setTitle("Edit Vehicle");
         toolbar.inflateMenu(R.menu.edit_vehicle_dialog);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -104,27 +107,45 @@ public class NewVehicleDialog extends DialogFragment {
                 attemptSave();
             }
         });
-        seats = view.findViewById(R.id.new_seats);
-        transmission = view.findViewById(R.id.new_transmission_type);
-        fuel = view.findViewById(R.id.new_fuel_type);
-        type = view.findViewById(R.id.new_type);
-        brand = view.findViewById(R.id.new_brand);
-        model = view.findViewById(R.id.new_model);
-        pce = view.findViewById(R.id.new_pce);
-        available = view.findViewById(R.id.new_available);
-        rate = view.findViewById(R.id.new_rate);
-        extra = view.findViewById(R.id.new_extra);
-        pic = view.findViewById((R.id.new_image));
-        multiple= view.findViewById((R.id.new_multiple));
-        newNumber= view.findViewById(R.id.new_number);
-        newNumber.setMinValue(1);
-        newNumber.setMaxValue(10);
-        newNumber.setEnabled(false);
-        multiple.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        seats = view.findViewById(R.id.edit_seats);
+        transmission = view.findViewById(R.id.edit_transmission_type);
+        fuel = view.findViewById(R.id.edit_fuel_type);
+        type = view.findViewById(R.id.edit_type);
+        brand = view.findViewById(R.id.edit_brand);
+        model = view.findViewById(R.id.edit_model);
+        pce = view.findViewById(R.id.edit_pce);
+        available = view.findViewById(R.id.edit_available);
+        rate = view.findViewById(R.id.edit_rate);
+        extra = view.findViewById(R.id.edit_extra);
+        pic = view.findViewById((R.id.edit_image));
+        seats.setSelection(((ArrayAdapter) seats.getAdapter()).getPosition(String.valueOf(vehicle.getSeats())));
+        transmission.setSelection(((ArrayAdapter) transmission.getAdapter()).getPosition(vehicle.getTransmissionType()));
+        fuel.setSelection(((ArrayAdapter) fuel.getAdapter()).getPosition(vehicle.getFuelType()));
+        type.setSelection(((ArrayAdapter) type.getAdapter()).getPosition(vehicle.getType()));
+        brand.setText(vehicle.getBrand());
+        model.setText(vehicle.getModel());
+        pce.setChecked(vehicle.isPce());
+        available.setChecked(vehicle.isAvailable());
+        rate.setText(String.valueOf(vehicle.getRate()));
+        extra.setText(vehicle.getExtra());
+        AssetManager assetManager = getContext().getAssets();
+        try {
+            InputStream pictureStream = assetManager.open("vehiclePics/" + vehicle.getBrand() + vehicle.getModel() + ".png");
+            Drawable pictureDrawable = Drawable.createFromStream(pictureStream, "");
+            pic.setImageDrawable(pictureDrawable);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        pic.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                newNumber.setEnabled(isChecked);
+            public void onClick(View v) {
+                Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+                startActivityForResult(gallery, 100);
             }
+        });
+        toolbar.setOnMenuItemClickListener(item -> {
+            dismiss();
+            return true;
         });
     }
 
@@ -205,9 +226,8 @@ public class NewVehicleDialog extends DialogFragment {
         if (error) {
             errorView.requestFocus();
         } else {
-            Vehicle vehicle = new Vehicle(brand.getText().toString(), model.getText().toString(), type.getSelectedItem().toString(), Integer.parseInt(seats.getSelectedItem().toString()),
-                    fuel.getSelectedItem().toString(), pce.isChecked(), Float.parseFloat(String.valueOf(rate.getText())), extra.getText().toString(), transmission.getSelectedItem().toString(), LocalDate.now(), available.isChecked());
-            AccountService.addVehicle(vehicle, newNumber.getValue());
+            AccountService.editVehicle(position, brand.getText().toString(), model.getText().toString(), type.getSelectedItem().toString(), Integer.parseInt(seats.getSelectedItem().toString()),
+                    fuel.getSelectedItem().toString(), pce.isChecked(), Float.parseFloat(String.valueOf(rate.getText())), extra.getText().toString(), transmission.getSelectedItem().toString(), available.isChecked(), picDrawable);
             System.out.println("heyyy");
             AccountService.save();
             dismiss();

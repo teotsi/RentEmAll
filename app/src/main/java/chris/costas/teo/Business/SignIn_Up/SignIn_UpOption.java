@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.SignIn_Up;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import chris.costas.teo.Business.Login.LoginActivity;
+import chris.costas.teo.Business.NewAccount.CreateNewAccount;
+import chris.costas.teo.R;
 
 /**
  * Make the user to choose if he is already registered, if he is then the app goes to the login activity,

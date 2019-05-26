@@ -16,49 +16,49 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PickVehicle"></activity>
+        <activity android:name=".Client.PickVehicle"></activity>
         <activity
-            android:name=".SearchActivity"
+            android:name=".Client.SearchActivity"
             android:exported="true"
             android:label="Search" />
         <activity
-            android:name=".EditAccount"
+            android:name=".Business.EditAccount.EditAccount"
             android:exported="true"
             android:label="Edit account" />
         <activity
-            android:name=".CreateNewAccount"
+            android:name=".Business.NewAccount.CreateNewAccount"
             android:exported="true"
             android:label="Create new account"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SignIn_UpOption"
+            android:name=".Business.SignIn_Up.SignIn_UpOption"
             android:exported="true"
             android:label="Rent em All" />
         <activity
-            android:name=".RentalsActivity"
+            android:name=".Business.Rentals.RentalsActivity"
             android:exported="true"
             android:label="Rentals" />
         <activity
-            android:name=".Applications.ApplicationsActivity"
+            android:name=".Business.Applications.ApplicationsActivity"
             android:exported="true"
             android:label="Pending applications" />
         <activity
-            android:name=".StatisticsActivity"
+            android:name=".Business.Statistics.StatisticsActivity"
             android:exported="true"
             android:label="@string/statistics" />
         <activity
-            android:name=".VehicleManagement"
+            android:name=".Business.VehicleManagement.VehicleManagement"
             android:exported="true"
             android:label="Vehicles" />
         <activity
-            android:name=".AccountOptions"
+            android:name=".Business.AccountOptions.AccountOptions"
             android:exported="true"
             android:label="@string/app_name" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Business.Login.LoginActivity"
             android:exported="true"
             android:label="@string/title_activity_login" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Business.Main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Business.NewAccount;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import chris.costas.teo.R;
+import chris.costas.teo.Business.SignIn_Up.SignIn_UpOption;
 import model.classes.BankAccount;
 import model.classes.CompanyAccount;
 import model.services.AccountService;

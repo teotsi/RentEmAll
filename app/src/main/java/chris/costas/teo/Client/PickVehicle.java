@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Client;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import java.util.List;
 
+import chris.costas.teo.R;
 import model.classes.Vehicle;
 
 public class PickVehicle extends AppCompatActivity {
