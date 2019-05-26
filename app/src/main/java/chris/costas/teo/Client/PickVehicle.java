@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.os.Bundle;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import chris.costas.teo.R;
@@ -22,9 +23,10 @@ public class PickVehicle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_vehicle);
         vehicles = (List<Vehicle>) getIntent().getSerializableExtra("vehicles");
-
+        LocalDate startDate = (LocalDate) getIntent().getSerializableExtra("startDate");
+        LocalDate endDate= (LocalDate) getIntent().getSerializableExtra("endDate");
         recyclerView = findViewById(R.id.filtered_vehicle_list);
-        rentVehicleAdapter = new RentVehicleAdapter(this,vehicles, getSupportFragmentManager());
+        rentVehicleAdapter = new RentVehicleAdapter(this,vehicles, getSupportFragmentManager(),startDate,endDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(rentVehicleAdapter);
     }

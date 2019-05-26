@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.List;
 
 import chris.costas.teo.R;
@@ -26,10 +27,14 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
     List<Vehicle> mVehicles;
     FragmentManager fragmentManager;
     Vehicle vehicle;
-    public RentVehicleAdapter(Context mContext,List<Vehicle> mVehicles,FragmentManager fragmentManager){
+    LocalDate startDate;
+    LocalDate endDate;
+    public RentVehicleAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager, LocalDate startDate, LocalDate endDate){
         this.mContext = mContext;
         this.mVehicles = mVehicles;
         this.fragmentManager= fragmentManager;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
     @NonNull
     @Override
@@ -79,6 +84,12 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
             data = itemView.findViewById(R.id.rent_vehicle_data);
             pic = itemView.findViewById(R.id.rent_vehicle_pic);
             confirm = itemView.findViewById(R.id.rent_vehicle);
+            confirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClientRentDialog dialog = ClientRentDialog.display(fragmentManager,mVehicles.get(getAdapterPosition()),startDate,endDate);
+                }
+            });
             info = itemView.findViewById(R.id.info_vehicle);
             info.setOnClickListener(new View.OnClickListener() {
                 @Override

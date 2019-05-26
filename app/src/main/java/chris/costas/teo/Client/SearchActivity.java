@@ -85,6 +85,8 @@ public class SearchActivity extends AppCompatActivity {
                             }
                             Intent intent=  new Intent(SearchActivity.this, PickVehicle.class);
                             intent.putExtra("vehicles", vehicles);
+                            intent.putExtra("startDate",startDate);
+                            intent.putExtra("endDate", endDate);
                             startActivity(intent);
                         }
                     }
