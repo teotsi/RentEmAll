@@ -39,7 +39,7 @@
             android:exported="true"
             android:label="Rentals" />
         <activity
-            android:name=".ApplicationsActivity"
+            android:name=".Applications.ApplicationsActivity"
             android:exported="true"
             android:label="Pending applications" />
         <activity

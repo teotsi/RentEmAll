@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Applications;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 
 import java.time.LocalDate;
 
+import chris.costas.teo.R;
 import model.services.AccountService;
 
 /**

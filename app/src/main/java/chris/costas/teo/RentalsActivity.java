@@ -5,16 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.List;
 
+import chris.costas.teo.Applications.ApplicationDialog;
 import model.classes.Rental;
 import model.services.AccountService;
-import model.services.Service;
 
 public class RentalsActivity extends AppCompatActivity implements RentalAdapter.OnNoteListener{
 

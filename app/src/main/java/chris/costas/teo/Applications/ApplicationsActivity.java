@@ -1,19 +1,17 @@
-package chris.costas.teo;
+package chris.costas.teo.Applications;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 
-import java.io.IOException;
 import java.util.List;
 
+import chris.costas.teo.R;
 import model.classes.RentingApplication;
 import model.services.AccountService;
-import model.services.Service;
 
 public class ApplicationsActivity extends AppCompatActivity implements ApplicationAdapter.OnNoteListener, DialogInterface.OnDismissListener {
 

@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Applications;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import chris.costas.teo.R;
 import model.classes.RentingApplication;
 
 public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.MyViewHolder> {
