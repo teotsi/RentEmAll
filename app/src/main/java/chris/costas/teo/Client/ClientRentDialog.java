@@ -1,4 +1,4 @@
-package chris.costas.teo;
+package chris.costas.teo.Client;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import java.time.LocalDate;
 
+import chris.costas.teo.R;
 import model.classes.Customer;
 import model.classes.Vehicle;
 import model.services.AccountService;
@@ -68,7 +70,7 @@ public class ClientRentDialog extends DialogFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         toolbar.setNavigationOnClickListener(v -> dismiss());
-        toolbar.setTitle("Add vehicle(s)");
+        toolbar.setTitle("Enter your contact information");
         toolbar.inflateMenu(R.menu.client_rent_dialog);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -152,9 +154,27 @@ public class ClientRentDialog extends DialogFragment {
             errorView.requestFocus();
         } else {
             Customer customer = new Customer(name.getText().toString(), surname.getText().toString(), telephone.getText().toString(), email.getText().toString());
-            SearchService.submitApplication(SearchService.createApplication(vehicle.getCompanyId(), vehicle, startDate, endDate, LocalDate.now(),
-                    String.valueOf(email.hashCode()), "customer location", "company location", customer));
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage("Choose payment method.")
+                    .setCancelable(false)
+                    .setPositiveButton("Credit Card", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SearchService.submitApplication(SearchService.createApplication(vehicle.getCompanyId(), vehicle, startDate, endDate, LocalDate.now(),
+                                    String.valueOf(email.hashCode()), "customer location", "company location", customer));
+                        }
+                    })
+                    .setNeutralButton("PayPal", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SearchService.submitApplication(SearchService.createApplication(vehicle.getCompanyId(), vehicle, startDate, endDate, LocalDate.now(),
+                                    String.valueOf(email.hashCode()), "customer location", "company location", customer));
+                        }
+                    });
+            builder.create().show();
+
             dismiss();
         }
     }
+
 }
