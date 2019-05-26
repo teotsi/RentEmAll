@@ -23,7 +23,7 @@ public class PickVehicle extends AppCompatActivity {
         vehicles = (List<Vehicle>) getIntent().getSerializableExtra("vehicles");
 
         recyclerView = findViewById(R.id.filtered_vehicle_list);
-        rentVehicleAdapter = new RentVehicleAdapter(getApplicationContext(),vehicles, getSupportFragmentManager());
+        rentVehicleAdapter = new RentVehicleAdapter(this,vehicles, getSupportFragmentManager());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(rentVehicleAdapter);
     }

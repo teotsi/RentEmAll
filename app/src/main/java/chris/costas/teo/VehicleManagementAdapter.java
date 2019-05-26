@@ -36,7 +36,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.rent_list_item, viewGroup, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.list_item, viewGroup, false);
         return new CustomViewHolder(v);
     }
 
@@ -92,8 +92,8 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
             id = itemView.findViewById(R.id.vehicle_id);
             data = itemView.findViewById(R.id.vehicle_data);
             pic = itemView.findViewById(R.id.vehicle_pic);
-            delete_vehicle = itemView.findViewById(R.id.delete_vehicle);
-            edit_vehicle = itemView.findViewById(R.id.edit_vehicle);
+            delete_vehicle =(ImageView) itemView.findViewById(R.id.delete_vehicle);
+            edit_vehicle = (ImageView) itemView.findViewById(R.id.edit_vehicle);
             delete_vehicle.setOnClickListener(this);
             edit_vehicle.setOnClickListener(this);
         }
