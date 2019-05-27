@@ -2,6 +2,7 @@ package chris.costas.teo.Business.NewAccount;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -26,6 +27,7 @@ import model.services.Service;
 
 public class CreateNewAccount extends AppCompatActivity implements CreateNewAccountContract.MvpView, View.OnClickListener{
 
+
     EditText CompName, CompEmail, Password, CompAddress, IBAN, RentalRange, Policy, Description, TIN;
     Button CreateAccountBtn;
     List<Address> addressList;
@@ -38,7 +40,7 @@ public class CreateNewAccount extends AppCompatActivity implements CreateNewAcco
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_account);
 
-        newAccountPresenter = new CreateNewAccountPresenter(this);
+        newAccountPresenter = new CreateNewAccountPresenter(this, latitude, longitude);
 
         CompName = findViewById(R.id.CompanyNameTextField);
         CompEmail = findViewById(R.id.EmailTextField);
@@ -49,9 +51,10 @@ public class CreateNewAccount extends AppCompatActivity implements CreateNewAcco
         Policy = findViewById(R.id.PolicyTextField);
         Description = findViewById(R.id.DescriptionTextField);
         TIN = findViewById(R.id.afm);
+        CreateAccountBtn = findViewById(R.id.CreateAccountButton);
         CreateAccountBtn.setOnClickListener(this);
 
-        addressList = new ArrayList<Address>();
+        addressList = new ArrayList<>();
     }
 
     @Override
@@ -61,143 +64,64 @@ public class CreateNewAccount extends AppCompatActivity implements CreateNewAcco
 
 
     public void CreateAccountButtonClicked(){
-        if(newAccountPresenter.DataValidation()) {
-
+        if(newAccountPresenter.DataValidation(CompAddress, CompName, Policy, Description, IBAN, RentalRange, latitude, longitude, CompEmail, Password, TIN)) {
             try {
-                if(SetCoordinates()){
-
-                    BankAccount newBA = new BankAccount(CompName.getText().toString(), IBAN.getText().toString(), 0);
-                    //TODO ADD new User to dataset here
-                    AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), TIN.getText().toString(),newBA);
+                if(newAccountPresenter.LongLat(this, addressList, CompAddress)){
+                    latitude = newAccountPresenter.getLatitude();
+                    longitude = newAccountPresenter.getLongitude();
+                    newAccountPresenter.newAccount(CompName, Policy, Description, IBAN, RentalRange, latitude, longitude, CompEmail, Password, TIN);
                 }
-            } catch (IOException e) {
-
-            }
+            } catch (IOException e) {}
         }
         Intent backTosign= new Intent(CreateNewAccount.this, SignIn_UpOption.class);
         startActivity(backTosign);
     }
 
     @Override
-    public boolean checkDataEntered() {
-        boolean flag = true;
-        if(isEmail(CompEmail) == false){
-            CompEmail.setError("Enter a valid email");
-            flag = false;
-        }
-        if(infoExists(CompName, "name") == true){
-            CompName.setError("The company name you entered already exists!");
-            flag = false;
-        }
-        if(infoExists(CompEmail, "email") == true){
-            CompEmail.setError("The email you entered already exists!");
-            flag = false;
-        }
-        if(!AccountService.passwordIsValid(Password.getText().toString())){
-            Password.setError("Password must be 8-32 characters long and contain a number, an Uppercase letter, a lowercase letter, and !@#$%^&+=");
-            flag = false;
-        }
-
-
-        if(isEmpty(CompName)){
-            Toast t = Toast.makeText(this, "You must enter a company name", Toast.LENGTH_SHORT);
-            t.show();
-            flag = false;
-        }
-        if(isEmpty(CompEmail)){
-            Toast t = Toast.makeText(this, "You must enter a company email", Toast.LENGTH_SHORT);
-            t.show();
-            flag = false;
-        }
-        if(isEmpty(Password)){
-            Toast t = Toast.makeText(this, "You must enter a password", Toast.LENGTH_SHORT);
-            t.show();
-            flag = false;
-        }
-        if(isEmpty(CompAddress)){
-            Toast t = Toast.makeText(this, "You must enter a company address", Toast.LENGTH_SHORT);
-            t.show();
-            flag = false;
-        }
-        if(isEmpty(IBAN)){
-            Toast t = Toast.makeText(this, "You must enter your company IBAN number", Toast.LENGTH_SHORT);
-            t.show();
-            flag = false;
-        }
-        if(isEmpty(RentalRange)){
-            Toast t = Toast.makeText(this, "You must enter your rental range", Toast.LENGTH_SHORT);
-            t.show();
-            flag = false;
-        }
-        if(isEmpty(Policy)){
-            Toast t = Toast.makeText(this, "You must enter your company policy", Toast.LENGTH_SHORT);
-            t.show();
-            flag = false;
-        }
-//        Uncomment if you want description to be necessary
-//        if(isEmpty(Description)){
-//            Toast t = Toast.makeText(this, "You must enter a company description", Toast.LENGTH_SHORT);
-//            t.show();
-//        }
-        return flag;
+    public boolean checkDataEntered(EditText CompAddress, EditText CompName, EditText Policy, EditText Description, EditText IBAN, EditText RentalRange, double latitude, double longitude , EditText CompEmail, EditText Password, EditText TIN) {
+        return newAccountPresenter.DataValidation(CompAddress, CompName, Policy, Description, IBAN, RentalRange, latitude, longitude, CompEmail, Password, TIN);
     }
 
     @Override
     public boolean isEmpty(EditText text){
-        CharSequence str = text.getText().toString();
-        return TextUtils.isEmpty(str);
+        return newAccountPresenter.CheckEmpty(text);
     }
 
     @Override
     public boolean isEmail(EditText text){
-        CharSequence email = text.getText().toString();
-        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+        return newAccountPresenter.CheckEmail(text);
     }
 
     @Override
     public boolean infoExists(EditText text, String dataType){
-        boolean nameFlag = false;
-        boolean emailFlag = false;
-        boolean addressFlag = false;
-        CharSequence info = text.getText().toString();
-        if(dataType.equals("name")){
-            List<CompanyAccount> companies = Service.getCompanies();
-            for (CompanyAccount c : companies){
-                if(c.getCompanyName().equals(info)){
-                    nameFlag = true;
-                    break;
-                }
-            }
-            return nameFlag;
-        }else if(dataType.equals("email")){
-            List<CompanyAccount> companies = Service.getCompanies();
-            for (CompanyAccount c : companies){
-                if(c.getEmail().equals(info)){
-                    emailFlag = true;
-                    break;
-                }
-            }
-            return emailFlag;
-        }return false;
+        return newAccountPresenter.InfoExistence(text, dataType);
     }
 
     @Override
-    public boolean SetCoordinates() throws IOException {
-        boolean coordflag = false;
-        Geocoder gc = new Geocoder(this);
-        addressList = gc.getFromLocationName(CompAddress.getText().toString(), 1);
-
-        if(addressList.size() != 0){
-            Address add = addressList.get(0);
-
-            latitude = add.getLatitude();
-            longitude = add.getLongitude();
-            coordflag = true;
-        }else{
-            Toast t = Toast.makeText(this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
-            t.show();
-        }
-        return  coordflag;
+    public boolean SetCoordinates(Context con, List<Address> addressList, EditText CompAddress, double latitude, double longitude) throws IOException {
+        return newAccountPresenter.LongLat(con, addressList, CompAddress);
     }
 
+    public void ToastMessages(String id){
+        Toast t = new Toast(this);
+        switch (id){
+            case("CompName"):
+                t = Toast.makeText(this, "You must enter a company name", Toast.LENGTH_SHORT);
+            case("CompEmail"):
+                t = Toast.makeText(this, "You must enter a company email", Toast.LENGTH_SHORT);
+            case("Password"):
+                t = Toast.makeText(this, "You must enter a password", Toast.LENGTH_SHORT);
+            case("CompAddress"):
+                t = Toast.makeText(this, "You must enter a company address", Toast.LENGTH_SHORT);
+            case("IBAN"):
+                t = Toast.makeText(this, "You must enter your company IBAN number", Toast.LENGTH_SHORT);
+            case("RentalRange"):
+                t = Toast.makeText(this, "You must enter your rental range", Toast.LENGTH_SHORT);
+            case("Policy"):
+                t = Toast.makeText(this, "You must enter your company policy", Toast.LENGTH_SHORT);
+            case("LongLat"):
+                t = Toast.makeText(this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
+        }
+        t.show();
+    }
 }
