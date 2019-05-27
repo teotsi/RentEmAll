@@ -22,16 +22,18 @@ import chris.costas.teo.R;
 import model.classes.Vehicle;
 import model.services.AccountService;
 
-public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManagementAdapter.CustomViewHolder> {
+public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManagementAdapter.CustomViewHolder>{
 
     Context mContext;
     List<Vehicle> mVehicles;
     FragmentManager fragmentManager;
+    ManagementAdapterPresenter mPresenter;
 
-    public VehicleManagementAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager) {
+    public VehicleManagementAdapter(Context mContext, List<Vehicle> mVehicles, FragmentManager fragmentManager, ManagementAdapterPresenter mPresenter) {
         this.mContext = mContext;
         this.mVehicles = mVehicles;
         this.fragmentManager = fragmentManager;
+        this.mPresenter = mPresenter;
     }
 
     @NonNull
@@ -43,25 +45,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder myViewHolder, int i) {
-        Vehicle vehicle = AccountService.getVehicles().get(i);
-        myViewHolder.id.setText(vehicle.getId());
-        myViewHolder.data.setText(vehicle.getBrand() + " " + vehicle.getModel());
-        AssetManager assetManager = mContext.getAssets();
-        Drawable picDrawable = vehicle.getPic();
-        if (picDrawable == null) {
-            InputStream pictureStream = null;
-            try {
-                pictureStream = assetManager.open("vehiclePics/" + vehicle.getBrand() + vehicle.getModel() + ".png");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Drawable pictureDrawable = Drawable.createFromStream(pictureStream, "");
-            myViewHolder.pic.setImageDrawable(pictureDrawable);
-        } else {
-            myViewHolder.pic.setImageDrawable(vehicle.getPic());
-        }
-        //TODO image
-
+        mPresenter.onBindRowViewAtPosition(myViewHolder,i);
     }
 
     public void refresh() {
@@ -71,7 +55,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
 
     @Override
     public int getItemCount() {
-        return mVehicles.size();
+        return mPresenter.getRows() ;
     }
 
     public void removeItem(int index) {
@@ -80,7 +64,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
     }
 
 
-    public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, VehicleManagementContract.MvpView {
 
         TextView id;
         TextView data;
@@ -105,17 +89,40 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
             if (v.getId() == delete_vehicle.getId()) {
                 int position = getAdapterPosition();
                 Toast.makeText(v.getContext(), "ITEM PRESSED = " + position, Toast.LENGTH_SHORT).show();
-                AccountService.removeVehicle(position);
+                mPresenter.handleDelete(position,fragmentManager);
                 removeItem(position);
             } else if (v.getId() == edit_vehicle.getId()) {
                 int position = getAdapterPosition();
-                EditVehicleDialog dialog = EditVehicleDialog.display(fragmentManager, AccountService.getVehicles().get(position), position);
-                System.out.println("After display");
+                mPresenter.handleDelete(position, fragmentManager);
                 notifyDataSetChanged();
-                System.out.println("hola muyyy");
             }
         }
 
 
+        @Override
+        public void setID(String id) {
+            this.id.setText(id);
+        }
+
+        @Override
+        public void setVehicleData(String vehicleData) {
+            this.data.setText(vehicleData);
+        }
+
+        @Override
+        public void setPicture(Drawable picture, AssetManager assetManager, String brand, String model) {
+            if(picture == null){
+                InputStream pictureStream = null;
+                try {
+                    pictureStream = assetManager.open("vehiclePics/"+brand+model+".png");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Drawable pictureDrawable = Drawable.createFromStream(pictureStream,"");
+                this.pic.setImageDrawable(pictureDrawable);
+            }else{
+                this.pic.setImageDrawable(picture);
+            }
+        }
     }
 }

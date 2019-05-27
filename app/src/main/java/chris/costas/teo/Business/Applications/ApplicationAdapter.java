@@ -16,18 +16,17 @@ import java.util.List;
 import chris.costas.teo.R;
 import model.classes.RentingApplication;
 
-public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.MyViewHolder> {
+public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.MyViewHolder>  {
 
-    private final ApplicationAdapterPresenter adPresenter;
+    public final ApplicationAdapterPresenter adPresenter;
 
     Context mContext;
     List<RentingApplication> applications;
     private OnNoteListener mOnNoteListener;
     FragmentManager fragmentManager;
 
-    public ApplicationAdapter(Context mContext, List<RentingApplication> applications, OnNoteListener onNoteListener, FragmentManager fragmentManager, ApplicationAdapterPresenter adPresenter) {
+    public ApplicationAdapter(Context mContext, OnNoteListener onNoteListener, FragmentManager fragmentManager, ApplicationAdapterPresenter adPresenter) {
         this.mContext = mContext;
-        this.applications = applications;
         this.mOnNoteListener=onNoteListener;
         this.fragmentManager=fragmentManager;
         this.adPresenter=adPresenter;
@@ -49,7 +48,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
 
     @Override
     public int getItemCount() {
-        return applications.size();
+        return adPresenter.getApplications().size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ApplicationContract.RepositoryRowView{

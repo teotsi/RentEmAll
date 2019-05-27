@@ -35,7 +35,7 @@ public class ApplicationsActivity extends AppCompatActivity implements Applicati
 
         ApplicationContract.PresenterAdapter adPresenter=new ApplicationAdapterPresenter(mPresenter.getApplications());
         myrecyclerview = findViewById(R.id.ApplicationRecyclerView);
-        appAdapter=new ApplicationAdapter(getApplicationContext(), ((ApplicationPresenter) mPresenter).getApplications(), this, getSupportFragmentManager(), (ApplicationAdapterPresenter) adPresenter);
+        appAdapter=new ApplicationAdapter(getApplicationContext(), this, getSupportFragmentManager(), (ApplicationAdapterPresenter) adPresenter);
         myrecyclerview.setLayoutManager(new LinearLayoutManager(this));
         myrecyclerview.setAdapter(appAdapter);
 
@@ -50,8 +50,9 @@ public class ApplicationsActivity extends AppCompatActivity implements Applicati
     public void onDismiss(DialogInterface dialog) {
         if(appDialog.Dpresenter.getRemove()){
             int position=appDialog.Dpresenter.getPosition();
+            appAdapter.adPresenter.remove(position);
             appAdapter.notifyItemRemoved(position);
-            appAdapter.notifyItemRangeChanged(position,AccountService.getPendingApplications().size());
+            appAdapter.notifyItemRangeChanged(position,appAdapter.adPresenter.getApplications().size());
             appAdapter.applications=mPresenter.getApplications();
         }
     }

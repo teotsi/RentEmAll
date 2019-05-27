@@ -4,13 +4,13 @@ import model.services.AccountService;
 
 public class ApplicationDialogPresenter implements ApplicationContract.DialogPresenter {
 
-    private ApplicationContract.DialogView mView;
+
     private static int position;
     private boolean remove=false;
     private String m_Text = "";
 
-    public ApplicationDialogPresenter(ApplicationContract.DialogView mView) {
-        this.mView = mView;
+    public ApplicationDialogPresenter() {
+
     }
 
 

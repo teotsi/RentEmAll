@@ -35,7 +35,7 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
 //    private String m_Text = "";
 //    private boolean remove=false;
 
-    public static ApplicationContract.DialogPresenter Dpresenter;
+    public static ApplicationContract.DialogPresenter Dpresenter=new ApplicationDialogPresenter();;
 
     public static ApplicationDialog display(FragmentManager fragmentManager, int pos) {
         Dpresenter.setPosition(pos);
@@ -52,7 +52,7 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog);
-        Dpresenter=new ApplicationDialogPresenter(this);
+
 
     }
 
