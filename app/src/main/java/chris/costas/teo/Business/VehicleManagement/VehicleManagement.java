@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import chris.costas.teo.R;
 import io.github.yavski.fabspeeddial.FabSpeedDial;
@@ -45,7 +44,7 @@ public class VehicleManagement extends AppCompatActivity implements DialogInterf
         vehicles = (ArrayList<Vehicle>) AccountService.getVehicles();
         mPresenter = new ManagementPresenter();
         recyclerView = findViewById(R.id.vehicle_list);
-        vehicleManagementAdapter = new VehicleManagementAdapter(getApplicationContext(), vehicles, getSupportFragmentManager(), new ManagementAdapterPresenter(vehicles,getAssets()));
+        vehicleManagementAdapter = new VehicleManagementAdapter(getApplicationContext(), vehicles, getSupportFragmentManager(), new ManagementAdapterPresenter(vehicles, getAssets()));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(vehicleManagementAdapter);
         FabSpeedDial fabSpeedDial = findViewById(R.id.fab_speed_dial);

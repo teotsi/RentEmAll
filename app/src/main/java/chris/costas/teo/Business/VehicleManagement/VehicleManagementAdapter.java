@@ -20,9 +20,8 @@ import java.util.List;
 
 import chris.costas.teo.R;
 import model.classes.Vehicle;
-import model.services.AccountService;
 
-public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManagementAdapter.CustomViewHolder>{
+public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManagementAdapter.CustomViewHolder> {
 
     Context mContext;
     List<Vehicle> mVehicles;
@@ -45,7 +44,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder myViewHolder, int i) {
-        mPresenter.onBindRowViewAtPosition(myViewHolder,i);
+        mPresenter.onBindRowViewAtPosition(myViewHolder, i);
     }
 
     public void refresh() {
@@ -55,7 +54,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
 
     @Override
     public int getItemCount() {
-        return mPresenter.getRows() ;
+        return mPresenter.getRows();
     }
 
     public void removeItem(int index) {
@@ -77,7 +76,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
             id = itemView.findViewById(R.id.vehicle_id);
             data = itemView.findViewById(R.id.vehicle_data);
             pic = itemView.findViewById(R.id.vehicle_pic);
-            delete_vehicle =(ImageView) itemView.findViewById(R.id.delete_vehicle);
+            delete_vehicle = (ImageView) itemView.findViewById(R.id.delete_vehicle);
             edit_vehicle = (ImageView) itemView.findViewById(R.id.edit_vehicle);
             delete_vehicle.setOnClickListener(this);
             edit_vehicle.setOnClickListener(this);
@@ -88,8 +87,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
         public void onClick(View v) {
             if (v.getId() == delete_vehicle.getId()) {
                 int position = getAdapterPosition();
-                Toast.makeText(v.getContext(), "ITEM PRESSED = " + position, Toast.LENGTH_SHORT).show();
-                mPresenter.handleDelete(position,fragmentManager);
+                mPresenter.handleDelete(position, fragmentManager);
                 removeItem(position);
             } else if (v.getId() == edit_vehicle.getId()) {
                 int position = getAdapterPosition();
@@ -111,16 +109,16 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
 
         @Override
         public void setPicture(Drawable picture, AssetManager assetManager, String brand, String model) {
-            if(picture == null){
+            if (picture == null) {
                 InputStream pictureStream = null;
                 try {
-                    pictureStream = assetManager.open("vehiclePics/"+brand+model+".png");
+                    pictureStream = assetManager.open("vehiclePics/" + brand + model + ".png");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Drawable pictureDrawable = Drawable.createFromStream(pictureStream,"");
+                Drawable pictureDrawable = Drawable.createFromStream(pictureStream, "");
                 this.pic.setImageDrawable(pictureDrawable);
-            }else{
+            } else {
                 this.pic.setImageDrawable(picture);
             }
         }

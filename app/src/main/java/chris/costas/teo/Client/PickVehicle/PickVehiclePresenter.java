@@ -15,6 +15,7 @@ public class PickVehiclePresenter implements PickVehicleContract.AdapterPresente
 
     private final ArrayList<Vehicle> mVehicles;
     private AssetManager assetManager;
+
     public PickVehiclePresenter(ArrayList<Vehicle> mVehicles, AssetManager assetManager) {
         this.mVehicles = mVehicles;
         this.assetManager = assetManager;
@@ -24,12 +25,12 @@ public class PickVehiclePresenter implements PickVehicleContract.AdapterPresente
     public void onBindRowViewAtPosition(PickVehicleContract.MvpView holder, int position) {
         Vehicle vehicle = mVehicles.get(position);
         holder.setID(vehicle.getId());
-        holder.setVehicleData(vehicle.getBrand()+" "+vehicle.getModel());
-        holder.setPicture(vehicle.getPic(),assetManager, vehicle.getBrand(),vehicle.getModel());
+        holder.setVehicleData(vehicle.getBrand() + " " + vehicle.getModel());
+        holder.setPicture(vehicle.getPic(), assetManager, vehicle.getBrand(), vehicle.getModel());
     }
 
     @Override
-    public int getRows(){
+    public int getRows() {
         return mVehicles.size();
     }
 
@@ -53,7 +54,7 @@ public class PickVehiclePresenter implements PickVehicleContract.AdapterPresente
 
     @Override
     public void handleRentClick(FragmentManager fragmentManager, LocalDate startDate, LocalDate endDate, PickVehicle activity, int position) {
-        ClientRentDialog dialog = ClientRentDialog.display(fragmentManager,mVehicles.get(position),startDate,endDate,activity);
+        ClientRentDialog dialog = ClientRentDialog.display(fragmentManager, mVehicles.get(position), startDate, endDate, activity);
     }
 
 }

@@ -1,57 +1,48 @@
 package chris.costas.teo;
 
-import android.content.res.AssetManager;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 import model.classes.BankAccount;
-import model.classes.Customer;
-import model.classes.RentingApplication;
 import model.classes.Vehicle;
 import model.services.AccountService;
 import model.services.SearchService;
 import model.services.Service;
 
-import static java.util.Objects.isNull;
-
 public class ExampleUnitTest {
 
     @Before
-    public void companyReader(){
-        Assert.assertEquals(Service.companyReader(""),1);
-        Assert.assertEquals(Service.companyReader("Companies.txt"),0);
+    public void companyReader() {
+        Assert.assertEquals(Service.companyReader(""), 1);
+        Assert.assertEquals(Service.companyReader("Companies.txt"), 0);
     }
 
     @Before
-    public void vehicleReader(){
-        Assert.assertEquals(Service.vehicleReader(""),1);
-        Assert.assertEquals(Service.vehicleReader("Vehicles.txt"),0);
+    public void vehicleReader() {
+        Assert.assertEquals(Service.vehicleReader(""), 1);
+        Assert.assertEquals(Service.vehicleReader("Vehicles.txt"), 0);
     }
 
     @Test
     public void successLoginTest() {
-        Assert.assertEquals(true,AccountService.login("teotsi@gmail.com", "Qwerty!2"));
+        Assert.assertEquals(true, AccountService.login("teotsi@gmail.com", "Qwerty!2"));
     }
 
     @Test
-    public void wrongMailLoginTest(){
-        Assert.assertEquals(false,AccountService.login("christos1charma@gmail.com", "Qwerty!2"));
+    public void wrongMailLoginTest() {
+        Assert.assertEquals(false, AccountService.login("christos1charma@gmail.com", "Qwerty!2"));
     }
 
     @Test
-    public void wrongPassLoginTest(){
-        Assert.assertEquals(false,AccountService.login("christos1charma@gmail.com", "Qweerrty!2"));
+    public void wrongPassLoginTest() {
+        Assert.assertEquals(false, AccountService.login("christos1charma@gmail.com", "Qweerrty!2"));
     }
 
     @Test
-    public void emailIsAvailable(){
+    public void emailIsAvailable() {
         Assert.assertEquals(true, AccountService.emailIsAvailable("teotsi2@gmail.com"));
         Assert.assertEquals(true, AccountService.emailIsAvailable("teotsi2@yahoo.com"));
         Assert.assertEquals(true, AccountService.emailIsAvailable("teotsi@yahoo.com"));
@@ -59,30 +50,30 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void emailIsUnavailable(){
-        Assert.assertEquals(false,AccountService.emailIsAvailable("teotsi@gmail.com"));
-        Assert.assertEquals(false,AccountService.emailIsAvailable("chrischarma@gmail.com"));
+    public void emailIsUnavailable() {
+        Assert.assertEquals(false, AccountService.emailIsAvailable("teotsi@gmail.com"));
+        Assert.assertEquals(false, AccountService.emailIsAvailable("chrischarma@gmail.com"));
     }
 
     @Test
-    public void validPassword(){
-        Assert.assertEquals("Must return true because password is valid",true,AccountService.passwordIsValid("Make&489"));
-        Assert.assertEquals("Must return true because password is valid",true,AccountService.passwordIsValid("ghjkTRO&489"));
-        Assert.assertEquals("Must return true because password is valid",true,AccountService.passwordIsValid("78$#kjhdasDASKJ"));
-        Assert.assertEquals("Must return true because password is valid",true,AccountService.passwordIsValid("1234a56!T"));
+    public void validPassword() {
+        Assert.assertEquals("Must return true because password is valid", true, AccountService.passwordIsValid("Make&489"));
+        Assert.assertEquals("Must return true because password is valid", true, AccountService.passwordIsValid("ghjkTRO&489"));
+        Assert.assertEquals("Must return true because password is valid", true, AccountService.passwordIsValid("78$#kjhdasDASKJ"));
+        Assert.assertEquals("Must return true because password is valid", true, AccountService.passwordIsValid("1234a56!T"));
     }
 
     @Test
-    public void  invalidPassword() {
-        Assert.assertEquals("Must return false because password is invalid",false,AccountService.passwordIsValid("g"));
-        Assert.assertEquals("Must return false because password is invalid",false,AccountService.passwordIsValid("4g#9879"));
-        Assert.assertEquals("Must return false because password is invalid",false,AccountService.passwordIsValid("98534!jhsdkfhTYlksadkhkjshdaksjhksajdhaslkjdhaslkdjashdlkjasdhlkjashdflkjdhfskjfhdsf"));
-        Assert.assertEquals("Must return false because password is invalid",false,AccountService.passwordIsValid("gT%45gr"));
-        Assert.assertEquals("Must return false because password is invalid",false,AccountService.passwordIsValid("7"));
+    public void invalidPassword() {
+        Assert.assertEquals("Must return false because password is invalid", false, AccountService.passwordIsValid("g"));
+        Assert.assertEquals("Must return false because password is invalid", false, AccountService.passwordIsValid("4g#9879"));
+        Assert.assertEquals("Must return false because password is invalid", false, AccountService.passwordIsValid("98534!jhsdkfhTYlksadkhkjshdaksjhksajdhaslkjdhaslkdjashdlkjasdhlkjashdflkjdhfskjfhdsf"));
+        Assert.assertEquals("Must return false because password is invalid", false, AccountService.passwordIsValid("gT%45gr"));
+        Assert.assertEquals("Must return false because password is invalid", false, AccountService.passwordIsValid("7"));
     }
 
     @Test
-    public void checkCC(){
+    public void checkCC() {
         Assert.assertEquals("Should return true", true, SearchService.cc("1254235678548965", "06/22", "563"));
         Assert.assertEquals("Should return true", true, SearchService.cc("1254235678575126", "05/20", "754"));
         Assert.assertEquals("Should return true", true, SearchService.cc("1254235678575126", "05/19", "754"));
@@ -99,46 +90,45 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void checkDistanceCalculation(){
-        double result=SearchService.calculateDistance(38.0713509,23.7734172,38.0627927,23.7775256);
+    public void checkDistanceCalculation() {
+        double result = SearchService.calculateDistance(38.0713509, 23.7734172, 38.0627927, 23.7775256);
         System.out.println(result);
-        Assert.assertTrue("Should return about 1.02", (result>1.01) && (result<1.03));
+        Assert.assertTrue("Should return about 1.02", (result > 1.01) && (result < 1.03));
     }
 
     @Test
-    public void checksIfTheEmailIsValidOrNot(){
+    public void checksIfTheEmailIsValidOrNot() {
         Assert.assertFalse(AccountService.emailIsValid("teotsi@mailcom"));
     }
 
-//    @Test
-//    public void registerCompanyFunctionality(){
-//        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
-//                "Makis description", 50, 38.080641, 23.687001,
-//                "teotsi@mailcom", "Makis12", new BankAccount("Makis", "43", 65)),3);
-//        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
-//                "Makis description", 50, 38.080641, 23.687001,
-//                "teotsi@gmail.com", "Makis12", new BankAccount("Makis", "43", 65)),2);
-//        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
-//                "Makis description", 50, 38.080641, 23.687001,
-//                "makaros@gmail.com", "Makis12", new BankAccount("Makis", "43", 65)),1);
-//        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
-//                "Makis description", 50, 38.080641, 23.687001,
-//                "makaros@gmail.com", "Makaros!2", new BankAccount("Makis", "43", 65)),0);
-//    }
-
     @Test
-    public void vehicleAddandRemove(){
-        int numberOfVehicles = AccountService.getNumberOfVehicles();
-        Vehicle astra = new Vehicle("Opel", "Astra","Car", 5, "Diesel", false, 20,
-                "extra", "Automatic", LocalDate.parse("2018-06-06"), true);
-        AccountService.addVehicle(astra,2);
-        int expected = numberOfVehicles+2;
-        Assert.assertEquals(expected,AccountService.getNumberOfVehicles());
-        expected -=1;
-        AccountService.removeVehicle(AccountService.getVehicles().get(0).getId());
-        Assert.assertEquals(expected,AccountService.getNumberOfVehicles());
+    public void registerCompanyFunctionality() {
+        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
+                "Makis description", 50, 38.080641, 23.687001,
+                "teotsi@mailcom", "Makis12", "54232412", new BankAccount("Makis", "43", 65)), 3);
+        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
+                "Makis description", 50, 38.080641, 23.687001,
+                "teotsi@gmail.com", "Makis12", "54232412", new BankAccount("Makis", "43", 65)), 2);
+        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
+                "Makis description", 50, 38.080641, 23.687001,
+                "makaros@gmail.com", "Makis12", "54232412", new BankAccount("Makis", "43", 65)), 1);
+        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
+                "Makis description", 50, 38.080641, 23.687001,
+                "makaros@gmail.com", "Makaros!2", "54232412", new BankAccount("Makis", "43", 65)), 0);
     }
 
+    @Test
+    public void vehicleAddandRemove() {
+        int numberOfVehicles = AccountService.getNumberOfVehicles();
+        Vehicle astra = new Vehicle("Opel", "Astra", "Car", 5, "Diesel", false, 20,
+                "extra", "Automatic", LocalDate.parse("2018-06-06"), true);
+        AccountService.addVehicle(astra, 2);
+        int expected = numberOfVehicles + 2;
+        Assert.assertEquals(expected, AccountService.getNumberOfVehicles());
+        expected -= 1;
+        AccountService.removeVehicle(AccountService.getVehicles().get(0).getId());
+        Assert.assertEquals(expected, AccountService.getNumberOfVehicles());
+    }
 
 
 //    @Test
