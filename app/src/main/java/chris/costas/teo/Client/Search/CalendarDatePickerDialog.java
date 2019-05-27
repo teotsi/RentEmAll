@@ -1,4 +1,4 @@
-package chris.costas.teo.Client;
+package chris.costas.teo.Client.Search;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -9,6 +9,8 @@ import androidx.fragment.app.DialogFragment;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+
+import chris.costas.teo.Client.Search.SearchActivity;
 
 public class CalendarDatePickerDialog extends DialogFragment {
     private String tag;

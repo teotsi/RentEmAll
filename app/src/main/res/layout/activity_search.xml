@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".Client.SearchActivity">
+    tools:context=".Client.Search.SearchActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"

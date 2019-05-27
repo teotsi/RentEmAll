@@ -25,31 +25,35 @@ import model.services.AccountService;
 /**
  * Creates a dialog to display the application info and from the user to accept or reject it.
  */
-public class ApplicationDialog extends DialogFragment implements View.OnClickListener {
+public class ApplicationDialog extends DialogFragment implements View.OnClickListener, ApplicationContract.DialogView {
     public static final String TAG = "application_dialog";
     private Toolbar toolbar;
     Button accept;
     Button decline;
-    private static int position;
+    //private static int position;
     TextView Info;
-    private String m_Text = "";
-    private boolean remove=false;
+//    private String m_Text = "";
+//    private boolean remove=false;
+
+    public static ApplicationContract.DialogPresenter Dpresenter;
 
     public static ApplicationDialog display(FragmentManager fragmentManager, int pos) {
-        position=pos;
+        Dpresenter.setPosition(pos);
         ApplicationDialog exampleDialog = new ApplicationDialog();
         exampleDialog.show(fragmentManager, TAG);
         return exampleDialog;
     }
 
-    public int getPosition(){
-        return position;
-    }
+//    public int getPosition(){
+//        return position;
+//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog);
+        Dpresenter=new ApplicationDialogPresenter(this);
+
     }
 
     @Override
@@ -60,7 +64,7 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
         accept= view.findViewById(R.id.AcceptButton);
         decline= view.findViewById(R.id.DeclineButton);
         Info= view.findViewById(R.id.ApplicationText);
-        Info.setText(AccountService.getPendingApplications().get(position).toString());
+        Info.setText(Dpresenter.getApplicationText());
 
         accept.setOnClickListener(this);
         decline.setOnClickListener(this);
@@ -80,9 +84,9 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
         });
     }
 
-    public boolean getRemove(){
-        return remove;
-    }
+//    public boolean getRemove(){
+//        return remove;
+//    }
 
     @Override
     public void onStart() {
@@ -106,13 +110,11 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View v) { // TODO: 21/5/2019 get only the pending applications, when they get accepted or rejected, don't show them here
-        LocalDate localDate = LocalDate.now();
-        remove=false;
+    public void onClick(View v) {
+        Dpresenter.setRemove(false);
         switch (v.getId()){
             case R.id.AcceptButton:
-                AccountService.acceptApplication(ApplicationsActivity.getApplications().get(position).getId());
-                remove=true;
+                Dpresenter.accept();
                 dismiss();
                 break;
             case R.id.DeclineButton:
@@ -121,7 +123,6 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
 
 // Set up the input
                 final EditText input = new EditText(getContext());
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
                 builder.setView(input);
 
@@ -129,7 +130,7 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        m_Text = input.getText().toString();
+                        Dpresenter.setText(input.getText().toString());
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -140,8 +141,7 @@ public class ApplicationDialog extends DialogFragment implements View.OnClickLis
                 });
 
                 builder.show();
-                AccountService.rejectApplication(ApplicationsActivity.getApplications().get(position).getId(),m_Text);
-                remove=true;
+                Dpresenter.reject();
                 dismiss();
                 break;
         }
