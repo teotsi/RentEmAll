@@ -1,5 +1,7 @@
 package model.services;
 
+import android.view.View;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -256,6 +258,10 @@ public class Service {
 
 
         return l;
+    }
+
+    public static void loadFiles(View view){
+
     }
 
     protected static void completePayment(RentingApplication application) {

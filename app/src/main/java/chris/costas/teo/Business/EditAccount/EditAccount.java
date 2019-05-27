@@ -2,9 +2,11 @@ package chris.costas.teo.Business.EditAccount;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import chris.costas.teo.Business.AccountOptions.AccountOptions;
 import chris.costas.teo.R;
 import model.classes.CompanyAccount;
 import model.services.AccountService;
@@ -22,13 +25,13 @@ public class EditAccount extends AppCompatActivity {
 
     //TODO Find a way to get currentUser from login activity
 
-    CompanyAccount currentUser = AccountService.getCompany();
-    EditText newName_Text = findViewById(R.id.NewNameTextField);
-    EditText newRentalRange_Text = findViewById(R.id.NewRentalRangeTextField);
-    EditText newAddress_Text = findViewById(R.id.NewAddressTextField);
-    EditText newPolicy_Text = findViewById(R.id.NewPolicyTextField);
-    EditText newDescription_Text = findViewById(R.id.NewDescriptionTextField);
-    EditText TIN = findViewById(R.id.afm);
+    CompanyAccount currentUser ;
+    EditText newName_Text;
+    EditText newRentalRange_Text;
+    EditText newAddress_Text;
+    EditText newPolicy_Text;
+    EditText newDescription_Text;
+    EditText TIN;
     Button saveChangesBtn;
     String newName, newAddress, newPolicy, newDescription, newAfm;
     float newRentalRange;
@@ -39,6 +42,14 @@ public class EditAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_account);
+
+        currentUser = AccountService.getCompany();
+        newName_Text = findViewById(R.id.NewNameTextField);
+        newRentalRange_Text = findViewById(R.id.NewRentalRangeTextField);
+        newAddress_Text = findViewById(R.id.NewAddressTextField);
+        newPolicy_Text = findViewById(R.id.NewPolicyTextField);
+        newDescription_Text = findViewById(R.id.NewDescriptionTextField);
+        TIN = findViewById(R.id.afm);
 
         newName_Text.setText(currentUser.getCompanyName());
         newRentalRange_Text.setText(String.valueOf(currentUser.getRange()));
@@ -61,6 +72,8 @@ public class EditAccount extends AppCompatActivity {
                 newAfm = findViewById(R.id.afm).toString();
 
                 UpdateAccountData(currentUser, newName, newRentalRange, newAddress, newPolicy, newDescription, newAfm);
+                Intent intent = new Intent(EditAccount.this, AccountOptions.class);
+                startActivity(intent);
             }
         });
     }
@@ -74,7 +87,9 @@ public class EditAccount extends AppCompatActivity {
         currentUser.setAfm(afm);
         AccountService.updateAccount(currentUser);
         try {
-            SetCoordinates();
+            if(!isEmpty(newAddress_Text)) {
+                SetCoordinates();
+            }
         }catch (IOException e){
             Toast t = Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT);
             t.show();
@@ -94,6 +109,11 @@ public class EditAccount extends AppCompatActivity {
             Toast t = Toast.makeText(this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
             t.show();
         }
+    }
+
+    boolean isEmpty(EditText text){
+        CharSequence str = text.getText().toString();
+        return TextUtils.isEmpty(str);
     }
 
 }

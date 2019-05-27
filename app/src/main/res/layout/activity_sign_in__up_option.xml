@@ -24,8 +24,9 @@
 
     <Button
         android:id="@+id/SigninButton"
-        android:layout_width="match_parent"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Sign In" />
 
     <TextView
@@ -36,7 +37,7 @@
     <TextView
         android:id="@+id/SignUpQuestion"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="68dp"
         android:text="Are you a new user?"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
@@ -45,7 +46,8 @@
 
     <Button
         android:id="@+id/SignUpButton"
-        android:layout_width="match_parent"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="sign up" />
 </LinearLayout>

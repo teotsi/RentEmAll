@@ -15,22 +15,19 @@ import chris.costas.teo.Client.SearchActivity;
 import chris.costas.teo.Business.SignIn_Up.SignIn_UpOption;
 import model.services.Service;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements MainContract.MvpView, View.OnClickListener {
 
     private Button BusinessButton;
     private Button RentButton;
+
+    MainContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            AssetManager assets = this.getAssets();
-            Service.companyReader(assets.open("dataset/Companies.txt"));
-            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        mPresenter=new MainPresenter(MainActivity.this);
+        ((MainPresenter) mPresenter).load();
         BusinessButton = findViewById(R.id.BusinessButton);
         RentButton = findViewById(R.id.RentAvecButton);
         BusinessButton.setOnClickListener(this);
@@ -41,14 +38,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.BusinessButton:
-                System.out.println("Businesssssssssss");
-                Intent intentIn_Up = new Intent(MainActivity.this, SignIn_UpOption.class);
-                startActivity(intentIn_Up);
+                mPresenter.handleBusinessButtonClick();
                 break;
             case R.id.RentAvecButton:
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intent);
+                mPresenter.handleRentCarButtonClick();
                 break;
         }
+    }
+
+    @Override
+    public void navigateToBusiness() {
+        Intent intentIn_Up = new Intent(MainActivity.this, SignIn_UpOption.class);
+        startActivity(intentIn_Up);
+    }
+
+    @Override
+    public void navigateToRentCar() {
+        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+        startActivity(intent);
     }
 }
