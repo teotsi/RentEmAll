@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import chris.costas.teo.R;
@@ -22,11 +23,14 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.MyViewHold
     private OnNoteListener mOnNoteListener;
     FragmentManager fragmentManager;
 
-    public RentalAdapter(Context mContext, List<Rental> rentals, OnNoteListener onNoteListener, FragmentManager fragmentManager) {
+    public final RentalsContract.RentalsAdapterPresenter adPresenter;
+
+    public RentalAdapter(Context mContext, List<Rental> rentals, OnNoteListener onNoteListener, FragmentManager fragmentManager, RentalAdapterPresenter adPresenter) {
         this.mContext = mContext;
-        this.rentals = rentals;
+        this.rentals=rentals;
         this.mOnNoteListener=onNoteListener;
         this.fragmentManager=fragmentManager;
+        this.adPresenter=adPresenter;
     }
 
     @NonNull
@@ -40,10 +44,7 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Rental app= rentals.get(position);
-        holder.id.setText(app.getId());
-        holder.start_date.setText(app.getReceiptDate().toString());
-        holder.end_date.setText(app.getDeliveryDate().toString());
+        adPresenter.onBindRepositoryRowViewAtPosition(position,holder);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.MyViewHold
         return rentals.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, RentalsContract.RentalsAdapterView{
 
         private TextView id;
         private TextView start_date;
@@ -73,6 +74,22 @@ public class RentalAdapter extends RecyclerView.Adapter<RentalAdapter.MyViewHold
         public void onClick(View v) {
             int pos=getAdapterPosition();
             onNoteListener.onNoteClick(pos);
+        }
+
+
+        @Override
+        public void setId(String id) {
+            this.id.setText(id);
+        }
+
+        @Override
+        public void setStartDate(LocalDate startDate) {
+            this.start_date.setText(startDate.toString());
+        }
+
+        @Override
+        public void setEndDate(LocalDate endDate) {
+            this.end_date.setText(endDate.toString());
         }
     }
 

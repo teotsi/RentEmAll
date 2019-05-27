@@ -19,4 +19,16 @@ public class ApplicationAdapterPresenter implements ApplicationContract.Presente
         rowView.setStartDate(app.getStartDate());
         rowView.setEndDate(app.getEndDate());
     }
+
+    @Override
+    public void remove(int position) {
+        applications.remove(position);
+    }
+
+    @Override
+    public List<RentingApplication> getApplications() {
+        return applications;
+    }
+
+
 }

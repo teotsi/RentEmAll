@@ -33,6 +33,10 @@ public interface ApplicationContract {
 
         void onBindRepositoryRowViewAtPosition(int position, RepositoryRowView rowView);
 
+        void remove(int position);
+
+        List<RentingApplication> getApplications();
+
     }
 
     interface DialogView{
