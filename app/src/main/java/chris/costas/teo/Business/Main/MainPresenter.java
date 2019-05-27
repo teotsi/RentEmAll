@@ -31,7 +31,7 @@ public class MainPresenter implements MainContract.Presenter {
         }
     }
 
-    ////////// Presenter Methods ///////////////
+    ////////// AdapterPresenter Methods ///////////////
 
     @Override
     public void handleBusinessButtonClick() {
