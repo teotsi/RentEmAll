@@ -57,7 +57,7 @@ public class CompanyAccount {
     }
 
     public int authorizeLogin(String password) { //checking email/password credentials
-        if (this.password.equals(calculateHash(password))) {
+        if (this.password.equals(calculateHash(password.trim()))) {
             return this.id;
         } else return -1;
     }

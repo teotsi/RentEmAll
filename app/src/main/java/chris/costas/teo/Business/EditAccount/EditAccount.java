@@ -36,7 +36,7 @@ public class EditAccount extends AppCompatActivity {
     String newName, newAddress, newPolicy, newDescription, newAfm;
     float newRentalRange;
     Geocoder geo=new Geocoder(this);
-
+    List<Address> reverseAddress;
     List<Address> addressList;
 
     @Override
@@ -58,7 +58,14 @@ public class EditAccount extends AppCompatActivity {
         newDescription_Text.setText(currentUser.getDescription());
         TIN.setText(currentUser.getAfm());
         try {
-            geo.getFromLocation(currentUser.getLatitude(),currentUser.getLongitude(),1);
+            reverseAddress = geo.getFromLocation(currentUser.getLatitude(),currentUser.getLongitude(),1);
+            String addressName = reverseAddress.get(0).getAddressLine(0);
+            if(addressName != null) {
+                newAddress_Text.setText(addressName);
+            }else{
+                newAddress_Text.setText("Not valid ");
+
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,12 +77,12 @@ public class EditAccount extends AppCompatActivity {
         saveChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newName = findViewById(R.id.NewNameTextField).toString();
-                newRentalRange = (float)(R.id.NewRentalRangeTextField);
-                newAddress = findViewById(R.id.NewAddressTextField).toString();
-                newPolicy = findViewById(R.id.NewPolicyTextField).toString();
-                newDescription = findViewById(R.id.NewDescriptionTextField).toString();
-                newAfm = findViewById(R.id.afm).toString();
+                newName = ((EditText)findViewById(R.id.NewNameTextField)).getText().toString();
+                newRentalRange = Float.parseFloat(((EditText)findViewById(R.id.NewRentalRangeTextField)).getText().toString());
+                newAddress = ((EditText)findViewById(R.id.NewAddressTextField)).getText().toString();
+                newPolicy = ((EditText)findViewById(R.id.NewPolicyTextField)).getText().toString();
+                newDescription =((EditText)findViewById(R.id.NewDescriptionTextField)).getText().toString();
+                newAfm = ((EditText)findViewById(R.id.afm)).getText().toString();
 
                 UpdateAccountData(currentUser, newName, newRentalRange, newAddress, newPolicy, newDescription, newAfm);
                 Intent intent = new Intent(EditAccount.this, AccountOptions.class);
