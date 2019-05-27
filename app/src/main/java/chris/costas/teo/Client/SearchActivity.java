@@ -73,7 +73,7 @@ public class SearchActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         if (!datesValid(startDate, endDate)) {
-                            Toast t = Toast.makeText(SearchActivity.this, "We couldn't find the address. Try adding more info(City, Postal no., etc) and check your spelling", Toast.LENGTH_SHORT);
+                            Toast t = Toast.makeText(SearchActivity.this, "Invalid dates! Try again", Toast.LENGTH_SHORT);
                             t.show();
                         } else {
                             ArrayList<Vehicle> vehicles;
