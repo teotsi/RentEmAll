@@ -24,17 +24,21 @@ import model.classes.CompanyAccount;
 import model.services.AccountService;
 import model.services.Service;
 
-public class CreateNewAccount extends AppCompatActivity {
+public class CreateNewAccount extends AppCompatActivity implements CreateNewAccountContract.MvpView, View.OnClickListener{
 
     EditText CompName, CompEmail, Password, CompAddress, IBAN, RentalRange, Policy, Description, TIN;
     Button CreateAccountBtn;
     List<Address> addressList;
     double latitude, longitude;
 
+    CreateNewAccountContract.Presenter newAccountPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_account);
+
+        newAccountPresenter = new CreateNewAccountPresenter(this);
 
         CompName = findViewById(R.id.CompanyNameTextField);
         CompEmail = findViewById(R.id.EmailTextField);
@@ -45,42 +49,40 @@ public class CreateNewAccount extends AppCompatActivity {
         Policy = findViewById(R.id.PolicyTextField);
         Description = findViewById(R.id.DescriptionTextField);
         TIN = findViewById(R.id.afm);
-        CreateAccountBtn = findViewById(R.id.CreateAccountButton);
-
+        CreateAccountBtn.setOnClickListener(this);
 
         addressList = new ArrayList<Address>();
-
-        CreateAccountBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                if(checkDataEntered()) {
-
-                    try {
-                        if(SetCoordinates()){
-
-                            BankAccount newBA = new BankAccount(CompName.getText().toString(), IBAN.getText().toString(), 0);
-                            //TODO ADD new User to dataset here
-                            AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), TIN.getText().toString(),newBA);
-                        }
-                    } catch (IOException e) {
-
-                    }
-                }
-                Intent backTosign= new Intent(CreateNewAccount.this, SignIn_UpOption.class);
-                startActivity(backTosign);
-            }
-        });
-
-
-
     }
 
-    boolean checkDataEntered() {
+    @Override
+    public void onClick(View v) {
+        newAccountPresenter.handleCreateAccountButtonClick();
+    }
+
+
+    public void CreateAccountButtonClicked(){
+        if(newAccountPresenter.DataValidation()) {
+
+            try {
+                if(SetCoordinates()){
+
+                    BankAccount newBA = new BankAccount(CompName.getText().toString(), IBAN.getText().toString(), 0);
+                    //TODO ADD new User to dataset here
+                    AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), TIN.getText().toString(),newBA);
+                }
+            } catch (IOException e) {
+
+            }
+        }
+        Intent backTosign= new Intent(CreateNewAccount.this, SignIn_UpOption.class);
+        startActivity(backTosign);
+    }
+
+    @Override
+    public boolean checkDataEntered() {
         boolean flag = true;
         if(isEmail(CompEmail) == false){
             CompEmail.setError("Enter a valid email");
-
-
             flag = false;
         }
         if(infoExists(CompName, "name") == true){
@@ -140,17 +142,20 @@ public class CreateNewAccount extends AppCompatActivity {
         return flag;
     }
 
-    boolean isEmpty(EditText text){
+    @Override
+    public boolean isEmpty(EditText text){
         CharSequence str = text.getText().toString();
         return TextUtils.isEmpty(str);
     }
 
-    boolean isEmail(EditText text){
+    @Override
+    public boolean isEmail(EditText text){
         CharSequence email = text.getText().toString();
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
-    boolean infoExists(EditText text, String dataType){
+    @Override
+    public boolean infoExists(EditText text, String dataType){
         boolean nameFlag = false;
         boolean emailFlag = false;
         boolean addressFlag = false;
@@ -173,9 +178,10 @@ public class CreateNewAccount extends AppCompatActivity {
                 }
             }
             return emailFlag;
-       }return false;
+        }return false;
     }
 
+    @Override
     public boolean SetCoordinates() throws IOException {
         boolean coordflag = false;
         Geocoder gc = new Geocoder(this);
@@ -193,4 +199,5 @@ public class CreateNewAccount extends AppCompatActivity {
         }
         return  coordflag;
     }
+
 }
