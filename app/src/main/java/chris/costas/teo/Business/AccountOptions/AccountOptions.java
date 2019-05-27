@@ -20,7 +20,11 @@ import chris.costas.teo.Business.Statistics.StatisticsActivity;
 import chris.costas.teo.Business.VehicleManagement.VehicleManagement;
 import model.services.AccountService;
 
-public class AccountOptions extends AppCompatActivity implements View.OnClickListener {
+/**
+ * These are the actions employee can do with the account.
+**/
+
+public class AccountOptions extends AppCompatActivity implements View.OnClickListener, AccountOptionsContract.MvpView {
 
     private Button AccountInfo;
     private Button Statistics;
@@ -29,22 +33,18 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
     private Button Applications;
     private Button signOut;
 
+    AccountOptionsContract.Presenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_options);
-        //no need for real
-        AssetManager assets = this.getAssets();
-//        try {
-//            model.services.Service.companyReader(assets.open("dataset/Companies.txt"));
-//            Service.vehicleReader(assets.open("dataset/Vehicles.txt"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        AccountService.login("teotsi@gmail.com", "Qwerty!2");
-        ///
+
+        mPresenter=new AccountOptionsPresenter(this);
+
+
         TextView companyName = findViewById(R.id.CompanyNameText);
-        String name = AccountService.getName();
+        String name = mPresenter.getCompanyName();
         companyName.setText(name);
         signOut = findViewById(R.id.signOutButton);
         AccountInfo= findViewById(R.id.InfoSettingsButton);
@@ -58,8 +58,6 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
         Vehicles.setOnClickListener(this);
         Applications.setOnClickListener(this);
         signOut.setOnClickListener(this);
-        System.out.println("Heeeeeeeeyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-
     }
 
     @Override
@@ -67,49 +65,86 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
         System.out.println("Inside OnClick!!!!!!!!!!!!!!!!!");
         switch (v.getId()){
             case R.id.signOutButton:
-                AlertDialog.Builder builder = new AlertDialog.Builder(AccountOptions.this);
-                builder.setMessage("Are you sure you want to sign out?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                AccountService.save();
-                                AccountService.signOut();
-                                Intent returnIntent = new Intent(AccountOptions.this, MainActivity.class);
-                                startActivity(returnIntent);
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                builder.create().show();
+               mPresenter.signOut();
                 break;
             case R.id.InfoSettingsButton:
-                System.out.println("not ready yet");
-                Intent intentInfo=new Intent(AccountOptions.this, EditAccount.class);
-                startActivity(intentInfo);
+                mPresenter.handleInfoSettingsButtonClick();
                 break;
             case R.id.StatisticsButton:
-                Intent intentStatistics=new Intent(AccountOptions.this, StatisticsActivity.class);
-                startActivity(intentStatistics);
+                mPresenter.handleStatisticsButtonClick();
                 break;
             case R.id.RentalsButton:
-                Intent intentRentals=new Intent(AccountOptions.this, RentalsActivity.class);
-                startActivity(intentRentals);
+                mPresenter.handleRentalsButtonClick();
                 break;
             case R.id.VehiclesButton:
-                Intent intentVehicles=new Intent(AccountOptions.this, VehicleManagement.class);
-                startActivity(intentVehicles);
+                mPresenter.handleVehiclesButtonClick();
                 break;
             case R.id.ApplicationsButton:
-                Intent intentApplications=new Intent(AccountOptions.this, ApplicationsActivity.class);
-                startActivity(intentApplications);
+                mPresenter.handleApplicationsButtonClick();
                 break;
         }
 
+    }
+
+    @Override
+    public void navigateToInfoSettings() {
+        Intent intentInfo=new Intent(AccountOptions.this, EditAccount.class);
+        startActivity(intentInfo);
+    }
+
+    @Override
+    public void navigateToStatistics() {
+        Intent intentStatistics=new Intent(AccountOptions.this, StatisticsActivity.class);
+        startActivity(intentStatistics);
+    }
+
+    @Override
+    public void navigateToRentals() {
+        Intent intentRentals=new Intent(AccountOptions.this, RentalsActivity.class);
+        startActivity(intentRentals);
+    }
+
+    @Override
+    public void navigateToVehicles() {
+        Intent intentVehicles=new Intent(AccountOptions.this, VehicleManagement.class);
+        startActivity(intentVehicles);
+    }
+
+    @Override
+    public void navigateToApplications() {
+        Intent intentApplications=new Intent(AccountOptions.this, ApplicationsActivity.class);
+        startActivity(intentApplications);
+    }
+
+    @Override
+    public void navigateToSignOut() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AccountOptions.this);
+        builder.setMessage("Are you sure you want to sign out?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.save();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mPresenter.cancel(dialog);
+                    }
+                });
+        builder.create().show();
+    }
+
+    @Override
+    public void ActOut() {
+        Intent returnIntent = new Intent(AccountOptions.this, MainActivity.class);
+        startActivity(returnIntent);
+        finish();
+    }
+
+    @Override
+    public void ActCancel(DialogInterface dialog) {
+        dialog.cancel();
     }
 }

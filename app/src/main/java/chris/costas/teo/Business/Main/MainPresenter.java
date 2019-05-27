@@ -8,7 +8,8 @@ import java.io.IOException;
 import model.services.Service;
 
 /**
- *
+ * This is the presenter of MainActivity. It communicates with the model and more specifically we
+ * read the files we need for the app.
  **/
 
 public class MainPresenter implements MainContract.Presenter {

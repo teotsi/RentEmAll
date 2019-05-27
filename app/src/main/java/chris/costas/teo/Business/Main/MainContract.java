@@ -1,7 +1,5 @@
 package chris.costas.teo.Business.Main;
 
-import android.view.View;
-
 public interface MainContract {
     interface MvpView{
         void navigateToBusiness();
