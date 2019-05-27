@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -20,13 +19,13 @@ import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.time.LocalDate;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.time.LocalDate;
 
 import chris.costas.teo.R;
 import model.classes.Vehicle;
@@ -56,6 +55,7 @@ public class NewVehicleDialog extends DialogFragment {
     private ImageView pic;
     private Uri picUri;
     private Drawable picDrawable;
+    private NewVehiclePresenter mPresenter;
 
     public static NewVehicleDialog display(FragmentManager fragmentManager) {
         NewVehicleDialog exampleDialog = new NewVehicleDialog();
@@ -71,6 +71,7 @@ public class NewVehicleDialog extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog);
+        mPresenter = new NewVehiclePresenter();
     }
 
     @Override
@@ -88,18 +89,6 @@ public class NewVehicleDialog extends DialogFragment {
         toolbar.setNavigationOnClickListener(v -> dismiss());
         toolbar.setTitle("Add vehicle(s)");
         toolbar.inflateMenu(R.menu.edit_vehicle_dialog);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                System.out.println(item.getItemId());
-                if (item.getItemId() == R.id.action_save) {
-                    AccountService.editVehicle(position, brand.getText().toString(), model.getText().toString(), type.getSelectedItem().toString(), Integer.parseInt(seats.getSelectedItem().toString()),
-                            fuel.getSelectedItem().toString(), pce.isChecked(), Float.parseFloat(String.valueOf(rate.getText())), extra.getText().toString(), transmission.getSelectedItem().toString(), available.isChecked(), picDrawable);
-                    System.out.println("heyyy");
-                }
-                return false;
-            }
-        });
         toolbar.findViewById(R.id.action_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +106,8 @@ public class NewVehicleDialog extends DialogFragment {
         rate = view.findViewById(R.id.new_rate);
         extra = view.findViewById(R.id.new_extra);
         pic = view.findViewById((R.id.new_image));
-        multiple= view.findViewById((R.id.new_multiple));
-        newNumber= view.findViewById(R.id.new_number);
+        multiple = view.findViewById((R.id.new_multiple));
+        newNumber = view.findViewById(R.id.new_number);
         newNumber.setMinValue(1);
         newNumber.setMaxValue(10);
         newNumber.setEnabled(false);
@@ -175,30 +164,30 @@ public class NewVehicleDialog extends DialogFragment {
         model.setError(null);
         rate.setError(null);
         extra.setError(null);
-        if (TextUtils.isEmpty(brand.getText().toString())) {
+        if (mPresenter.isEmpty(brand.getText().toString())) {
             brand.setError("This field is required");
             errorView = brand;
             error = true;
         }
-        if (TextUtils.isEmpty(model.getText().toString())) {
+        if (mPresenter.isEmpty(model.getText().toString())) {
             model.setError("This field is required");
             errorView = model;
             error = true;
         }
-        if (TextUtils.isEmpty(rate.getText().toString())) {
+        if (mPresenter.isEmpty(rate.getText().toString())) {
             rate.setError("This field is required");
             errorView = rate;
             error = true;
         } else {
             try {
-                Float.parseFloat(rate.getText().toString());
+                mPresenter.parseFloat(rate.getText().toString());
             } catch (NumberFormatException e) {
                 rate.setError("Enter a valid number");
                 errorView = rate;
                 error = true;
             }
         }
-        if (TextUtils.isEmpty(extra.getText().toString())) {
+        if (mPresenter.isEmpty(extra.getText().toString())) {
             extra.setError("This field is required");
             errorView = extra;
             error = true;
@@ -207,11 +196,9 @@ public class NewVehicleDialog extends DialogFragment {
         if (error) {
             errorView.requestFocus();
         } else {
-            Vehicle vehicle = new Vehicle(brand.getText().toString(), model.getText().toString(), type.getSelectedItem().toString(), Integer.parseInt(seats.getSelectedItem().toString()),
-                    fuel.getSelectedItem().toString(), pce.isChecked(), Float.parseFloat(String.valueOf(rate.getText())), extra.getText().toString(), transmission.getSelectedItem().toString(), LocalDate.now(), available.isChecked());
-            AccountService.addVehicle(vehicle, newNumber.getValue());
-            System.out.println("heyyy");
-            AccountService.save();
+            mPresenter.handleSave(brand.getText().toString(), model.getText().toString(), type.getSelectedItem().toString(), Integer.parseInt(seats.getSelectedItem().toString()),
+                    fuel.getSelectedItem().toString(), pce.isChecked(), Float.parseFloat(String.valueOf(rate.getText())),
+                    extra.getText().toString(), transmission.getSelectedItem().toString(), LocalDate.now(), available.isChecked(),newNumber.getValue());
             dismiss();
         }
     }
