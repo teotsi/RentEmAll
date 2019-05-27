@@ -24,7 +24,7 @@ import model.classes.Vehicle;
 import model.services.AccountService;
 import model.services.SearchService;
 
-public class ClientRentDialog extends DialogFragment {
+public class ClientRentDialog extends DialogFragment implements PickVehicleContract.RentDialogMvpView{
 
     public static final String TAG = "client_rent_dialog";
     private static int position;
@@ -39,6 +39,7 @@ public class ClientRentDialog extends DialogFragment {
     private EditText surname;
     private EditText telephone;
     private EditText email;
+    private RentDialogPresenter mPresenter;
 
     public static ClientRentDialog display(FragmentManager fragmentManager, Vehicle vehicle, LocalDate startDate, LocalDate endDate, PickVehicle activity) {
         ClientRentDialog.vehicle = vehicle;
@@ -59,6 +60,7 @@ public class ClientRentDialog extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(DialogFragment.STYLE_NORMAL, R.style.AppTheme_FullScreenDialog);
+        mPresenter = new RentDialogPresenter(this);
     }
 
     @Override
@@ -124,26 +126,26 @@ public class ClientRentDialog extends DialogFragment {
         surname.setError(null);
         email.setError(null);
         telephone.setError(null);
-        if (TextUtils.isEmpty(name.getText().toString())) {
+        if (mPresenter.isEmpty(name.getText().toString())) {
             name.setError("This field is required");
             errorView = name;
             error = true;
         }
-        if (TextUtils.isEmpty(surname.getText().toString())) {
+        if (mPresenter.isEmpty(surname.getText().toString())) {
             surname.setError("This field is required");
             errorView = surname;
             error = true;
         }
-        if (TextUtils.isEmpty(telephone.getText().toString())) {
+        if (mPresenter.isEmpty(telephone.getText().toString())) {
             telephone.setError("This field is required");
             errorView = telephone;
             error = true;
         }
-        if (TextUtils.isEmpty(email.getText().toString())) {
+        if (mPresenter.isEmpty(email.getText().toString())) {
             email.setError("This field is required");
             errorView = email;
             error = true;
-        } else if (!AccountService.emailIsValid(email.getText().toString())) {
+        } else if (!mPresenter.emailIsValid(email.getText().toString())) {
             email.setError("Invalid email");
             errorView = email;
             error = true;
@@ -152,34 +154,12 @@ public class ClientRentDialog extends DialogFragment {
         if (error) {
             errorView.requestFocus();
         } else {
-            Customer customer = new Customer(name.getText().toString(), surname.getText().toString(), telephone.getText().toString(), email.getText().toString());
-           Context context = getContext();
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setMessage("Choose payment method.")
-                    .setCancelable(false)
-                    .setPositiveButton("Credit Card", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            SearchService.submitApplication(SearchService.createApplication(vehicle.getCompanyId(), vehicle, startDate, endDate, LocalDate.now(),
-                                    String.valueOf(email.hashCode()), "customer location", "company location", customer));
-                            toMain(context);
-                        }
-                    })
-                    .setNeutralButton("PayPal", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            SearchService.submitApplication(SearchService.createApplication(vehicle.getCompanyId(), vehicle, startDate, endDate, LocalDate.now(),
-                                    String.valueOf(email.hashCode()), "customer location", "company location", customer));
-                        toMain(context);
-                        }
-                    });
-            builder.create().show();
-
-
+            mPresenter.saveRentingApp(name.getText().toString(), surname.getText().toString(), telephone.getText().toString(), email.getText().toString(),getContext(),vehicle,startDate,endDate);
             dismiss();
         }
     }
 
+    @Override
     public void toMain(Context context){
         AlertDialog.Builder successBuilder = new AlertDialog.Builder(context);
         successBuilder.setMessage("Success! Your application has been recorded.")
