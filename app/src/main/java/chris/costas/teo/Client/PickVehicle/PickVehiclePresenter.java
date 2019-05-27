@@ -11,15 +11,13 @@ import java.util.ArrayList;
 
 import model.classes.Vehicle;
 
-public class PickVehiclePresenter implements PickVehicleContract.Presenter{
+public class PickVehiclePresenter implements PickVehicleContract.AdapterPresenter {
 
     private final ArrayList<Vehicle> mVehicles;
     private AssetManager assetManager;
-    private PickVehicleContract.PickView mView;
-    public PickVehiclePresenter(ArrayList<Vehicle> mVehicles, AssetManager assetManager, PickVehicleContract.PickView mView ) {
+    public PickVehiclePresenter(ArrayList<Vehicle> mVehicles, AssetManager assetManager) {
         this.mVehicles = mVehicles;
         this.assetManager = assetManager;
-        this.mView = mView;
     }
 
     @Override
