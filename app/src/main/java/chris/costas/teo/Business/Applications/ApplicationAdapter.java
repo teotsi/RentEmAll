@@ -73,6 +73,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         @Override
         public void onClick(View v) {
             int pos=getAdapterPosition();
+            System.out.println(pos);
             onNoteListener.onNoteClick(pos);
         }
 

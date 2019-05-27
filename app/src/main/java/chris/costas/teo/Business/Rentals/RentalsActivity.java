@@ -15,7 +15,7 @@ import chris.costas.teo.R;
 import model.classes.Rental;
 import model.services.AccountService;
 
-public class RentalsActivity extends AppCompatActivity implements RentalAdapter.OnNoteListener{
+public class RentalsActivity extends AppCompatActivity implements RentalAdapter.OnNoteListener, RentalsContract.MvpView{
 
     private RecyclerView myrecyclerview;
     private static List<Rental> rentals;

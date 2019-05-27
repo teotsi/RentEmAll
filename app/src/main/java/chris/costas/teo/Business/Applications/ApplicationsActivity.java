@@ -49,6 +49,7 @@ public class ApplicationsActivity extends AppCompatActivity implements Applicati
     @Override
     public void onDismiss(DialogInterface dialog) {
         if(appDialog.Dpresenter.getRemove()){
+            System.out.println("The remove issssssssssssssss: "+ appDialog.Dpresenter.getRemove());
             int position=appDialog.Dpresenter.getPosition();
             appAdapter.notifyItemRemoved(position);
             appAdapter.notifyItemRangeChanged(position,AccountService.getPendingApplications().size());
