@@ -62,7 +62,6 @@ public class AccountOptions extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        System.out.println("Inside OnClick!!!!!!!!!!!!!!!!!");
         switch (v.getId()){
             case R.id.signOutButton:
                mPresenter.signOut();

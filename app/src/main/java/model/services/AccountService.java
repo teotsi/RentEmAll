@@ -267,6 +267,10 @@ public class AccountService extends Service {
         return acceptedApplications;
     }
 
+    public static List<RentingApplication> getApplications(){
+        return applications;
+    }
+
     public static List<RentingApplication> getRejectedApplications() { //returns all rejected applications
         List<RentingApplication> rejectedApplications = new ArrayList<>();
         for (RentingApplication application : applications) {

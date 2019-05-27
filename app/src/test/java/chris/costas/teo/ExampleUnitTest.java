@@ -110,21 +110,21 @@ public class ExampleUnitTest {
         Assert.assertFalse(AccountService.emailIsValid("teotsi@mailcom"));
     }
 
-    @Test
-    public void registerCompanyFunctionality(){
-        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
-                "Makis description", 50, 38.080641, 23.687001,
-                "teotsi@mailcom", "Makis12", new BankAccount("Makis", "43", 65)),3);
-        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
-                "Makis description", 50, 38.080641, 23.687001,
-                "teotsi@gmail.com", "Makis12", new BankAccount("Makis", "43", 65)),2);
-        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
-                "Makis description", 50, 38.080641, 23.687001,
-                "makaros@gmail.com", "Makis12", new BankAccount("Makis", "43", 65)),1);
-        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
-                "Makis description", 50, 38.080641, 23.687001,
-                "makaros@gmail.com", "Makaros!2", new BankAccount("Makis", "43", 65)),0);
-    }
+//    @Test
+//    public void registerCompanyFunctionality(){
+//        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
+//                "Makis description", 50, 38.080641, 23.687001,
+//                "teotsi@mailcom", "Makis12", new BankAccount("Makis", "43", 65)),3);
+//        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
+//                "Makis description", 50, 38.080641, 23.687001,
+//                "teotsi@gmail.com", "Makis12", new BankAccount("Makis", "43", 65)),2);
+//        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
+//                "Makis description", 50, 38.080641, 23.687001,
+//                "makaros@gmail.com", "Makis12", new BankAccount("Makis", "43", 65)),1);
+//        Assert.assertEquals(AccountService.register("Makis Rentals", "Makis policy",
+//                "Makis description", 50, 38.080641, 23.687001,
+//                "makaros@gmail.com", "Makaros!2", new BankAccount("Makis", "43", 65)),0);
+//    }
 
     @Test
     public void vehicleAddandRemove(){

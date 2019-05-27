@@ -54,6 +54,11 @@ public class AccountOptionsPresenter implements AccountOptionsContract.Presenter
         mView.ActOut();
     }
 
+    public void saveTest(){
+        AccountService.save();
+        AccountService.signOut();
+    }
+
     @Override
     public void cancel(DialogInterface dialog) {
         mView.ActCancel(dialog);
