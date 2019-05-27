@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import chris.costas.teo.R;
@@ -17,16 +18,19 @@ import model.classes.RentingApplication;
 
 public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.MyViewHolder> {
 
+    private final ApplicationAdapterPresenter adPresenter;
+
     Context mContext;
     List<RentingApplication> applications;
     private OnNoteListener mOnNoteListener;
     FragmentManager fragmentManager;
 
-    public ApplicationAdapter(Context mContext, List<RentingApplication> applications, OnNoteListener onNoteListener, FragmentManager fragmentManager) {
+    public ApplicationAdapter(Context mContext, List<RentingApplication> applications, OnNoteListener onNoteListener, FragmentManager fragmentManager, ApplicationAdapterPresenter adPresenter) {
         this.mContext = mContext;
         this.applications = applications;
         this.mOnNoteListener=onNoteListener;
         this.fragmentManager=fragmentManager;
+        this.adPresenter=adPresenter;
     }
 
     @NonNull
@@ -40,10 +44,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        RentingApplication app= applications.get(position);
-        holder.id.setText(app.getId());
-        holder.start_date.setText(app.getStartDate().toString());
-        holder.end_date.setText(app.getEndDate().toString());
+        adPresenter.onBindRepositoryRowViewAtPosition(position,holder);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         return applications.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ApplicationContract.RepositoryRowView{
 
         private TextView id;
         private TextView start_date;
@@ -73,6 +74,21 @@ public class ApplicationAdapter extends RecyclerView.Adapter<ApplicationAdapter.
         public void onClick(View v) {
             int pos=getAdapterPosition();
             onNoteListener.onNoteClick(pos);
+        }
+
+        @Override
+        public void setId(String id) {
+            this.id.setText(id);
+        }
+
+        @Override
+        public void setStartDate(LocalDate startDate) {
+            this.start_date.setText(startDate.toString());
+        }
+
+        @Override
+        public void setEndDate(LocalDate endDate) {
+            this.end_date.setText(endDate.toString());
         }
     }
 
