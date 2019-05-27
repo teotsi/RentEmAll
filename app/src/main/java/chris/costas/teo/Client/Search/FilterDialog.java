@@ -1,4 +1,4 @@
-package chris.costas.teo.Client;
+package chris.costas.teo.Client.Search;
 
 import android.app.Activity;
 import android.app.Dialog;

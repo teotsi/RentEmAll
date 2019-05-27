@@ -1,4 +1,4 @@
-package chris.costas.teo.Client;
+package chris.costas.teo.Client.PickVehicle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import chris.costas.teo.Business.Main.MainActivity;
@@ -17,18 +18,19 @@ import model.classes.Vehicle;
 
 public class PickVehicle extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private List<Vehicle> vehicles;
+    private ArrayList<Vehicle> vehicles;
     private RentVehicleAdapter rentVehicleAdapter;
     public static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_vehicle);
-        vehicles = (List<Vehicle>) getIntent().getSerializableExtra("vehicles");
+        vehicles = (ArrayList<Vehicle>) getIntent().getSerializableExtra("vehicles");
         LocalDate startDate = (LocalDate) getIntent().getSerializableExtra("startDate");
         LocalDate endDate= (LocalDate) getIntent().getSerializableExtra("endDate");
         recyclerView = findViewById(R.id.filtered_vehicle_list);
-        rentVehicleAdapter = new RentVehicleAdapter(this,vehicles, getSupportFragmentManager(),startDate,endDate, this);
+        PickVehiclePresenter presenter = new PickVehiclePresenter(vehicles,getAssets());
+        rentVehicleAdapter = new RentVehicleAdapter(this,vehicles, getSupportFragmentManager(),startDate,endDate, this,presenter );
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(rentVehicleAdapter);
     }

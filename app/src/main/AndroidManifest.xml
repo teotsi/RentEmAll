@@ -16,9 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Client.PickVehicle"></activity>
+        <activity android:name=".Client.PickVehicle.PickVehicle"></activity>
         <activity
-            android:name=".Client.SearchActivity"
+            android:name=".Client.Search.SearchActivity"
             android:exported="true"
             android:label="Search" />
         <activity

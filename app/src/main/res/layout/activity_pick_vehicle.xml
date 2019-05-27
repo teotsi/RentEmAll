@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Client.PickVehicle">
+    tools:context=".Client.PickVehicle.PickVehicle">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/filtered_vehicle_list"

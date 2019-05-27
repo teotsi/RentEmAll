@@ -1,4 +1,4 @@
-package chris.costas.teo.Client;
+package chris.costas.teo.Client.PickVehicle;
 
 import android.app.Dialog;
 import android.content.Context;

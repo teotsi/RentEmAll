@@ -3,17 +3,13 @@ package chris.costas.teo.Business.Main;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.IOException;
-
 import chris.costas.teo.R;
-import chris.costas.teo.Client.SearchActivity;
+import chris.costas.teo.Client.Search.SearchActivity;
 import chris.costas.teo.Business.SignIn_Up.SignIn_UpOption;
-import model.services.Service;
 
 public class MainActivity extends AppCompatActivity implements MainContract.MvpView, View.OnClickListener {
 
