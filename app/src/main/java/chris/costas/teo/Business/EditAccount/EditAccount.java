@@ -24,8 +24,6 @@ import model.services.AccountService;
 
 public class EditAccount extends AppCompatActivity implements EditAccountContract.MvpView, View.OnClickListener{
 
-    //TODO Find a way to get currentUser from login activity
-
     CompanyAccount currentUser ;
     EditText newName_Text;
     EditText newRentalRange_Text;
@@ -36,7 +34,7 @@ public class EditAccount extends AppCompatActivity implements EditAccountContrac
     Button saveChangesBtn;
     String newName, newAddress, newPolicy, newDescription, newAfm;
     float newRentalRange;
-    Geocoder geo = new Geocoder(this);
+    Geocoder geo;
     List<Address> reverseAddress;
     List<Address> addressList;
 
@@ -50,7 +48,7 @@ public class EditAccount extends AppCompatActivity implements EditAccountContrac
         setContentView(R.layout.activity_edit_account);
 
         mPres = new EditAccountPresenter(this);
-
+        geo = new Geocoder(this);
         currentUser = AccountService.getCompany();
         newName_Text = findViewById(R.id.NewNameTextField);
         newRentalRange_Text = findViewById(R.id.NewRentalRangeTextField);
