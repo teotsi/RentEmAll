@@ -52,7 +52,6 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull RentVehicleAdapter.CustomViewHolder holder, int position) {
-        AssetManager assetManager = mContext.getAssets();
         mPresenter.onBindRowViewAtPosition(holder, position);
     }
 
@@ -75,12 +74,7 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
             vehicleData = itemView.findViewById(R.id.rent_vehicle_data);
             pic = itemView.findViewById(R.id.rent_vehicle_pic);
             confirm = itemView.findViewById(R.id.rent_vehicle);
-            confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ClientRentDialog dialog = ClientRentDialog.display(fragmentManager,mVehicles.get(getAdapterPosition()),startDate,endDate,activity);
-                }
-            });
+            confirm.setOnClickListener(this);
             info = itemView.findViewById(R.id.info_vehicle);
             info.setOnClickListener(this);
         }
@@ -88,23 +82,13 @@ public class RentVehicleAdapter extends RecyclerView.Adapter<RentVehicleAdapter.
 
         @Override
         public void onClick(View v) {
-            int position = getAdapterPosition();
-            vehicle = mVehicles.get(position);
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setMessage("Info:\n" +
-                    "Brand:"+vehicle.getBrand()+"\n"+
-                    "Model:"+vehicle.getModel()+"\n"+
-                    "Type:"+vehicle.getType()+"\n"+
-                    "Seats:"+vehicle.getSeats()+"\n"+
-                    "Fuel type:"+vehicle.getFuelType()+"\n"+
-                    "PCE:"+vehicle.isPce()+"\n"+
-                    "Rate:"+vehicle.getRate()+"\n"+
-                    "Extra:"+vehicle.getExtra()+"\n"+
-                    "Transmission type:"+vehicle.getTransmissionType()+"\n")
-                    .setCancelable(true);
-            builder.create().show();
+            if (v.getId() == R.id.info_vehicle) {
+                int position = getAdapterPosition();
+               mPresenter.handleInfoClick(position,mContext);
+            }else if(v.getId() == R.id.rent_vehicle){
+                mPresenter.handleRentClick(fragmentManager, startDate, endDate,activity,getAdapterPosition());
+            }
         }
-
 
         @Override
         public void setID(String id) {
