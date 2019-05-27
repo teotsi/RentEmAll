@@ -40,7 +40,7 @@ public class CreateNewAccount extends AppCompatActivity implements CreateNewAcco
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_account);
 
-        newAccountPresenter = new CreateNewAccountPresenter(this);
+        newAccountPresenter = new CreateNewAccountPresenter(this, latitude, longitude);
 
         CompName = findViewById(R.id.CompanyNameTextField);
         CompEmail = findViewById(R.id.EmailTextField);
@@ -54,7 +54,7 @@ public class CreateNewAccount extends AppCompatActivity implements CreateNewAcco
         CreateAccountBtn = findViewById(R.id.CreateAccountButton);
         CreateAccountBtn.setOnClickListener(this);
 
-        addressList = new ArrayList<Address>();
+        addressList = new ArrayList<>();
     }
 
     @Override
@@ -64,13 +64,14 @@ public class CreateNewAccount extends AppCompatActivity implements CreateNewAcco
 
 
     public void CreateAccountButtonClicked(){
-        if(newAccountPresenter.DataValidation(CompAddress, CompName, Policy, Description, IBAN, RentalRange, latitude, longitude, CompEmail, Password, TIN)) {            try {
-                if(newAccountPresenter.LongLat(this, addressList, CompAddress, latitude, longitude)){
+        if(newAccountPresenter.DataValidation(CompAddress, CompName, Policy, Description, IBAN, RentalRange, latitude, longitude, CompEmail, Password, TIN)) {
+            try {
+                if(newAccountPresenter.LongLat(this, addressList, CompAddress)){
+                    latitude = newAccountPresenter.getLatitude();
+                    longitude = newAccountPresenter.getLongitude();
                     newAccountPresenter.newAccount(CompName, Policy, Description, IBAN, RentalRange, latitude, longitude, CompEmail, Password, TIN);
                 }
-            } catch (IOException e) {
-
-            }
+            } catch (IOException e) {}
         }
         Intent backTosign= new Intent(CreateNewAccount.this, SignIn_UpOption.class);
         startActivity(backTosign);
@@ -98,7 +99,7 @@ public class CreateNewAccount extends AppCompatActivity implements CreateNewAcco
 
     @Override
     public boolean SetCoordinates(Context con, List<Address> addressList, EditText CompAddress, double latitude, double longitude) throws IOException {
-        return newAccountPresenter.LongLat(con, addressList, CompAddress, latitude, longitude);
+        return newAccountPresenter.LongLat(con, addressList, CompAddress);
     }
 
     public void ToastMessages(String id){

@@ -35,8 +35,12 @@ public interface CreateNewAccountContract {
 
         boolean InfoExistence(EditText text, String dataType);
 
-        boolean LongLat(Context con, List<Address> addressList, EditText CompAddress, double latitude, double longitude) throws IOException;
+        boolean LongLat(Context con, List<Address> addressList, EditText CompAddress) throws IOException;
 
         void newAccount(EditText CompName, EditText Policy, EditText Description, EditText IBAN, EditText RentalRange, double latitude, double longitude , EditText CompEmail, EditText Password, EditText TIN);
+
+        double getLatitude();
+
+        double getLongitude();
     }
 }

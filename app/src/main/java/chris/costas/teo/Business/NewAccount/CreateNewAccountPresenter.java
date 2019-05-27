@@ -22,9 +22,12 @@ import model.services.Service;
 public class CreateNewAccountPresenter implements CreateNewAccountContract.Presenter {
 
     private CreateNewAccountContract.MvpView mView;
+    public double latitude, longitude;
 
-    CreateNewAccountPresenter(CreateNewAccountContract.MvpView view){
+    CreateNewAccountPresenter(CreateNewAccountContract.MvpView view, double latitude, double longitude){
         this.mView = view;
+        this.latitude = latitude;
+        this.longitude =  longitude;
     }
 
     @Override
@@ -105,7 +108,6 @@ public class CreateNewAccountPresenter implements CreateNewAccountContract.Prese
     public boolean InfoExistence(EditText text, String dataType){
         boolean nameFlag = false;
         boolean emailFlag = false;
-        boolean addressFlag = false;
         CharSequence info = text.getText().toString();
         if(dataType.equals("name")){
             List<CompanyAccount> companies = Service.getCompanies();
@@ -129,7 +131,7 @@ public class CreateNewAccountPresenter implements CreateNewAccountContract.Prese
     }
 
     @Override
-    public boolean LongLat(Context con, List<Address> addressList, EditText CompAddress, double latitude, double longitude) throws IOException{
+    public boolean LongLat(Context con, List<Address> addressList, EditText CompAddress) throws IOException{
         boolean coordflag = false;
         Geocoder gc = new Geocoder(con);
         addressList = gc.getFromLocationName(CompAddress.getText().toString(), 1);
@@ -153,6 +155,13 @@ public class CreateNewAccountPresenter implements CreateNewAccountContract.Prese
         AccountService.register(CompName.getText().toString(), Policy.getText().toString(), Description.getText().toString(), Float.parseFloat(RentalRange.getText().toString()), latitude, longitude, CompEmail.getText().toString(), Password.getText().toString(), TIN.getText().toString(),newBA);
     }
 
+    public double getLatitude(){
+        return this.latitude;
+    }
+
+    public double getLongitude(){
+        return this.longitude;
+    }
 }
 
 
