@@ -10,6 +10,9 @@ public interface MainContract {
     }
 
     interface Presenter{
+
+        void load();
+
         void handleBusinessButtonClick();
 
         void handleRentCarButtonClick();

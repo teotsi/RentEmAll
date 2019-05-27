@@ -15,6 +15,7 @@ public class MainPresenter implements MainContract.Presenter {
         mView=view;
     }
 
+    @Override
     public void load (){
         try {
             AssetManager assets = mView.getAssets();
