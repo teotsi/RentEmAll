@@ -35,6 +35,7 @@ public class EditAccount extends AppCompatActivity {
     Button saveChangesBtn;
     String newName, newAddress, newPolicy, newDescription, newAfm;
     float newRentalRange;
+    Geocoder geo=new Geocoder(this);
 
     List<Address> addressList;
 
@@ -56,6 +57,11 @@ public class EditAccount extends AppCompatActivity {
         newPolicy_Text.setText(currentUser.getPolicy());
         newDescription_Text.setText(currentUser.getDescription());
         TIN.setText(currentUser.getAfm());
+        try {
+            geo.getFromLocation(currentUser.getLatitude(),currentUser.getLongitude(),1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         saveChangesBtn = findViewById(R.id.SaveChangesButton);
 
