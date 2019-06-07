@@ -91,7 +91,7 @@ public class VehicleManagementAdapter extends RecyclerView.Adapter<VehicleManage
                 removeItem(position);
             } else if (v.getId() == edit_vehicle.getId()) {
                 int position = getAdapterPosition();
-                mPresenter.handleDelete(position, fragmentManager);
+                mPresenter.handleEdit(position, fragmentManager);
                 notifyDataSetChanged();
             }
         }
